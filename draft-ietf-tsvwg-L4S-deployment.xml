@@ -1,43 +1,24 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!-- Getting references from the online citation library.
-     There has to be one entity for each item to be referenced. -->
+<!-- 
+     draft-rfcxml-general-template-annotated-00
+  
+     This template includes examples of most of the features of RFCXML with comments explaining 
+     how to customise them, and examples of how to achieve specific formatting.
+     
+     Documentation is at https://authors.ietf.org/en/templates-and-schemas
+-->
+<?xml-model href="rfc7991bis.rnc"?>  <!-- Required for schema validation and schema-aware editing -->
+<!-- <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> --> 
+<!-- This third-party XSLT can be enabled for direct transformations in XML processors, including most browsers -->
 
-<!-- <!ENTITY rfc2119 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">  -->
+<!DOCTYPE rfc [
+  <!ENTITY nbsp    "&#160;">
+  <!ENTITY zwsp   "&#8203;">
+  <!ENTITY nbhy   "&#8209;">
+  <!ENTITY wj     "&#8288;">
+				]>
 
-<!ENTITY I-D.draft-ietf-tsvwg-l4s-arch SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml">
-
-<!ENTITY I-D.draft-ietf-tsvwg-aqm-dualq-coupled SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml">
-
-<!ENTITY I-D.draft-ietf-tsvwg-ecn-l4s-id SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml">
-
-<!ENTITY I-D.draft-ietf-tsvwg-l4sops SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml">
-
-<!ENTITY I-D.draft-ietf-tsvwg-nqb SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml">
-
-<!ENTITY I-D.draft-ietf-tsvwg-dscp-considerations SYSTEM '' 
-"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml">
-
-
-<!-- Outline of entity definition for citations to Internet Drafts
-     &lt;!ENTITY I-D.mrose-writing-rfcs SYSTEM 
-     "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.mrose-writing-rfcs">
-     corresponding to a draft filename draft-mrose-writing-rfcs-nn.txt.
-     Naming convention for draft-ietf-xx-yy is that
-       ietf-xx-yy  is latest version
-       draft-ietf-xx-yy-NN is that version.  Similarly for draft-foo
-       rather than draft-ietf: foo-xx-yy and draft-foo-xx-yy-NN
-   -->
-<!-- Fudge for XMLmind which doesn't have this built in -->
-<!ENTITY nbsp "&#160;">
-
-]>
 <!-- Extra statement used by XSLT processors to control the output style. -->
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- Processing Instructions- PIs (for a complete list and description,
@@ -96,12 +77,16 @@
         of "ipr" does not give the Trust full rights.
      "updates" and "obsoletes" attributes can also be specified here, their arguments are
         comma-separated lists of RFC numbers (just the numbers) -->
-
-<rfc  docName="draft-livingood-tsvwg-L4S-deployment"
-     ipr="trust200902"  category="info"
-	 >
-     <!-- obsoletes='2821, 821' updates='1123'
-        category='std' (bcp, info, exp, historic)  -->   
+<rfc
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  category="info"
+  docName="draft-livingood-tsvwg-L4S-deployment"
+  ipr="trust200902"
+  obsoletes=""
+  updates=""
+  submissionType="IETF"
+  xml:lang="en"
+  version="3">
 
 
   <!-- ***** FRONT MATTER ***** -->
@@ -109,6 +94,7 @@
   <front>
 
     <title abbrev="ISP L4S Deployment Design">ISP L4S Deployment Design Recommendations</title>
+    <seriesInfo name="Internet-Draft" value="draft-livingood-tsvwg-L4S-deployment-00"/>
 
     <!-- add 'role="editor"' below for the editors if appropriate -->
     <author fullname="Jason Livingood" initials="JL" surname="Livingood">
@@ -124,16 +110,16 @@
       </address>
     </author>
 
-    <date month="November" day="9" year="2018" />
+    <date month="August" day="17" year="2022"/>
 
     <!-- Meta-data Declarations -->
-    <area>TSV</area>
+    <area>Transport</area>
 
     <!-- WG name at the upper left corner of the doc,
          IETF fine for individual submissions.  You can also
          omit this element in which case it defaults to "Network Working Group" -
          a hangover from the ancient history of the IETF! -->
-    <workgroup>TSVWG</workgroup>
+    <workgroup>Transport Area Working Group</workgroup>
 
 	<!-- You can add <keyword/> elements here.  They will be incorporated into HTML output
          files in a meta tag but they have no effect on text or nroff output. -->
@@ -157,10 +143,10 @@
     <section title="Introduction">
 		    
 	<t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
-	Low Loss, Scalable Throughput (L4S)  <xref target="I-D.draft-ietf-tsvwg-l4s-arch"/> 
-	<xref target="I-D.draft-ietf-tsvwg-aqm-dualq-coupled"/> <xref target="I-D.draft-ietf-tsvwg-ecn-l4s-id"/> 
-	<xref target="I-D.draft-ietf-tsvwg-l4sops"/> <xref target="I-D.draft-ietf-tsvwg-nqb"/> 
-	<xref target="I-D.draft-ietf-tsvwg-dscp-considerations"/>. These documents do a good job of describing 
+	Low Loss, Scalable Throughput (L4S)  <xref target="I-D.ietf-tsvwg-l4s-arch"/> 
+	<xref target="I-D.ietf-tsvwg-aqm-dualq-coupled"/> <xref target="I-D.ietf-tsvwg-ecn-l4s-id"/> 
+	<xref target="I-D.ietf-tsvwg-l4sops"/> <xref target="I-D.ietf-tsvwg-nqb"/> 
+	<xref target="I-D.ietf-tsvwg-dscp-considerations"/>. These documents do a good job of describing 
 	the L4S architecture and protocol but as is normal for many such standards, especially those in 
 	experimental status, certain design decisions are ultimately left to implementers.</t>
 	
@@ -179,7 +165,7 @@
 
     </section>
     
-    <section title="Network Neutrality Overview" anchor="NN">
+    <section title="Network Neutrality Overview">
 	    <t>Network Neutrality (aka Net Neutrality, and NN hereafter) is a concept that can mean a variety 
 	    of things in different countries, based on their laws and regulations. Generally speaking it has 
 	    come to mean that Internet Service Providers (ISPs) should not block, throttle, or deprioritize 
@@ -197,7 +183,7 @@
     </section>
     
     
-    <section title="Recommended Deployment Design Decisions" anchor="Recommendations">
+    <section title="Recommended Deployment Design Decisions">
 	    
 	    <t>Like any network or system, a good deployment design and configuration matters and 
 	    can be the difference between a well-functioning and accepted design and one that experiences 
@@ -208,32 +194,32 @@
 	    
     </section>
     
-    <section title="Only Applications Mark Traffic" anchor="Marking">
+    <section title="Only Applications Mark Traffic">
 	    
-	    <t>Only applications should mark traffic, not the network. This is for several reasons:
-	    <list style="symbols">
-	    <t>According to the end-to-end principle, this function is best delegated to the edge of 
-	    the network as an architectural best practice.</t>
-	    <t>Application marking maintains the loose coupling between the application and network layers, 
-	    eliminating the need for close coordination between networks and application developers.</t>
-	    <t>Application developers know best whether their application will benefit from low latency and 
-	    which aspects of their traffic flows will or will not benefit.</t>
-	    <t>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
+	    <t>Only applications should mark traffic, not the network. This is for several reasons:</t>
+	    <ul>
+	    <li>According to the end-to-end principle, this function is best delegated to the edge of 
+	    the network as an architectural best practice.</li>
+	    <li>Application marking maintains the loose coupling between the application and network layers, 
+	    eliminating the need for close coordination between networks and application developers.</li>
+	    <li>Application developers know best whether their application will benefit from low latency and 
+	    which aspects of their traffic flows will or will not benefit.</li>
+	    <li>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
 	    to determine application protocols and to further infer which flows will benefit from low latency 
-	    and which flows may be harmed because they need to build a queue.</t>
-	    <t>Network operators and equipment vendors attempting to infer application type and application need 
+	    and which flows may be harmed because they need to build a queue.</li>
+	    <li>Network operators and equipment vendors attempting to infer application type and application need 
 	    will always make mistakes, incorrectly classifying traffic (REF TO NOTES) and potentially negatively 
-	    affecting certain flows.</t>  
-	    <t>The pace of innovation and iteration is necessarily faster-moving at the application edge at layer 7, 
+	    affecting certain flows.</li>  
+	    <li>The pace of innovation and iteration is necessarily faster-moving at the application edge at layer 7, 
 	    rather than in the network at layer 3 where there is greater standards stability and a lower rate of 
 	    major changes. As a result, the application layer is best suited to such experimentation. Network 
 	    operators and equipment vendors trying to infer application needs will in addition always be in a reactive 
-	    mode, one step behind changes made in applications.</t>
-	    </list></t>
+	    mode, one step behind changes made in applications.</li>
+	    </ul>
 	    
     </section>
     
-    <section title="No Provider Payments" anchor="Payments"> 
+    <section title="No Provider Payments"> 
 	    
 	    <t>There should be no edge provider payments for low latency marking by itself. A key point of NN 
 	    sensitivity pertains to the potential gatekeeping and barrier to entry effects of payments from edge 
@@ -248,7 +234,7 @@
 	    
     </section>
     
-    <section title="All Providers Welcome" anchor="Welcome"> 
+    <section title="All Providers Welcome"> 
 	    
 	    <t>Any provider should be able to mark their traffic for the low latency queue, with no restrictions 
 	    other than standards compliance or other reasonable and openly documented technical guidelines. This 
@@ -262,7 +248,7 @@
 	    
     </section>
     
-    <section title="Device Choice" anchor="DeviceChoice"> 
+    <section title="Device Choice"> 
 	    
 	   <t>Both customer-owned and leased devices should be supported. This avoids the risk that an ISP can be 
 	   perceived as giving preference to their own devices, which may carry some monthly recurring fee or other 
@@ -270,7 +256,7 @@
 	   
     </section>
     
-    <section title="User Choice" anchor"UserChoice">
+    <section title="User Choice">
 	    <t>Users should have a mechanism to opt out of low latency networking. If low latency 
 	    networking is working correctly, it seems unlikely that a user should ever want or need to turn it 
 	    off. But is is also possible it may be desirable in some troubleshooting situations or even in cases 
@@ -281,51 +267,48 @@
 	    
     </section>
     
-    </section>
     
- <section title="Summary of Recommended Deployment Design Decisions" anchor="Summary">
-	 <t>
+ <section title="Summary of Recommended Deployment Design Decisions">
 	 
-	 <list style="numbers">
-	 	<t>Only Applications Mark Traffic: Not the network</t>
-	 	<t>No Provider Payments: No edge provider payments for low latency marking</t>
-	 	<t>All Providers Welcome: Any provider can mark – no restrictions other than standards compliance (or other reasonable and openly documented technical guidelines)</t>
-	 	<t>Device Choice: Both customer-owned and leased devices supported</t>
-	 	<t>User Choice: Customers can opt out during the experimental phase</t>
+	 <ol type="%d">
+		 
+	 	<li>Only Applications Mark Traffic: Not the network</li>
+	 	<li>No Provider Payments: No edge provider payments for low latency marking</li>
+	 	<li>All Providers Welcome: Any provider can mark with no restrictions other than standards compliance or other reasonable and openly documented technical guidelines</li>
+	 	<li>Device Choice: Both customer-owned and leased devices supported</li>
+	 	<li>User Choice: Customers can opt out during the experimental phase</li>
 
-	 </list>
-	 
-	 </t>
+	 </ol>
 	 
 	 
  </section>
  
-    <section anchor="Acknowledgements" title="Acknowledgements">
+    <section title="Acknowledgements">
       <t>TBC later as needed.</t>
 	</section>
 
-    <section anchor="IANA" title="IANA Considerations">
-	  <t><cref> RFC Editor: Please remove this section before
-		 publication.</cref></t>
+    <section title="IANA Considerations">
+	  <t>RFC Editor: Please remove this section before
+		 publication.</t>
       <t>This memo includes no requests to or actions for IANA.</t>
     </section>
 
-    <section anchor="Security" title="Security Considerations">
-	  <t><cref> RFC Editor: Please remove this section before
-		 publication.</cref></t>
+    <section title="Security Considerations">
+	  <t>RFC Editor: Please remove this section before
+		 publication.</t>
       <t>This memo includes no security considerations.</t>
     </section>
     
-    <section anchor="Revision" title="Revision History">
-	  <t><cref> RFC Editor: Please remove this section before
-		 publication.</cref></t>
+    <section title="Revision History">
+	  <t>RFC Editor: Please remove this section before
+		 publication.</t>
       <t>v00: First draft</t>
       <t>v01: ...</t>
     </section>
     
-    <section anchor="Issues" title="Open Issues">
-	  <t><cref> RFC Editor: Please remove this section before
-		 publication.</cref></t>
+    <section title="Open Issues">
+	  <t>RFC Editor: Please remove this section before
+		 publication.</t>
       <t>- No issues yet</t>
     </section>
     
@@ -337,104 +320,14 @@
   <back>
     <!-- References split to informative and normative -->
 
-    <references title="Normative References">
-
-	  <!-- &rfc2119; -->
-
-<reference anchor="RFC-Struct"
-		   target="https://datatracker.ietf.org/doc/draft-ietf-iasa2-struct/">
-        <front>
-          <title>Record of Proposed Structure of the IETF
-			 Administrative Support Activity (IASA), Version
-			 2.0</title>
-          <author initials="B." surname="Haberman">
-            <organization></organization>
-	        <address/>
-          </author>
-          <author initials="J." surname="Hall">
-            <organization></organization>
-	        <address/>
-          </author>
-          <author initials="J." surname="Livingood" role="editor">
-            <organization></organization>
-	        <address/>
-          </author>		  
-          <date year="2018" />
-        </front>
-      </reference>
-			 
-<reference anchor="RFC-trust-update"
-		target="https://datatracker.ietf.org/doc/draft-ietf-iasa2-trust-update/">
-        <front>
-          <title>Update to the Process for Selection of Trustees for
-			 the IETF Trust</title>
-          <author initials="J." surname="Arkko">
-            <organization></organization>
-	        <address/>
-          </author>
-          <author initials="T." surname="Hardie">
-            <organization></organization>
-	        <address/>
-          </author>
-          <date year="2018" />
-        </front>
-      </reference>
-
-<reference anchor="RFC-trust-rationale"
-	 target="https://datatracker.ietf.org/doc/draft-ietf-iasa2-trust-rationale/">
-        <front>
-          <title>Discussion of the IASA 2.0 Changes as They Relate to
-			 the IETF Trust</title> 
-          <author initials="J." surname="Arkko">
-            <organization></organization>
-	        <address/>
-          </author>
-          <date year="2018" />
-        </front>
-      </reference>
-
-<reference anchor="RFC-7437bis"
-		   target="https://datatracker.ietf.org/doc/draft-ietf-iasa2-rfc7437bis/">
-        <front>
-          <title>IAB, IESG, and IETF LLC Selection, Confirmation, and
-			 Recall Process: Operation of the IETF Nominating and
-			 Recall Committees</title>		  
-          <author initials="M." surname="Kucherawy" role="editor">
-            <organization></organization>
-	        <address/> </author>
-          <author initials="R." surname="Hinden" role="editor">
-            <organization></organization>
-	        <address/> </author>
-          <author initials="J." surname="Livingood" role="editor">
-            <organization></organization>
-	        <address/>
-          </author>
-          <date year="2018" />
-        </front>
-      </reference>
-   	   
-    </references>
-
    <references title="Informative References">
-	   
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml"/>
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml"/>
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml"/>
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
+	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
    </references>
-
-
-<!--   Sections below here become  Appendices.  -->
-	
-
-<!--
-	<section title="Change Log" anchor="ChangeLog">
-	    <t>RFC Editor: Please remove this appendix before
-	publication.</t>
-
-	<section title="Changes from version -MM (2017-MM-DD) to -NN">
-          <t><list style="symbols">
-			 <t>	... </t>
-		  </list></t>
-	   </section>
-	
-	</section>      -->
 
   </back>
 </rfc>
