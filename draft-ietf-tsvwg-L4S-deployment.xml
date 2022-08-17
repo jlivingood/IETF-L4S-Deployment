@@ -5,21 +5,25 @@
      There has to be one entity for each item to be referenced. -->
 
 <!-- <!ENTITY rfc2119 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">  -->
-<!ENTITY rfc2028 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2028.xml">
-<!ENTITY rfc2418 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2418.xml">
-<!ENTITY rfc3005 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3005.xml">
-<!ENTITY rfc3710 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3710.xml">
-<!ENTITY rfc4844 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4844.xml">
-<!ENTITY rfc5377 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5377.xml">
-<!ENTITY rfc6702 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6702.xml">
-<!ENTITY rfc7500 PUBLIC '' "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7500.xml">
 
-I-D.draft-ietf-tsvwg-l4s-arch 
-I-D.draft-ietf-tsvwg-aqm-dualq-coupled
-I-D.draft-ietf-tsvwg-ecn-l4s-id
-I-D.draft-ietf-tsvwg-l4sops
-I-D.draft-ietf-tsvwg-nqb
-I-D.draft-ietf-tsvwg-dscp-considerations
+<!ENTITY I-D.draft-ietf-tsvwg-l4s-arch SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml">
+
+<!ENTITY I-D.draft-ietf-tsvwg-aqm-dualq-coupled SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml">
+
+<!ENTITY I-D.draft-ietf-tsvwg-ecn-l4s-id SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml">
+
+<!ENTITY I-D.draft-ietf-tsvwg-l4sops SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml">
+
+<!ENTITY I-D.draft-ietf-tsvwg-nqb SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml">
+
+<!ENTITY I-D.draft-ietf-tsvwg-dscp-considerations SYSTEM '' 
+"https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml">
+
 
 <!-- Outline of entity definition for citations to Internet Drafts
      &lt;!ENTITY I-D.mrose-writing-rfcs SYSTEM 
@@ -331,14 +335,6 @@ I-D.draft-ietf-tsvwg-dscp-considerations
     <references title="Normative References">
 
 	  <!-- &rfc2119; -->
-	   &rfc2028;
-           &rfc2418;
-	   &rfc3005;
-	   &rfc3710;
-	   &rfc4844;
-	   &rfc5377;
-	   &rfc6702;
-	   &rfc7500;
 
 <reference anchor="RFC-Struct"
 		   target="https://datatracker.ietf.org/doc/draft-ietf-iasa2-struct/">
@@ -414,9 +410,9 @@ I-D.draft-ietf-tsvwg-dscp-considerations
    	   
     </references>
 
-   <!--  <references title="Informative References">
+   <references title="Informative References">
 	   
-    </references>  -->
+   </references>
 
 
 <!--   Sections below here become  Appendices.  -->
