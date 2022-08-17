@@ -199,9 +199,12 @@
     
     <section title="Recommended Deployment Design Decisions" anchor="Recommendations">
 	    
-	    <t>TBD</t>
-  
-	    <t>TODO TEXT (INCL REF TO TUSSLE PAPER)</t>
+	    <t>Like any network or system, a good deployment design and configuration matters and 
+	    can be the difference between a well-functioning and accepted design and one that experiences 
+	    problems and faces opposition. In the context of deploying L4S in an ISP network, 
+	    this document describes some recommended deployment design decisions that should help 
+	    to ensure an L4S deployment is resilient, well-accepted, and creates the environment for generating 
+	    strong network effects.</t>
 	    
     </section>
     
@@ -268,11 +271,13 @@
     </section>
     
     <section title="User Choice" anchor"UserChoice">
-	    <t>Users should have a mechanism to opt out or opt in to low latency networking. If low latency 
+	    <t>Users should have a mechanism to opt out of low latency networking. If low latency 
 	    networking is working correctly, it seems unlikely that a user should ever want or need to turn it 
 	    off. But is is also possible it may be desirable in some troubleshooting situations or even in cases 
 	    where a particular application that a user depends upon has not implemented low latency networking 
-	    correctly and so the user wishes to turn it off until the developer can fix the problem.</t>
+	    correctly and so the user wishes to turn it off until the developer can fix the problem. That being said, 
+	    following the experimental phase there may no longer be a need or practical benefit to having an opt out 
+	    mechanism.</t>
 	    
     </section>
     
@@ -286,7 +291,7 @@
 	 	<t>No Provider Payments: No edge provider payments for low latency marking</t>
 	 	<t>All Providers Welcome: Any provider can mark – no restrictions other than standards compliance (or other reasonable and openly documented technical guidelines)</t>
 	 	<t>Device Choice: Both customer-owned and leased devices supported</t>
-	 	<t>User Choice: Customers can opt out and in</t>
+	 	<t>User Choice: Customers can opt out during the experimental phase</t>
 
 	 </list>
 	 
