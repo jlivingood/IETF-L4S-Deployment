@@ -157,6 +157,8 @@
 	determine whether they are ultimately perceived positively and adopted by the broader Internet ecosystem. 
 	That is a key issue with L4S, because the more applications developers and edge platforms that adopt it then 
 	the greater the value to end users.</t> 
+	
+	<t>For additional background on latency and why is matters, please read <xref target="BITAG"/></t>
 	  
     <!--  <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
       "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -165,7 +167,32 @@
 
     </section>
     
-    <section title="Network Neutrality Overview">
+    <section title="A New Understanding of Application Needs">
+	    <t>In the course of working to improve the responsiveness of network protocols, the IETF 
+		    concluded with the L4S standards that there were fundamentally two types of Internet traffic 
+		    and that these two major traffic types needed a separate network processing queue in order to 
+		    improve the way the Internet works.</t>
+		    
+		    <t>One of the two major traffic types is Queue Building (QB) - things like file downloads and 
+			    backups that are designed to 
+		    take up as much network capacity as possible but for which users are not interacting with in 
+		    real-time. The other was Non-Queue Building (NQB) - such as DNS lookups, voice interaction 
+		    with artificial intelligence (AI) assistants, video conferencing, gaming, and so on. The NQB 
+		    flows tend to be limited in their capacity needs - for example a DNS lookup will not need to 
+		    consume the full capacity of an end user's connection - but the end user is highly sensitive 
+		    to any delays.</t>
+		    
+		    
+			<t>Thus, the IETF created the L4S standards to specify how two separate network processing 
+				queues can be designed and operated. Early results, such as from the IETF-114 hackathon 
+				<xref target="IETF-114-Slides"/>, 
+				demonstrate that L4S can work across a variety of access network technologies and deliver 
+				extraordinary levels of responsiveness for many applications. It seems highly likely that 
+				this new capability will enable entirely new classes of applications to become possible, 
+				driving a wave of new Internet innovation.</t>
+    </section>
+    
+    <section title="Network Neutrality and L4S">
 	    <t>Network Neutrality (aka Net Neutrality, and NN hereafter) is a concept that can mean a variety 
 	    of things in different countries, based on their laws and regulations. Generally speaking it has 
 	    come to mean that Internet Service Providers (ISPs) should not block, throttle, or deprioritize 
@@ -180,8 +207,29 @@
 	    capacity from the classic queue. Thus, a low latency queue does not create a so-called "fast lane" - 
 	    but there are other NN considerations in the operational implementation.</t>
 	    
-    </section>
     
+		<section title="Prioritization">
+	    	<t>As noted above, a key aspect of NN goals is that traffic to certain Internet destinations or for certain 
+		    applications should not be prioritized over other Internet traffic. L4S is fully consistent with this type 
+		    of NN goal because it is designed so that all traffic is treated on a best efforts (BE) basis in the ISP 
+		    access network and across any intervening network to the destination.</t>
+    	</section>
+    
+		<section title="Thoughput">
+	    	<t>L4S is also consistent with the NN goal of not creating a fast lane, because the same end user 
+		    	throughput in an ISP access network is shared between classic and low latency queues. Thus, 
+		    	applications do not get access to greater or different throughput depending on which queue they 
+		    	choose to utilize.</t>
+    	</section>
+    	
+    	<section title="A New Network Capability">
+	    	<t>L4S represents a fundamental new network capability that applications can choose to utilize. It was 
+		    	
+	    	</t>
+    	</section>
+    
+    
+    </section>
     
     <section title="Recommended Deployment Design Decisions">
 	    
@@ -192,7 +240,7 @@
 	    to ensure an L4S deployment is resilient, well-accepted, and creates the environment for generating 
 	    strong network effects.</t>
 	    
-    </section>
+   
     
     <section title="Only Applications Mark Traffic">
 	    
@@ -267,7 +315,9 @@
 	    
     </section>
     
-    
+  
+ </section>
+  
  <section title="Summary of Recommended Deployment Design Decisions">
 	 
 	 <ol type="%d">
@@ -284,7 +334,7 @@
  </section>
  
     <section title="Acknowledgements">
-      <t>TBC later as needed.</t>
+      <t>Thanks to Bob Briscoe, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
 	</section>
 
     <section title="IANA Considerations">
@@ -309,7 +359,8 @@
     <section title="Open Issues">
 	  <t>RFC Editor: Please remove this section before
 		 publication.</t>
-      <t>- No issues yet</t>
+      <t>- Open issues are being tracked in a GitHub repository for this document 
+	      at https://github.com/jlivingood/IETF-L4S-Deployment/issues</t>
     </section>
     
     
@@ -327,6 +378,28 @@
 	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
 	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
 	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
+	   
+	   <reference anchor="BITAG" target="https://bitag.org/documents/BITAG_latency_explained.pdf">
+		   <front>
+            <title>Latency Explained</title>
+            <author>
+              <organization>Broadband Internet Technical Advisory Group</organization>
+            </author>
+            <date year="2022" month="January" day="10"/>
+		   </front>
+	   </reference>
+	   
+	   <reference anchor="IETF-114-Slides" target="https://datatracker.ietf.org/meeting/114/materials/slides-114-tsvwg-update-on-l4s-work-in-ietf-114-hackathon-00.pdf">
+		   <front>
+            <title>First L4S Interop Event @ IETF Hackathon</title>
+            <author fullname="Greg White" initials="GW" surname="White">
+              <organization>CableLabs</organization>
+            </author>
+            <date year="2022" month="July" day="25"/>
+		   </front>
+		   
+	   </reference>
+	   
    </references>
 
   </back>
