@@ -340,15 +340,15 @@ that a network bottleneck could occur may benefit from this technology.</t>
 			
 
 			
-	    <section title="Opt Out During Experimental Phase">
+	    <section title="Opt Out Capability">
 		    <t>In early phases of deployment of low latency networking, ISPs should consider making available some 
 			    mechanism for users to opt out of (deactivate) it. If low latency networking is working correctly, it seems extremely 
-			    unlikely that a user should ever want or need to turn it off. But is is also possible that it may be desirable 
+			    unlikely that a user should ever want or need to turn it off. On the other hand, it is also possible that it may be desirable 
 			    in some troubleshooting situations to turn it off, such as in in cases where a particular application has incorrectly 
 			    implemented low latency networking and the developer is working on a bug fix for an extended period of time. 
 			    As application use of this technology matures, it seems likely that there will not be a long term need or 
 			    practical benefit to having an opt out mechanism (and it may be counter productive if it insulates developers from 
-			    having to fix bugs or misconfigurations in their software).</t>
+			    having to fix bugs or misconfigurations in their software), though an opt out mechanism may still prove useful.</t>
 	    </section>
 			
 			<section title="Consider Traffic Protection">
@@ -373,7 +373,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 		 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance 
 			 	or other reasonable and openly documented technical guidelines</li>
 				<li>Device Choice: Both customer-owned and leased cable modem devices supported</li>
-				<li>User Opt Out: Customers can opt out during the experimental phase</li>
+				<li>User Opt Out: Customers can opt out</li>
 				<li>Consider Traffic Protection: Consider potentially deploying a network function to detect mismarking of NQB traffic</li>
 				<li>Avoid Remarking of DSCP Values: Try to maintain DSCP 45 on an end-to-end basis with remarking</li>
 	
@@ -383,7 +383,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	 </section>
 	 
 	    <section title="Acknowledgements">
-	      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, Dan Rice, and Greg White for their review and feedback on this document.</t>
+			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Dan Rice, and Greg White for their review and feedback on this document.</t>
 		</section>
 	
 	    <section title="IANA Considerations">
