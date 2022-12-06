@@ -94,7 +94,7 @@
   <front>
 
     <title abbrev="ISP L4S Deployment Design">ISP L4S Deployment Design Recommendations</title>
-    <seriesInfo name="Internet-Draft" value="draft-livingood-tsvwg-L4S-deployment-00"/>
+    <seriesInfo name="Internet-Draft" value="draft-livingood-tsvwg-L4S-deployment-01"/>
 
     <!-- add 'role="editor"' below for the editors if appropriate -->
     <author fullname="Jason Livingood" initials="JL" surname="Livingood">
@@ -110,7 +110,7 @@
       </address>
     </author>
 
-    <date month="August" day="17" year="2022"/>
+    <date month="December" day="15" year="2022"/>
 
     <!-- Meta-data Declarations -->
     <area>Transport</area>
@@ -267,9 +267,9 @@
 	    
     </section>
     
-    <section title="No Provider Payments"> 
+    <!-- <section title="No Application Provider Payments"> 
 	    
-	    <t>There should be no edge provider payments for low latency marking by itself. A key point of NN 
+	    <t>There should be no application provider payments for low latency marking by itself. A key point of NN 
 	    sensitivity pertains to the potential gatekeeping and barrier to entry effects of payments from edge 
 	    providers to ISPs for access to the low latency queue or other specialized services. This is because it 
 	    can put the ISP in the role of being perceived as picking winners and losers in the application space but 
@@ -280,11 +280,11 @@
 	    such as this should be avoided in order to maximize the value to users and the network of a low latency 
 	    queue.</t>
 	    
-    </section>
+    </section> -->
     
-    <section title="All Providers Welcome"> 
+    <section title="All Application Providers Welcome"> 
 	    
-	    <t>Any provider should be able to mark their traffic for the low latency queue, with no restrictions 
+	    <t>Any application provider should be able to mark their traffic for the low latency queue, with no restrictions 
 	    other than standards compliance or other reasonable and openly documented technical guidelines. This 
 	    maintains the loose cross-layer coupling that is a key tenet of the Internet's architecture by eliminating 
 	    or greatly reducing any need for application providers and networks to coordinate on deployment (though 
@@ -323,8 +323,8 @@
 	 <ol type="%d">
 		 
 	 	<li>Only Applications Mark Traffic: Not the network</li>
-	 	<li>No Provider Payments: No edge provider payments for low latency marking</li>
-	 	<li>All Providers Welcome: Any provider can mark with no restrictions other than standards compliance or other reasonable and openly documented technical guidelines</li>
+	 	<!-- <li>No Provider Payments: No edge provider payments for low latency marking</li> -->
+	 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance or other reasonable and openly documented technical guidelines</li>
 	 	<li>Device Choice: Both customer-owned and leased devices supported</li>
 	 	<li>User Choice: Customers can opt out during the experimental phase</li>
 
@@ -334,7 +334,7 @@
  </section>
  
     <section title="Acknowledgements">
-      <t>Thanks to Bob Briscoe, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
+      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
 	</section>
 
     <section title="IANA Considerations">
