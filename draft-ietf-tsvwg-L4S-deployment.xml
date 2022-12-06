@@ -294,8 +294,12 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    to accurately determine application protocols and to further infer which flows will benefit from low latency 
 		    and which flows may be harmed because they need to build a queue.</li>
 		    <li>To correctly utilize L4S, the application needs to use a scalable congestion control algorithm in order to 
-			use the packet marking for L4S (DSCP mark). But only the application (not the network) knows what congestion control 
-			it is using. So, with L4S, the network cannot properly mark on behalf of the application.</li>
+			use the packet marking for L4S. This is done by using the ECN field of the packet header, with an ECT(1) marking, according to Section 4.1 of <xref 
+						      target="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml"/>. But only the application (not the network) knows what congestion control it is using. So, with L4S, the network cannot properly mark on behalf of the application.</li>
+					<li>To correctly utilize NQB for non-L4S traffic, then the DSCP field of the packet header is used, with a DSCP 45 marking, according to Section 
+					4.1 od <xref target="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>. But the majority of traffic is now encrypted, 
+					so it seems implausible for a network to try to infer the type of traffic and whether an application could benefit from NQB treatment; this 
+					is best left to application developers to determine as they are the experts in the particular needs of their application. </li>	
 		    <li>Network operators and equipment vendors attempting to infer application type and application need 
 		    will always make mistakes, incorrectly classifying traffic <xref target="Lotus"/>, and potentially negatively 
 		    affecting certain flows.</li>  
