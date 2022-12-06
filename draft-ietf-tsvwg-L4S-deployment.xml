@@ -355,6 +355,13 @@ that a network bottleneck could occur may benefit from this technology.</t>
 				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a Queue Protection Function [ref]. The document says that Traffic Protection is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily to correct mismarking). This may be 
 implemented for example in end user CPE, last mile network equipment, and/or elsewhere in the ISP network - or closely monitors network statistics and user feedback for any indication of widespread NQB packet mismarking by applications.</t>
 			</section>	
+			
+			<section title="Avoid Remarking of DSCP Values">
+				<t>If possible, based on a network's existing use of DSCP values, a network should try to maintain the use of DSCP 45 on an end-to-end basis 
+				without remarking. While this may not be possible in all networks, it can reduce complexity, enable simpler network operations, and ease troubleshooting of NQB traffic flows. In some cases a network may need to migrate an existing, private internal use of DSCP 45 to some other mark to achieve this. In the long term that may be best, even if it takes a bit more initial effort when deploying low latency networking. In addition, if a network does have their own 
+private internal use of DSCP 45, then they alone should be responsible for any necessary remarking for traffic passing through their network (it would be 
+unfair and unreasonable for a given network's private use of a DSCP mark to pose a burden on other networks).</t>
+			</section>	
 	  
 	 </section>
 	  
@@ -368,6 +375,7 @@ implemented for example in end user CPE, last mile network equipment, and/or els
 				<li>Device Choice: Both customer-owned and leased cable modem devices supported</li>
 				<li>User Opt Out: Customers can opt out during the experimental phase</li>
 				<li>Consider Traffic Protection: Consider potentially deploying a network function to detect mismarking of NQB traffic</li>
+				<li>Avoid Remarking of DSCP Values: Try to maintain DSCP 45 on an end-to-end basis with remarking</li>
 	
 		 </ol>
 		 
