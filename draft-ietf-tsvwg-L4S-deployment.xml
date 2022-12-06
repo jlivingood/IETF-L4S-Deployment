@@ -324,16 +324,18 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    
 	    </section>
 	    
-	    <section title="Cable Modem Device Choice"> 
+	    <section title="End User CPE Choice"> 
 		    
-		   <t>Both customer-owned and leased cable modem devices should be supported. This avoids the risk that an ISP can be 
+		   <t>Both customer-owned and leased end user Customer Premise Equipment (CPE) should be supported. This avoids the risk that an ISP can be 
 		   perceived as giving preference to their own network demarcation devices, which may carry some monthly recurring fee or other 
-		   cost. This also means that retail device manufacturers need to make the necessary development investment to 
+		   cost. This also means that retail CPE manufacturers need to make the necessary development investment to 
 		   correctly implement low latency networking, though this may not interest or may be outside the capabilities of some organizations.
 		   In any case, the more devices that implement then adoption is broader, positively driving network effects.</t>
 		   
 	    </section>
-	    
+			
+
+			
 	    <section title="Opt Out During Experimental Phase">
 		    <t>In early phases of deployment of low latency networking, ISPs should consider making available some 
 			    mechanism for users to opt out of (deactivate) it. If low latency networking is working correctly, it seems extremely 
@@ -343,9 +345,12 @@ that a network bottleneck could occur may benefit from this technology.</t>
 			    As application use of this technology matures, it seems likely that there will not be a long term need or 
 			    practical benefit to having an opt out mechanism (and it may be counter productive if it insulates developers from 
 			    having to fix bugs or misconfigurations in their software).</t>
-		    
 	    </section>
-	    
+			
+			<section title="Consider Traffic Protection">
+				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a Queue Protection Function [ref]. The document says that Traffic Protection is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily to correct mismarking). This may be 
+implemented for example in end user CPE, last mile network equipment, and/or elsewhere in the ISP network - or closely monitors network statistics and user feedback for any indication of widespread NQB packet mismarking by applications.</t>
+			</section>	
 	  
 	 </section>
 	  
@@ -356,8 +361,9 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		 	<li>Only Applications Mark Traffic: Not the network</li>
 		 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance 
 			 	or other reasonable and openly documented technical guidelines</li>
-		 	<li>Device Choice: Both customer-owned and leased cable modem devices supported</li>
-		 	<li>User Opt Out: Customers can opt out during the experimental phase</li>
+				<li>Device Choice: Both customer-owned and leased cable modem devices supported</li>
+				<li>User Opt Out: Customers can opt out during the experimental phase</li>
+				<li>Consider Traffic Protection: Consider potentially deploying a network function to detect mismarking of NQB traffic</li>
 	
 		 </ol>
 		 
@@ -365,7 +371,7 @@ that a network bottleneck could occur may benefit from this technology.</t>
 	 </section>
 	 
 	    <section title="Acknowledgements">
-	      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
+	      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, Dan Rice, and Greg White for their review and feedback on this document.</t>
 		</section>
 	
 	    <section title="IANA Considerations">
