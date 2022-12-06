@@ -1,406 +1,453 @@
 <?xml version="1.0" encoding="US-ASCII"?>
-
-<!-- 
-     draft-rfcxml-general-template-annotated-00
-  
-     This template includes examples of most of the features of RFCXML with comments explaining 
-     how to customise them, and examples of how to achieve specific formatting.
-     
-     Documentation is at https://authors.ietf.org/en/templates-and-schemas
--->
-<?xml-model href="rfc7991bis.rnc"?>  <!-- Required for schema validation and schema-aware editing -->
-<!-- <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> --> 
-<!-- This third-party XSLT can be enabled for direct transformations in XML processors, including most browsers -->
-
-<!DOCTYPE rfc [
-  <!ENTITY nbsp    "&#160;">
-  <!ENTITY zwsp   "&#8203;">
-  <!ENTITY nbhy   "&#8209;">
-  <!ENTITY wj     "&#8288;">
-				]>
-
-<!-- Extra statement used by XSLT processors to control the output style. -->
-<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
-<!-- Processing Instructions- PIs (for a complete list and description,
-     see file http://xml.resource.org/authoring/README.html.
-     You may find that some sphisticated editors are not able to edit PIs when palced here.
-     An alternative position is just inside the rfc elelment as noted below. -->
-<!-- Some of the more generally applicable PIs that most I-Ds might want to use -->
-<!-- Try to enforce the ID-nits conventions and DTD validity -->
-<?rfc strict="yes" ?>
-<!-- Items used when reviewing the document -->
-<!-- Controls display of <cref> elements -->
-<?rfc comments="yes" ?>
-<!-- When no, put comments at end in comments section,
-     otherwise, put inline -->
-<?rfc inline="yes" ?>
-<!-- When yes, insert editing marks: editing marks consist of a 
-     string such as <29> printed in the blank line at the 
-     beginning of each paragraph of text. -->
-<?rfc editing="no" ?>
-<!-- Create Table of Contents (ToC) and set some options for it.  
-     Note the ToC may be omitted for very short documents,but idnits insists on a ToC 
-     if the document has more than 15 pages. -->
-<?rfc toc="yes"?>
-<?rfc tocompact="yes"?>
-<!-- If "yes" eliminates blank lines before main section entries. -->
-<?rfc tocdepth="3"?>
-<!-- Sets the number of levels of sections/subsections... in ToC.
-   Can be overridden by 'toc="include"/"exclude"' on the section
-   element-->
-<!-- Choose the options for the references. 
-     Some like symbolic tags in the references (and citations) and others prefer 
-     numbers. The RFC Editor always uses symbolic tags.
-     The tags used are the anchor attributes of the references. -->
-<?rfc symrefs="yes"?>
-<?rfc sortrefs="yes" ?>
-<!-- If "yes", causes the references to be sorted in order of tags.
-			 This doesn't have any effect unless symrefs is "yes"
-          also. --> 
-<!-- These two save paper: Just setting compact to "yes" makes savings by not starting each 
-     main section on a new page but does not omit the blank lines between list items. 
-     If subcompact is also "yes" the blank lines between list items are also omitted. -->
-<?rfc compact="yes" ?>
-<?rfc subcompact="no" ?>
-<!-- end of list of popular I-D processing instructions -->
-
-<!-- Information about the document.
-     category values: std, bcp, info, exp, and historic
-     For Internet-Drafts, specify attribute "ipr".
-         original ipr values are: full3978, noModification3978, noDerivatives3978), 
-         2008 IETF Trust versions: trust200811, noModificationTrust200811, noDerivativeTrust200811
-         2009/Current: trust200902, noModificationTrust200902, noDerivativesTrust200902, pre5378Trust200902
-     Also for Internet-Drafts, you must specify a value for attributes "docName" which is 
-        typically the file name under which it is filed but need not be.
-     If relevant, "iprExtract" may be specified to denote the anchor attribute value of a
-        section that can be extracted for separate publication, it is only useful when the value
-        of "ipr" does not give the Trust full rights.
-     "updates" and "obsoletes" attributes can also be specified here, their arguments are
-        comma-separated lists of RFC numbers (just the numbers) -->
-<rfc
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  category="info"
-  docName="draft-livingood-tsvwg-L4S-deployment"
-  ipr="trust200902"
-  obsoletes=""
-  updates=""
-  submissionType="IETF"
-  xml:lang="en"
-  version="3">
-
-
-  <!-- ***** FRONT MATTER ***** -->
-
-  <front>
-
-    <title abbrev="ISP L4S Deployment Design">ISP L4S Deployment Design Recommendations</title>
-    <seriesInfo name="Internet-Draft" value="draft-livingood-tsvwg-L4S-deployment-01"/>
-
-    <!-- add 'role="editor"' below for the editors if appropriate -->
-    <author fullname="Jason Livingood" initials="JL" surname="Livingood">
-	   <organization>
-           Comcast
-       </organization>
-      <address>
-        <postal>
-          <city>Philadelphia</city> <region>PA</region>
-          <country>USA</country>
-        </postal>
-        <email>jason_livingood@comcast.com</email>
-      </address>
-    </author>
-
-    <date month="December" day="15" year="2022"/>
-
-    <!-- Meta-data Declarations -->
-    <area>Transport</area>
-
-    <!-- WG name at the upper left corner of the doc,
-         IETF fine for individual submissions.  You can also
-         omit this element in which case it defaults to "Network Working Group" -
-         a hangover from the ancient history of the IETF! -->
-    <workgroup>Transport Area Working Group</workgroup>
-
-	<!-- You can add <keyword/> elements here.  They will be incorporated into HTML output
-         files in a meta tag but they have no effect on text or nroff output. -->
-	<!-- <keyword>Text</keyword> (as many of those elements as needed -->
-
-	
-    <abstract>
-      <t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
-      Low Loss, Scalable Throughput (L4S). These documents do a good job of describing the L4S architecture 
-      and protocol but as is normal for many such standards, especially those in experimental status, 
-      certain design decisions are ultimately left to implementers. This document explores the potential 
-      implications of key deployment design decisions and makes recommendations for those decisions.</t>
-    </abstract>
-
-	<!-- Note here if needed
-	   <note title=""><t> .... </t></note> -->
-	
-  </front>
-
-  <middle>
-    <section title="Introduction">
-		    
-	<t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
-	Low Loss, Scalable Throughput (L4S)  <xref target="I-D.ietf-tsvwg-l4s-arch"/> 
-	<xref target="I-D.ietf-tsvwg-aqm-dualq-coupled"/> <xref target="I-D.ietf-tsvwg-ecn-l4s-id"/> 
-	<xref target="I-D.ietf-tsvwg-l4sops"/> <xref target="I-D.ietf-tsvwg-nqb"/> 
-	<xref target="I-D.ietf-tsvwg-dscp-considerations"/>. These documents do a good job of describing 
-	the L4S architecture and protocol but as is normal for many such standards, especially those in 
-	experimental status, certain design decisions are ultimately left to implementers.</t>
-	
-	<t>This document explores the potential implications of key deployment design decisions and makes 
-	recommendations for those decisions. In particular, there are best practices based on prior experience 
-	as a network operator that should be considered and there are network neutrality types of considerations 
-	as well. Technologies like L4S are benign on their own, but the way they are operationally implemented can 
-	determine whether they are ultimately perceived positively and adopted by the broader Internet ecosystem. 
-	That is a key issue with L4S, because the more applications developers and edge platforms that adopt it then 
-	the greater the value to end users.</t> 
-	
-	<t>For additional background on latency and why is matters, please read <xref target="BITAG"/></t>
+	<!-- 
+	     draft-rfcxml-general-template-annotated-00
 	  
-    <!--  <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-      document are to be interpreted as described in
-	  <xref target="RFC2119">RFC 2119</xref>.</t> -->
-
-    </section>
-    
-    <section title="A New Understanding of Application Needs">
-	    <t>In the course of working to improve the responsiveness of network protocols, the IETF 
-		    concluded with the L4S standards that there were fundamentally two types of Internet traffic 
-		    and that these two major traffic types needed a separate network processing queue in order to 
-		    improve the way the Internet works.</t>
+	     This template includes examples of most of the features of RFCXML with comments explaining 
+	     how to customise them, and examples of how to achieve specific formatting.
+	     
+	     Documentation is at https://authors.ietf.org/en/templates-and-schemas
+	-->
+	<?xml-model href="rfc7991bis.rnc"?>  <!-- Required for schema validation and schema-aware editing -->
+	<!-- <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> --> 
+	<!-- This third-party XSLT can be enabled for direct transformations in XML processors, including most browsers -->
+	
+	<!DOCTYPE rfc [
+	  <!ENTITY nbsp    "&#160;">
+	  <!ENTITY zwsp   "&#8203;">
+	  <!ENTITY nbhy   "&#8209;">
+	  <!ENTITY wj     "&#8288;">
+					]>
+	
+	<!-- Extra statement used by XSLT processors to control the output style. -->
+	<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+	<!-- Processing Instructions- PIs (for a complete list and description,
+	     see file http://xml.resource.org/authoring/README.html.
+	     You may find that some sphisticated editors are not able to edit PIs when palced here.
+	     An alternative position is just inside the rfc elelment as noted below. -->
+	<!-- Some of the more generally applicable PIs that most I-Ds might want to use -->
+	<!-- Try to enforce the ID-nits conventions and DTD validity -->
+	<?rfc strict="yes" ?>
+	<!-- Items used when reviewing the document -->
+	<!-- Controls display of <cref> elements -->
+	<?rfc comments="yes" ?>
+	<!-- When no, put comments at end in comments section,
+	     otherwise, put inline -->
+	<?rfc inline="yes" ?>
+	<!-- When yes, insert editing marks: editing marks consist of a 
+	     string such as <29> printed in the blank line at the 
+	     beginning of each paragraph of text. -->
+	<?rfc editing="no" ?>
+	<!-- Create Table of Contents (ToC) and set some options for it.  
+	     Note the ToC may be omitted for very short documents,but idnits insists on a ToC 
+	     if the document has more than 15 pages. -->
+	<?rfc toc="yes"?>
+	<?rfc tocompact="yes"?>
+	<!-- If "yes" eliminates blank lines before main section entries. -->
+	<?rfc tocdepth="3"?>
+	<!-- Sets the number of levels of sections/subsections... in ToC.
+	   Can be overridden by 'toc="include"/"exclude"' on the section
+	   element-->
+	<!-- Choose the options for the references. 
+	     Some like symbolic tags in the references (and citations) and others prefer 
+	     numbers. The RFC Editor always uses symbolic tags.
+	     The tags used are the anchor attributes of the references. -->
+	<?rfc symrefs="yes"?>
+	<?rfc sortrefs="yes" ?>
+	<!-- If "yes", causes the references to be sorted in order of tags.
+				 This doesn't have any effect unless symrefs is "yes"
+	          also. --> 
+	<!-- These two save paper: Just setting compact to "yes" makes savings by not starting each 
+	     main section on a new page but does not omit the blank lines between list items. 
+	     If subcompact is also "yes" the blank lines between list items are also omitted. -->
+	<?rfc compact="yes" ?>
+	<?rfc subcompact="no" ?>
+	<!-- end of list of popular I-D processing instructions -->
+	
+	<!-- Information about the document.
+	     category values: std, bcp, info, exp, and historic
+	     For Internet-Drafts, specify attribute "ipr".
+	         original ipr values are: full3978, noModification3978, noDerivatives3978), 
+	         2008 IETF Trust versions: trust200811, noModificationTrust200811, noDerivativeTrust200811
+	         2009/Current: trust200902, noModificationTrust200902, noDerivativesTrust200902, pre5378Trust200902
+	     Also for Internet-Drafts, you must specify a value for attributes "docName" which is 
+	        typically the file name under which it is filed but need not be.
+	     If relevant, "iprExtract" may be specified to denote the anchor attribute value of a
+	        section that can be extracted for separate publication, it is only useful when the value
+	        of "ipr" does not give the Trust full rights.
+	     "updates" and "obsoletes" attributes can also be specified here, their arguments are
+	        comma-separated lists of RFC numbers (just the numbers) -->
+	<rfc
+	  xmlns:xi="http://www.w3.org/2001/XInclude"
+	  category="info"
+	  docName="draft-livingood-low-latency-deployment-01"
+	  ipr="trust200902"
+	  obsoletes=""
+	  updates=""
+	  submissionType="independent"
+	  xml:lang="en"
+	  version="3">
+	
+	
+	  <!-- ***** FRONT MATTER ***** -->
+	
+	  <front>
+	
+	    <title abbrev="ISP L4S Deployment Design">Comcast ISP Low Latency Deployment Design Recommendations</title>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-01"/>
+	
+	    <!-- add 'role="editor"' below for the editors if appropriate -->
+	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
+		   <organization>
+	           Comcast
+	       </organization>
+	      <address>
+	        <postal>
+	          <city>Philadelphia</city> <region>PA</region>
+	          <country>USA</country>
+	        </postal>
+	        <email>jason_livingood@comcast.com</email>
+	      </address>
+	    </author>
+	
+	    <date month="December" day="15" year="2022"/>
+	
+	    <!-- Meta-data Declarations -->
+	    <!-- WG name at the upper left corner of the doc,
+	         IETF fine for individual submissions.  You can also
+	         omit this element in which case it defaults to "Network Working Group" -
+	         a hangover from the ancient history of the IETF! -->
+	    <workgroup>Independent Stream</workgroup>
+	
+		<!-- You can add <keyword/> elements here.  They will be incorporated into HTML output
+	         files in a meta tag but they have no effect on text or nroff output. -->
+		<!-- <keyword>Text</keyword> (as many of those elements as needed -->
+	
+		
+	    <abstract>
+	      <t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
+	      Low Loss, Scalable Throughput (L4S) and new Non-Queue-Building (NQB) per hop behavior. 
+	      These documents do a good job of describing a new architecture 
+	      and protocol for deploying low latency networking. But as is normal for many such standards, especially those in experimental status, 
+	      certain design decisions are ultimately left to implementers. This document explores the potential 
+	      implications of key deployment design decisions and makes recommendations for those decisions that may help drive 
+	      adoption.</t>
+	    </abstract>
+	
+		<!-- Note here if needed
+		   <note title=""><t> .... </t></note> -->
+		
+	  </front>
+	
+	  <middle>
+	    <section title="Introduction">
+			    
+		<t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
+		Low Loss, Scalable Throughput (L4S) and Non-Queue-Building (NQB) per hop behavior <xref target="I-D.ietf-tsvwg-l4s-arch"/> 
+		<xref target="I-D.ietf-tsvwg-aqm-dualq-coupled"/> <xref target="I-D.ietf-tsvwg-ecn-l4s-id"/> 
+		<xref target="I-D.ietf-tsvwg-l4sops"/> <xref target="I-D.ietf-tsvwg-nqb"/> 
+		<xref target="I-D.ietf-tsvwg-dscp-considerations"/>. These documents do a good job of describing 
+		a new architecture and protocol for deploying low latency networking. 
+		But as is normal for many such standards, especially those in 
+		experimental status, certain design decisions are ultimately left to implementers.</t>
+		
+		<t>This document explores the potential implications of key deployment design decisions and makes 
+		recommendations for those decisions that may help drive adoption. In particular, there are best practices based on prior experience 
+		as a network operator that should be considered and there are network neutrality types of considerations 
+		as well. These technologies are benign on their own, but the way they are operationally implemented can 
+		determine whether they are ultimately perceived positively and adopted by the broader Internet ecosystem. 
+		That is a key issue for low latency networking, because the more applications developers and edge platforms that adopt 
+		new packet marking for low latency traffic, then the greater the value to end users, so ensuring it is received well 
+		is key to driving strong initial adoption.</t>
+		
+		<t>It is worth stating though that these decisions are not embedded in or inherent to L4S and NQB per se, but are decisions 
+		that can change depending upon differing technical, regulatory, business or other requirements. Even two network operators with the 
+		same type of access technology in the same market area may choose to implement in different ways. Nevertheless, this document 
+		suggests that certain specific deployment decisions can help maximize the value of low latency networking to both users and 
+		network operators.</t> 
+		
+		<t>It is also apparent from the IETF's work that it is clear that nearly all modern application types need low latency 
+			to some degree and that applications are best positioned to express their needs via application code and packet marking. 
+			Furthermore, unlike with bandwidth priority on a highly/fully utilized link, low latency is not a zero sum game - everyone 
+			can potentially have lower latency at no one else's expense.</t>
+		
+		<t>For additional background on latency and why latency matters so much to the Internet, please read <xref target="BITAG"/></t>
+		  
+	    <!--  <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+	      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+	      document are to be interpreted as described in
+		  <xref target="RFC2119">RFC 2119</xref>.</t> -->
+	
+	    </section>
+	    
+	    <section title="A New Understanding of Application Needs">
 		    
-		    <t>One of the two major traffic types is Queue Building (QB) - things like file downloads and 
-			    backups that are designed to 
-		    take up as much network capacity as possible but for which users are not interacting with in 
-		    real-time. The other was Non-Queue Building (NQB) - such as DNS lookups, voice interaction 
-		    with artificial intelligence (AI) assistants, video conferencing, gaming, and so on. The NQB 
-		    flows tend to be limited in their capacity needs - for example a DNS lookup will not need to 
-		    consume the full capacity of an end user's connection - but the end user is highly sensitive 
-		    to any delays.</t>
 		    
 		    
-			<t>Thus, the IETF created the L4S standards to specify how two separate network processing 
-				queues can be designed and operated. Early results, such as from the IETF-114 hackathon 
-				<xref target="IETF-114-Slides"/>, 
-				demonstrate that L4S can work across a variety of access network technologies and deliver 
-				extraordinary levels of responsiveness for many applications. It seems highly likely that 
-				this new capability will enable entirely new classes of applications to become possible, 
-				driving a wave of new Internet innovation.</t>
-    </section>
-    
-    <section title="Network Neutrality and L4S">
-	    <t>Network Neutrality (aka Net Neutrality, and NN hereafter) is a concept that can mean a variety 
-	    of things in different countries, based on their laws and regulations. Generally speaking it has 
-	    come to mean that Internet Service Providers (ISPs) should not block, throttle, or deprioritize 
-	    lawful application traffic, should not engage in paid prioritization, and so on. The meaning of NN 
-	    can be complex and ever changing, so the specific details are out of scope for this document.</t>
+		    <t>In the course of working to improve the responsiveness of network protocols, the IETF 
+			    concluded with their L4S and NQB work that there were fundamentally two types of Internet traffic 
+			    and that these two major traffic types could benefit from having separate network processing queues 
+			    in order to improve the way the Internet works for all applications, and especially for interactive applications.</t>
+			    
+			    <t>One of the two major traffic types is Queue Building (QB) - things like file downloads and 
+				    backups that are designed utilize as much network capacity as possible but for which users 
+				    are not interacting with in 
+			    real-time. The other was Non-Queue-Building (NQB) - such as DNS lookups, voice interaction 
+			    with artificial intelligence (AI) assistants, video conferencing, gaming, and so on. NQB 
+			    flows tend to be limited in their capacity needs - for example a DNS lookup will not need to 
+			    consume the full capacity of an end user's connection - but the end user is highly sensitive 
+			    to any delays.</t>
+			    
+			    
+				<t>Thus, the IETF created specifications for how two different network processing 
+					queues can be designed and operated. Early results, such as from the IETF-114 hackathon 
+					<xref target="IETF-114-Slides"/>, 
+					demonstrate that L4S and NQB (a.k.a. dual queue networking, and simply "low latency networking" hereafter) can work 
+					across a variety of access network technologies and deliver 
+					extraordinary levels of responsiveness for a variety of applications. It seems likely that 
+					this new capability will enable entirely new classes of applications to become possible, 
+					driving a wave of new Internet innovation, while also improving the applications people use 
+					today.</t>
+					
+
+	    </section>
 	    
-	    <t>That being said, NN concerns certainly bear on the deployment of L4S by ISPs and so should be 
-	    taken into account. It is also possible that there can be confusion over prioritization, provisioned 
-	    end user throughput capacity, and low latency networking. As it is envisioned in the design of the 
-	    protocol, the addition of a low latency packet processing queue at a network link is merely a second 
-	    packet queue and does not mean that this queue is prioritized or that it has different or greater 
-	    capacity from the classic queue. Thus, a low latency queue does not create a so-called "fast lane" - 
-	    but there are other NN considerations in the operational implementation.</t>
+	    <section title="Network Neutrality and Low Latency Networking">
+		    <t>Network Neutrality (a.k.a. Net Neutrality, and NN hereafter) is a concept that can mean a variety 
+		    of things within a country, as well as between different countries, based on 
+		    different opinions, market structures, business practices, laws, and regulations. Generally speaking, 
+		    at least in the context of the United States' marketplace, it has 
+		    come to mean that Internet Service Providers (ISPs) should not block, throttle, or deprioritize 
+		    lawful application traffic, and should not engage in paid prioritization, among other things. The meaning of NN 
+		    can be complex and ever changing, so the specific details are out of scope for this document. 
+		    Despite that, NN concerns certainly bear on the deployment of new technologies by ISPs, at least in the US, 
+		    and so should be taken into account in making deployment design decisions. </t>
+		    
+		    <t>It is also possible that there can be confusion for people who are not deep in this highly technical subject 
+			    between prioritization, provisioned 
+		    end user capacity (throughput), and low latency networking. As it is envisioned in the design of the 
+		    protocols, the addition of a low latency packet processing queue at a network link is merely a second 
+		    packet queue and does not mean that this queue is prioritized or that it has different or greater 
+		    capacity from the classic queue. Thus, a low latency queue does not create a so-called "fast lane" (in the way that 
+		    this term is used in policy-related discussions in the U.S. to describe higher than best effort priority or greater capacity being assigned to some traffic compared to default traffic) - 
+		    but there are certainly other NN considerations in the operational implementation worth exploring.</t>
+		    
 	    
-    
-		<section title="Prioritization">
-	    	<t>As noted above, a key aspect of NN goals is that traffic to certain Internet destinations or for certain 
-		    applications should not be prioritized over other Internet traffic. L4S is fully consistent with this type 
-		    of NN goal because it is designed so that all traffic is treated on a best efforts (BE) basis in the ISP 
-		    access network and across any intervening network to the destination.</t>
-    	</section>
-    
-		<section title="Thoughput">
-	    	<t>L4S is also consistent with the NN goal of not creating a fast lane, because the same end user 
-		    	throughput in an ISP access network is shared between classic and low latency queues. Thus, 
-		    	applications do not get access to greater or different throughput depending on which queue they 
-		    	choose to utilize.</t>
-    	</section>
-    	
-    	<section title="A New Network Capability">
-	    	<t>L4S represents a fundamental new network capability that applications can choose to utilize. It was 
-		    	
-	    	</t>
-    	</section>
-    
-    
-    </section>
-    
-    <section title="Recommended Deployment Design Decisions">
+			<section title="Prioritization: Same for All Traffic">
+		    	<t>As noted above, a key aspect of NN goals is that traffic to certain Internet destinations or for certain 
+			    applications should not be prioritized over other Internet traffic. This means in practice that all Internet traffic 
+			    in an ISP network should be carried at the same (best effort) priority and that any network management practices 
+			    imposed by the network should be protocol (application) agnostic. Low latency networking is fully consistent with this aspect of NN, 
+			    because it is designed so that all traffic is treated on a best effort (BE) basis in the ISP network (this may not necessarily 
+			    be the case for a user's in-home Wi-Fi network due to the particulars of how the IEEE 802.11 wireless protocol functions at the current 
+			    time).</t>
+			    
+			    <t>In addition, as noted above, unlike with bandwidth priority on a highly/fully utilized link, low latency is not a zero sum game - everyone 
+			can potentially have lower latency at no one else's expense.</t>
+	    	</section>
 	    
-	    <t>Like any network or system, a good deployment design and configuration matters and 
-	    can be the difference between a well-functioning and accepted design and one that experiences 
-	    problems and faces opposition. In the context of deploying L4S in an ISP network, 
-	    this document describes some recommended deployment design decisions that should help 
-	    to ensure an L4S deployment is resilient, well-accepted, and creates the environment for generating 
-	    strong network effects.</t>
+			<section title="Thoughput: Shared Across All Traffic">
+		    	<t>Low latency networking is also consistent with the NN goal of not creating a fast lane, because the same end user 
+			    	throughput in an ISP access network is shared between both classic and low latency (L4S/NQB) queues. Thus, 
+			    	applications do not get access to greater or different throughput depending on whether or not the leverage 
+			    	low latency networking.</t>
+	    	</section>
+	    	
+	    	<section title="A New Network Capability - For All Networks">
+		    	<t>Ultimately, the emergence of low latency networking represents a fundamental new network 
+			    	capability that applications can choose to utilize as their needs dictate. It reflects a new ground truth 
+			    	about two fundamentally different types of application traffic and demonstrates that networks 
+			    	continue to evolve in exciting ways.</t>
+				
+				<t>In addition, this new network capability can be implemented in a variety of network technologies. For example in access network 
+technologies this could be implemented in DOCSIS [ref needed], 5G [ref needed], PON [ref needed], and many other types of networks. Anywhere 
+that a network bottleneck could occur may benefit from this technology.</t>
+	    	</section>
 	    
-   
-    
-    <section title="Only Applications Mark Traffic">
 	    
-	    <t>Only applications should mark traffic, not the network. This is for several reasons:</t>
-	    <ul>
-	    <li>According to the end-to-end principle, this function is best delegated to the edge of 
-	    the network as an architectural best practice.</li>
-	    <li>Application marking maintains the loose coupling between the application and network layers, 
-	    eliminating the need for close coordination between networks and application developers.</li>
-	    <li>Application developers know best whether their application will benefit from low latency and 
-	    which aspects of their traffic flows will or will not benefit.</li>
-	    <li>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
-	    to determine application protocols and to further infer which flows will benefit from low latency 
-	    and which flows may be harmed because they need to build a queue.</li>
-	    <li>Network operators and equipment vendors attempting to infer application type and application need 
-	    will always make mistakes, incorrectly classifying traffic (REF TO NOTES) and potentially negatively 
-	    affecting certain flows.</li>  
-	    <li>The pace of innovation and iteration is necessarily faster-moving at the application edge at layer 7, 
-	    rather than in the network at layer 3 where there is greater standards stability and a lower rate of 
-	    major changes. As a result, the application layer is best suited to such experimentation. Network 
-	    operators and equipment vendors trying to infer application needs will in addition always be in a reactive 
-	    mode, one step behind changes made in applications.</li>
-	    </ul>
+	    </section>
 	    
-    </section>
-    
-    <!-- <section title="No Application Provider Payments"> 
-	    
-	    <t>There should be no application provider payments for low latency marking by itself. A key point of NN 
-	    sensitivity pertains to the potential gatekeeping and barrier to entry effects of payments from edge 
-	    providers to ISPs for access to the low latency queue or other specialized services. This is because it 
-	    can put the ISP in the role of being perceived as picking winners and losers in the application space but 
-	    it can also create barriers to entry for new developers because established developers may be the only 
-	    ones able to afford such payments.</t>
-	    
-	    <t>In addition, given that low latency marking will have strong network effects, any barriers to adoption 
-	    such as this should be avoided in order to maximize the value to users and the network of a low latency 
-	    queue.</t>
-	    
-    </section> -->
-    
-    <section title="All Application Providers Welcome"> 
-	    
-	    <t>Any application provider should be able to mark their traffic for the low latency queue, with no restrictions 
-	    other than standards compliance or other reasonable and openly documented technical guidelines. This 
-	    maintains the loose cross-layer coupling that is a key tenet of the Internet's architecture by eliminating 
-	    or greatly reducing any need for application providers and networks to coordinate on deployment (though 
-	    such coordination is normal in the early experimental phase of any deployment).</t>
-	    
-	    <t>As noted above, this is another example that given low latency marking will have strong network 
-	    effects, any barriers to adoption such as this should be avoided in order to maximize the value to users 
-	    and the network of a low latency queue.</t> 
-	    
-    </section>
-    
-    <section title="Device Choice"> 
-	    
-	   <t>Both customer-owned and leased devices should be supported. This avoids the risk that an ISP can be 
-	   perceived as giving preference to their own devices, which may carry some monthly recurring fee or other 
-	   cost. It also ensures the broadest possible base of adoption, driving network effects.</t>
+	    <section title="Recommended Deployment Design Decisions">
+		    
+		    <t>Like any network or system, a good deployment design and configuration matters and 
+		    can be the difference between a well-functioning and accepted design and one that experiences 
+		    problems and faces opposition. In the context of deploying low latency networking in an ISP network, 
+		    this document describes some recommended deployment design decisions that should help 
+		    to ensure a deployment is resilient, well-accepted, and creates the environment for generating 
+		    strong network effects. In contrast, creating barriers to adoption in the early stages through design and 
+		    policy decisions will presumably reduce the predicted potential network effect, thus choking off further 
+		    investment across the Internet ecosystem, leading to a vicious circle of decline - and then the potential 
+		    value is never realized.</t>
+		    
 	   
-    </section>
-    
-    <section title="User Choice">
-	    <t>Users should have a mechanism to opt out of low latency networking. If low latency 
-	    networking is working correctly, it seems unlikely that a user should ever want or need to turn it 
-	    off. But is is also possible it may be desirable in some troubleshooting situations or even in cases 
-	    where a particular application that a user depends upon has not implemented low latency networking 
-	    correctly and so the user wishes to turn it off until the developer can fix the problem. That being said, 
-	    following the experimental phase there may no longer be a need or practical benefit to having an opt out 
-	    mechanism.</t>
 	    
-    </section>
-    
-  
- </section>
-  
- <section title="Summary of Recommended Deployment Design Decisions">
-	 
-	 <ol type="%d">
-		 
-	 	<li>Only Applications Mark Traffic: Not the network</li>
-	 	<!-- <li>No Provider Payments: No edge provider payments for low latency marking</li> -->
-	 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance or other reasonable and openly documented technical guidelines</li>
-	 	<li>Device Choice: Both customer-owned and leased devices supported</li>
-	 	<li>User Choice: Customers can opt out during the experimental phase</li>
+	    <section title="Only Applications Mark Traffic">
+		    
+		    <t>Only applications should mark traffic, not the network. This is for several reasons:</t>
+		    <ul>
+		    <li>According to the end-to-end principle, this function is best delegated to the edge of 
+		    the network as an architectural best practice (the edge being the application in this case).</li>
+		    <li>Application marking maintains the loose coupling between the application and network layers, 
+		    eliminating the need for close coordination between networks and application developers.</li>
+		    <li>Application developers know best whether their application is compatible with low 
+			    latency networking and which aspects of their traffic flows will or will not benefit.</li>
+		    <li>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
+		    to accurately determine application protocols and to further infer which flows will benefit from low latency 
+		    and which flows may be harmed because they need to build a queue.</li>
+		    <li>To correctly utilize L4S, the application needs to use a scalable congestion control algorithm in order to 
+			use the packet marking for L4S (DSCP mark). But only the application (not the network) knows what congestion control 
+			it is using. So, with L4S, the network cannot properly mark on behalf of the application.</li>
+		    <li>Network operators and equipment vendors attempting to infer application type and application need 
+		    will always make mistakes, incorrectly classifying traffic <xref target="Lotus"/>, and potentially negatively 
+		    affecting certain flows.</li>  
+		    <li>The pace of innovation and iteration is necessarily faster-moving in the application edge at layer 7, 
+		    rather than in the network at layer 3 (and below) - where there is greater standards stability and a lower rate of 
+		    major changes. As a result, the application layer is best suited to rapid experimentation and iteration. Network 
+		    operators and equipment vendors trying to infer application needs will in comparison always be in a reactive 
+		    mode, one step behind changes made in applications.</li>
 
-	 </ol>
-	 
-	 
- </section>
- 
-    <section title="Acknowledgements">
-      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
-	</section>
-
-    <section title="IANA Considerations">
-	  <t>RFC Editor: Please remove this section before
-		 publication.</t>
-      <t>This memo includes no requests to or actions for IANA.</t>
-    </section>
-
-    <section title="Security Considerations">
-	  <t>RFC Editor: Please remove this section before
-		 publication.</t>
-      <t>This memo includes no security considerations.</t>
-    </section>
-    
-    <section title="Revision History">
-	  <t>RFC Editor: Please remove this section before
-		 publication.</t>
-      <t>v00: First draft</t>
-      <t>v01: ...</t>
-    </section>
-    
-    <section title="Open Issues">
-	  <t>RFC Editor: Please remove this section before
-		 publication.</t>
-      <t>- Open issues are being tracked in a GitHub repository for this document 
-	      at https://github.com/jlivingood/IETF-L4S-Deployment/issues</t>
-    </section>
-    
-    
-  </middle>
-
-  <!--  *****BACK MATTER ***** -->
-
-  <back>
-    <!-- References split to informative and normative -->
-
-   <references title="Informative References">
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml"/>
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml"/>
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml"/>
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
-	   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
-	   
-	   <reference anchor="BITAG" target="https://bitag.org/documents/BITAG_latency_explained.pdf">
-		   <front>
-            <title>Latency Explained</title>
-            <author>
-              <organization>Broadband Internet Technical Advisory Group</organization>
-            </author>
-            <date year="2022" month="January" day="10"/>
-		   </front>
-	   </reference>
-	   
-	   <reference anchor="IETF-114-Slides" target="https://datatracker.ietf.org/meeting/114/materials/slides-114-tsvwg-update-on-l4s-work-in-ietf-114-hackathon-00.pdf">
-		   <front>
-            <title>First L4S Interop Event @ IETF Hackathon</title>
-            <author fullname="Greg White" initials="GW" surname="White">
-              <organization>CableLabs</organization>
-            </author>
-            <date year="2022" month="July" day="25"/>
-		   </front>
+		    </ul>
+		    
+	    </section>
+	    
+	    
+	    <section title="All Application Providers Welcome"> 
+		    
+		    <t>Any application provider should be able to mark their traffic for the low latency queue, with no restrictions 
+		    other than standards compliance or other reasonable and openly documented technical guidelines. This 
+		    maintains the loose cross-layer coupling that is a key tenet of the Internet's architecture by eliminating 
+		    or greatly reducing any need for application providers and networks to coordinate on deployment (though 
+		    such coordination is normal in the early experimental phase of any deployment).</t>
+		    
+		    <t>As noted above, this is another example that low latency networking will have strong network 
+		    effects, any barriers to adoption such as this should be avoided in order to maximize the value to users 
+		    and the network of a new low latency queue.</t> 
+		    
+	    </section>
+	    
+	    <section title="Cable Modem Device Choice"> 
+		    
+		   <t>Both customer-owned and leased cable modem devices should be supported. This avoids the risk that an ISP can be 
+		   perceived as giving preference to their own network demarcation devices, which may carry some monthly recurring fee or other 
+		   cost. This also means that retail device manufacturers need to make the necessary development investment to 
+		   correctly implement low latency networking, though this may not interest or may be outside the capabilities of some organizations.
+		   In any case, the more devices that implement then adoption is broader, positively driving network effects.</t>
 		   
-	   </reference>
-	   
-   </references>
-
-  </back>
-</rfc>
+	    </section>
+	    
+	    <section title="Opt Out During Experimental Phase">
+		    <t>In early phases of deployment of low latency networking, ISPs should consider making available some 
+			    mechanism for users to opt out of (deactivate) it. If low latency networking is working correctly, it seems extremely 
+			    unlikely that a user should ever want or need to turn it off. But is is also possible that it may be desirable 
+			    in some troubleshooting situations to turn it off, such as in in cases where a particular application has incorrectly 
+			    implemented low latency networking and the developer is working on a bug fix for an extended period of time. 
+			    As application use of this technology matures, it seems likely that there will not be a long term need or 
+			    practical benefit to having an opt out mechanism (and it may be counter productive if it insulates developers from 
+			    having to fix bugs or misconfigurations in their software).</t>
+		    
+	    </section>
+	    
+	  
+	 </section>
+	  
+	 <section title="Summary of Recommended Deployment Design Decisions">
+		 
+		 <ol type="%d">
+			 
+		 	<li>Only Applications Mark Traffic: Not the network</li>
+		 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance 
+			 	or other reasonable and openly documented technical guidelines</li>
+		 	<li>Device Choice: Both customer-owned and leased cable modem devices supported</li>
+		 	<li>User Opt Out: Customers can opt out during the experimental phase</li>
+	
+		 </ol>
+		 
+		 
+	 </section>
+	 
+	    <section title="Acknowledgements">
+	      <t>Thanks to Bob Briscoe, Mat Ford, Sebnem Ozer, and Greg White for their review and feedback on this document.</t>
+		</section>
+	
+	    <section title="IANA Considerations">
+		  <t>RFC Editor: Please remove this section before
+			 publication.</t>
+	      <t>This memo includes no requests to or actions for IANA.</t>
+	    </section>
+	
+	    <section title="Security Considerations">
+		  <t>RFC Editor: Please remove this section before
+			 publication.</t>
+	      <t>This memo includes no security considerations.</t>
+	    </section>
+	    
+	    <section title="Privacy Considerations">
+		  <t>RFC Editor: Please remove this section before
+			 publication.</t>
+	      <t>This memo includes no security considerations.</t>
+	    </section>
+	    
+	    <section title="Revision History">
+		  <t>RFC Editor: Please remove this section before
+			 publication.</t>
+	      <t>v00: First draft</t>
+	      <t>v01: Incorporate comments from 1st version after IETF-115</t>
+	    </section>
+	    
+	    <section title="Open Issues">
+		  <t>RFC Editor: Please remove this section before
+			 publication.</t>
+	      <t>- Open issues are being tracked in a GitHub repository for this document 
+		      at https://github.com/jlivingood/IETF-L4S-Deployment/issues</t>
+	    </section>
+	    
+	    
+	  </middle>
+	
+	  <!--  *****BACK MATTER ***** -->
+	
+	  <back>
+	    <!-- References split to informative and normative -->
+	
+	   <references title="Informative References">
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
+		   
+		   <reference anchor="BITAG" target="https://bitag.org/documents/BITAG_latency_explained.pdf">
+			   <front>
+	            <title>Latency Explained</title>
+	            <author>
+	              <organization>Broadband Internet Technical Advisory Group</organization>
+	            </author>
+	            <date year="2022" month="January" day="10"/>
+			   </front>
+		   </reference>
+		   
+		   <reference anchor="Lotus" target="https://www.eff.org/wp/packet-forgery-isps-report-comcast-affair">
+			   <front>
+	            <title>Packet Forgery By ISPs: A Report on the Comcast Affair</title>
+	            <author fullname="Peter Eckersley" initials="P" surname="Eckerseley">
+	              <organization>Electronic Frontier Foundation</organization>
+	            </author>
+	            <date year="2007" month="November" day="28"/>
+			   </front>
+		   </reference>
+		   
+		   <reference anchor="IETF-114-Slides" target="https://datatracker.ietf.org/meeting/114/materials/slides-114-tsvwg-update-on-l4s-work-in-ietf-114-hackathon-00.pdf">
+			   <front>
+	            <title>First L4S Interop Event @ IETF Hackathon</title>
+	            <author fullname="Greg White" initials="G" surname="White">
+	              <organization>CableLabs</organization>
+	            </author>
+	            <date year="2022" month="July" day="25"/>
+			   </front>
+			   
+		   </reference>
+		   
+	   </references>
+	
+	  </back>
+	</rfc>
