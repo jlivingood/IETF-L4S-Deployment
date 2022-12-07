@@ -280,7 +280,7 @@ processing queue is introduced on one or more links on the end-to-end path. The 
 			    	continue to evolve in exciting ways.</t>
 				
 				<t>In addition, this new network capability can be implemented in a variety of network technologies. For example in access network 
-technologies this could be implemented in DOCSIS [ref needed], 5G [ref needed], PON [ref needed], and many other types of networks. Anywhere 
+technologies this could be implemented in DOCSIS <xref target="LLD"/>, 5G <xref target="Ericsson"/>, PON <xref target="CTI"/>, and many other types of networks. Anywhere 
 that a network bottleneck could occur may benefit from this technology.</t>
 	    	</section>
 	    
@@ -484,7 +484,53 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	            <date year="2022" month="July" day="25"/>
 			   </front>
 			   
-		   </reference>
+			</reference>
+			
+			
+	
+			
+			<reference anchor="LLD" target="https://cablela.bs/low-latency-docsis-technology-overview-february-2019">
+				<front>
+					<title>Low Latency DOCSIS: Technology Overview</title>
+					<author fullname="Greg White" initials="G" surname="White">
+						<organization>CableLabs</organization>
+						</author>
+					<author fullname="Karthik Sundaresan" initials="K" surname="Sundaresan">
+						<organization>CableLabs</organization>
+						</author>
+							<author fullname="Bob Briscoe" initials="B" surname="Briscoe">
+					</author>
+					<date year="2019" month="February"/>
+				</front>
+				
+				</reference>
+
+				<reference anchor="Ericsson" target="https://www.ericsson.com/49bc82/assets/local/reports-papers/white-papers/26052021-enabling-time-critical-applications-over-5g-with-rate-adaptation-whitepaper.pdf">
+							<front>
+							<title>Enabling time-critical applications over 5G with rate adaptation</title>
+					<author fullname="Per Willars" initials="P" surname="Willars"><organization>Ericsson</organization></author>
+					<author fullname="Emma Wittenmark" initials="E" surname="Wittenmark"><organization>Ericsson</organization></author>
+					<author fullname="Henrik Ronkainen" initials="H" surname="Ronkainen"><organization>Business Area Networks</organization></author>
+					<author fullname="Ingemar Johansson" initials="I" surname="Johansson"><organization>Ericsson</organization></author>
+					<author fullname="Johan Strand" initials="J" surname="Strand"><organization>Business Area Networks</organization></author>
+					<author fullname="Petr Ledl" initials="D" surname="Ledl"><organization>Deutsche Telekom</organization></author>
+					<author fullname="Dominik Schnieders" initials="D" surname="Schnieders"><organization>Deutsche Telekom</organization></author>
+	
+	
+							<date year="2021" month="May"/>
+						</front>
+							
+						</reference>
+
+						<reference anchor="CTI" target="https://www.itu.int/itu-t/recommendations/rec.aspx?id=14656&lang=en">
+							<front>
+							<title>Optical line termination capabilities for supporting cooperative dynamic bandwidth assignment</title>
+							<author><organization>International Telecommunications Union - Telecommunication Standadardization Sector (ITU-T)</organization></author>
+			
+			        <date year="2021" month="April"/>
+		           </front>
+			           <seriesInfo name="Series G: Transmission Systems and Media, Digital Systems and Networks" value="Supplement 71" />
+						</reference>
 		   
 	   </references>
 	
