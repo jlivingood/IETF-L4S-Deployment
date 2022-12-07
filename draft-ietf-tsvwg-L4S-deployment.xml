@@ -522,7 +522,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 							
 						</reference>
 
-						<reference anchor="CTI" target="https://www.itu.int/itu-t/recommendations/rec.aspx?id=14656&lang=en">
+			<reference anchor="CTI" target="https://www.itu.int/rec/T-REC-G.Sup71-202104-I">
 							<front>
 							<title>Optical line termination capabilities for supporting cooperative dynamic bandwidth assignment</title>
 							<author><organization>International Telecommunications Union - Telecommunication Standadardization Sector (ITU-T)</organization></author>
