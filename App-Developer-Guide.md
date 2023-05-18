@@ -36,23 +36,19 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 **7. Example Linux Server Configuration Guidance**
 - See this [Google Doc](https://docs.google.com/document/d/121yxshjVd4la3mF_PHZroO_MWg-YFcDLhMrPVcL0wvs/edit#heading=h.gjdgxs) from Neal Cardwell
 
+**8. Consider Application Needs in Choosing L4S vs. NQB**
+-	Determine whether your application needs “sparse” flows or “congestion-controlled” (higher capacity) flows.
+-	Sparse flows that are latency senstive should be marked as NQB (thus DSCP-45, see next section). This may be things like DNS queries or VoIP media flows where maximizing the bandwidth of the flow is not necesary.
+- Latency sensitive flows that are congestion controlled are identified via ECN marking - these are flows that need higher bandwidth than the spare NQB flows described above. The bandwidth is not inherently limited by the application, which means the user quality (e.g. video resolution) may improve as more and more bandwidth can be used. Think of flows such as video conferencing, where more bandwidth may enable video shown to go from SD to 4K quality as bandwidth increases. 
+
 **Non-Queue-Building (NQB) in the Future:**
 
 -	The NQB specifications are still under development at the IETF. If approved, this will specific how to use DSCP-45 for NQB traffic.
 
 -	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/). 
 
-Application Support:
 
--	If a flow is incorrectly marked as NQB and it uses the low latency queue but then begins to build a queue, then the Queue Protection Function (QP) will redirect the traffic to the classic queue. This is described in XXXXXX.
--	Determine whether your application needs “sparse” flows or “congestion-controlled” flows.
-o	Sparse Flows are identified via DSCP marking: these are Non-Queue Building (NQB) flows for real-time interactive flows. In addition, the bandwidth need is inherently limited by the type of application. Think of flows such as console-based gaming or VoIP – these applications will be maximally limited by the particular A/V codecs or by the limited stream needed to convey player activities. In contrast to NQB, think of a file download such as an operating system update; this file will be downloaded at a rate that is unlimited by the application – it will be limited by the available bandwidth of the path to the end user. 
-o	L4S Congestion Controlled Flows are identified via ECN marking: these are flows that need higher bandwidth than the spare NQB flows described above. The bandwidth is not inherently limited by the application, which means the user quality (e.g. video resolution) may improve as more and more bandwidth can be used. Think of flows such as cloud-based gaming or video conferencing. In the latter case, it is obviously latency sensitive NQB traffic but the UI will look better and better as the video quality (bandwidth consumed) ramps up – such as from SD to HD to 4K-quality video. 
-![image](https://github.com/jlivingood/IETF-L4S-Deployment/assets/8984861/434c3595-8a85-4d99-ab17-989e1c12b2de)
-
- 
- 
-**CableLabs references:** 
+**CableLabs References:** 
 
 [https://l4s.cablelabs.com/l4s-testing/README.html](https://l4s.cablelabs.com/l4s-testing/README.html) and 
 [https://l4s.cablelabs.com/ ](https://l4s.cablelabs.com/)
