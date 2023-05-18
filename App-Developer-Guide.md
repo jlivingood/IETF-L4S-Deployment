@@ -29,7 +29,8 @@ It may seem tempting to mark all traffic for L4S handling, but this will harm th
 
 **6.	Use a Scalable Congestion Control for L4S Flows**
 
-L4S strongly recommends the use of a scalable congestion control, such as DCTCP, TCP Prague, SCReAM, and BBRv2. See [RFC 9331, Section 4.3](https://www.rfc-editor.org/rfc/rfc9331#section-4.3) for more details . 
+L4S strongly recommends the use of a scalable congestion control, such as DCTCP, TCP Prague, SCReAM, and BBRv2. See [RFC 9331, Section 4.3](https://www.rfc-editor.org/rfc/rfc9331#section-4.3) for more details. 
+
 
 **Non-Queue-Building (NQB) in the Future:**
 
@@ -37,6 +38,7 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 
 -	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/). 
  
+ 
 **CableLabs references:** 
 
 [https://l4s.cablelabs.com/l4s-testing/README.html](https://l4s.cablelabs.com/l4s-testing/README.html) and 
