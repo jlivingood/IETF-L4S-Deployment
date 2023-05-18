@@ -7,7 +7,7 @@ See also the [Application Developer Guide](https://github.com/jlivingood/IETF-L4
 **1. Key Points**
 -	Traffic marked for the low latency queue is NOT HIGHER PRIORITY than packets using the classic queue - they are both best effort
 -	Traffic marked for the low latency queue is DOES NOT GET MORE BANDWIDTH than packets using the classic queue
--	There is NO BENEFIT FOR QB TRAFFIC TO MARK AS NQB. In fact, it may harm the performance of the QB traffic. 
+-	There is NO BENEFIT FOR QUEUE BUILDING (QB) TRAFFIC TO BE MARKED AS NON-QUEUE-BUILDING (NQB). In fact, it may harm the performance of the QB traffic. 
 -	You need a scalable congestion control in place to use L4S (via ECN marking) while that is not the case for NQB (via DSCP marking)
 -	Middle mile networks, core/backbone networks, and points of interconnection need not necessarily have two queues; they just need to pass the markings.
 -	Two queues are needed on the bottleneck link on an end-to-end path. That is most commonly in the home or last mile access network.
