@@ -6,7 +6,7 @@ and one for low latency traffic.
 **1.	Background Reading**
 
 Please read the IETF documents: RFC [9330](https://www.rfc-editor.org/rfc/rfc9330.html), [9331](https://www.rfc-editor.org/rfc/rfc9331.html), 
-[9332](https://www.rfc-editor.org/rfc/rfc9332.html)
+[9332](https://www.rfc-editor.org/rfc/rfc9332.html). Apple also [released a video](https://developer.apple.com/videos/play/wwdc2022/10078/) for their 2022 Worldwide Developer's Conference that is informative. 
 
 
 **2.	Allow End-to-End ECN Marking**
