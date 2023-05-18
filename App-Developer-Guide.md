@@ -33,6 +33,8 @@ It may seem tempting to mark all traffic for L4S handling, but this will harm th
 
 L4S strongly recommends the use of a scalable congestion control, such as DCTCP, TCP Prague, SCReAM, and BBRv2. See [RFC 9331, Section 4.3](https://www.rfc-editor.org/rfc/rfc9331#section-4.3) for more details. 
 
+**7. Example Linux Server Configuration Guidance**
+- See this [Google Doc](https://docs.google.com/document/d/121yxshjVd4la3mF_PHZroO_MWg-YFcDLhMrPVcL0wvs/edit#heading=h.gjdgxs) from Neal Cardwell
 
 **Non-Queue-Building (NQB) in the Future:**
 
