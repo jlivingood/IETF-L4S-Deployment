@@ -5,8 +5,8 @@ and one for low latency traffic.
 
 **1.	Background Reading**
 
-Please read the IETF documents: RFC [9330](https://www.rfc-editor.org/rfc/rfc9330.html), [9331]([url](https://www.rfc-editor.org/rfc/rfc9331.html)), 
-[9332]([url](https://www.rfc-editor.org/rfc/rfc9332.html)) 
+Please read the IETF documents: RFC [9330](https://www.rfc-editor.org/rfc/rfc9330.html), [9331](https://www.rfc-editor.org/rfc/rfc9331.html), 
+[9332](https://www.rfc-editor.org/rfc/rfc9332.html)
 
 
 **2.	Allow End-to-End ECN Marking**
@@ -29,15 +29,15 @@ It may seem tempting to mark all traffic for L4S handling, but this will harm th
 
 **6.	Use a Scalable Congestion Control for L4S Flows**
 
-L4S strongly recommends the use of a scalable congestion control, such as DCTCP, TCP Prague, SCReAM, and BBRv2. See [RFC 9331, Section 4.3]([url](https://www.rfc-editor.org/rfc/rfc9331#section-4.3)) for more details . 
+L4S strongly recommends the use of a scalable congestion control, such as DCTCP, TCP Prague, SCReAM, and BBRv2. See [RFC 9331, Section 4.3](https://www.rfc-editor.org/rfc/rfc9331#section-4.3) for more details . 
 
 **Non-Queue-Building (NQB) in the Future:**
 
 -	The NQB specifications are still under development at the IETF. If approved, this will specific how to use DSCP-45 for NQB traffic.
 
--	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here]([url](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/)). 
+-	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/). 
  
 **CableLabs references:** 
 
-[https://l4s.cablelabs.com/l4s-testing/README.html]([url](https://l4s.cablelabs.com/l4s-testing/README.html)) and 
-[https://l4s.cablelabs.com/ ]([url](https://l4s.cablelabs.com/))
+[https://l4s.cablelabs.com/l4s-testing/README.html](https://l4s.cablelabs.com/l4s-testing/README.html) and 
+[https://l4s.cablelabs.com/ ](https://l4s.cablelabs.com/)
