@@ -167,8 +167,8 @@
 		
 		<t>It is also apparent from the IETF's work that it is clear that nearly all modern application types need low latency 
 			to some degree and that applications are best positioned to express their needs via application code and packet marking. 
-			Furthermore, unlike with bandwidth priority on a highly/fully utilized link, low latency using these new approaches is not a zero sum game - everyone 
-			can potentially have lower latency at no one else's expense (with some caveats - see <xref target="NewThinking"/>).
+			Furthermore, unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
+			balance the needs of different types of best effort flows (with some caveats - see <xref target="NewThinking"/>).
 			</t>
 		
 		<t>For additional background on latency and why latency matters so much to the Internet, please read <xref target="BITAG"/></t>
@@ -211,22 +211,22 @@
 		</section>
 		
 		<section title="New Thinking on Low Latency Packet Processing" anchor="NewThinking">
-			<t>The Introduction says "Furthermore, unlike with bandwidth priority on a highly/fully utilized link, low latency using these new approaches is not a zero sum game - everyone 
-			can potentially have lower latency at no one else's expense." But this bears a bit more discussion to understand more fully.</t>
+			<t>The Introduction says that unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
+				balance the needs of different types of best effort flows.
+			But this bears a bit more discussion to understand more fully.</t>
 			
-			<t>L4S does *not* provide low latency in the same way as previous technologies like DiffServ (QoS). That prior QoS approach used packet 
+			<t>L4S does *not* provide low latency in the same way as previous technologies like DiffServ Quality of Service (QoS). That prior 
+			QoS approach used packet 
 prioritization, where it was possible to assign a higher relative priority to certain application traffic, such as Voice over IP (VoIP) telephony. 
 This approach could provide consistent and relatively low latency by assigning high priority to a partition of the capacity of a link, and then policing the 
-rate of packets using that partition. For example, on a 10 Mbps link, a high QoS priority could be assigned to VoIP with a dedicated capacity of 1 Mbps of 
-the 10 Mbps link capacity. The other 9 Mbps would be available to lower QoS priority, such as best effort general Internet traffic that was not VoIP.</t>
+rate of packets using that partition. As such, this traditional approach to QoS can be considered hierarchical in nature.</t>
 			
-			<t>But even when QoS was used in this manner, the latency may have been relatively good but it was not ultra low latency of the sort that low latency networking (NQB and L4S) can deliver. As well, that QoS approach is to some extent predicated on an idea that network capacity is very limited and that links 
-			are often highly utilized. But in today's Internet, it is increasingly the case that there is an abundance of capacity to end users, which makes QoS 
-			approaches ineffective in delivering ever-lower latency.</t>
-			
-			<t>The result, as noted in the prior section, has been the role of dual queue networking. With these approaches, the new low latency packet 
-processing queue is introduced on one or more links on the end-to-end path. The internal L4S queuing may still use a sort of internal prioritization, but this is not QoS in the typical sense because this is happening on an extremely short timescale - sub-round trip time (so microseconds or a few milliseconds). A more important and impactful force at play is the rapid congestion signals that are exchanged that will cause a sender to dynamically yeild to other traffic 
-(as if the other traffic had no QoS priority, which it does not) - which can be thought of as back pressure to signal the sender to backoff prior to packetloss occuring.</t>
+			<t>That QoS approach 
+			is to some extent predicated on an idea that network capacity is 
+			very limited and that links are often highly utilized. But in today's Internet, it is increasingly the case that there is an 
+			abundance of capacity to end users (e.g., symmetric 1 Gbps), which makes such traditional QoS approaches ineffective in 
+			delivering ever-lower latency. This new low latency networking approach is not based on hierarchical QoS prioritization. Rather it is built upon conditional 
+			priority scheduling between its two queues that operate at best effort QoS priority.</t>
 			
 		</section>
 	    
@@ -286,8 +286,8 @@ processing queue is introduced on one or more links on the end-to-end path. The 
 			    be the case for a user's in-home Wi-Fi network due to the particulars of how the IEEE 802.11 wireless protocol functions at the current 
 			    time - see <xref target="RFC8325"/>).</t>
 			    
-			    <t>In addition, as noted above, unlike with bandwidth priority on a highly/fully utilized link, low latency is not a zero sum game - everyone 
-			can potentially have lower latency at no one else's expense.</t>
+			    <t>In addition, as noted above, unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
+				balance the needs of different types of best effort flows.</t>
 	    	</section>
 	    
 			<section title="Thoughput: Shared Across All Traffic">
