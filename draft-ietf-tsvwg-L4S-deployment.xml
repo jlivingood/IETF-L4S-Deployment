@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP L4S Deployment Design">Comcast ISP Low Latency Deployment Design Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-01"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-02"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="December" day="15" year="2022"/>
+	    <date month="May" day="23" year="2023"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -303,7 +303,8 @@ that a network bottleneck could occur may benefit from this technology.</t>
 	    
 	    <section title="Only Applications Mark Traffic">
 		    
-		    <t>Only applications should mark traffic, not the network. This is for several reasons:</t>
+		    <t>Only applications should mark traffic to inidate their preference for the low latency queue, 
+			not the network. This is for several reasons:</t>
 		    <ul>
 		    <li>According to the end-to-end principle, this function is best delegated to the edge of 
 		    the network as an architectural best practice (the edge being the application in this case).</li>
@@ -331,6 +332,8 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    major changes. As a result, the application layer is best suited to rapid experimentation and iteration. Network 
 		    operators and equipment vendors trying to infer application needs will in comparison always be in a reactive 
 		    mode, one step behind changes made in applications.</li>
+			<li>Note, however, that this does not preclude an ISP from changing packet marking within their internal network due to an existing use of a 
+			particular code point.</li>
 		    </ul>
 		    
 	    </section>
@@ -362,15 +365,15 @@ that a network bottleneck could occur may benefit from this technology.</t>
 			
 
 			
-	    <section title="Opt Out Capability">
-		    <t>In early phases of deployment of low latency networking, ISPs should consider making available some 
-			    mechanism for users to opt out of (deactivate) it. If low latency networking is working correctly, it seems extremely 
+	    <section title="Opt Out Capability During Technical Trial Experiments">
+		    <t>During technical trial experiments of low latency networking, ISPs should consider making available some 
+			    mechanism for users to opt out of (deactivate) it. If low latency networking is functioning correctly, it seems extremely 
 			    unlikely that a user should ever want or need to turn it off. On the other hand, it is also possible that it may be desirable 
-			    in some troubleshooting situations to turn it off, such as in in cases where a particular application has incorrectly 
-			    implemented low latency networking and the developer is working on a bug fix for an extended period of time. 
-			    As application use of this technology matures, it seems likely that there will not be a long term need or 
-			    practical benefit to having an opt out mechanism (and it may be counter productive if it insulates developers from 
-			    having to fix bugs or misconfigurations in their software), though an opt out mechanism may still prove useful.</t>
+			    in some troubleshooting situations to turn it off.</t> 
+			    
+				<t>As this technology enters full production, there will not be a long term need or 
+			    practical benefit to having an opt out mechanism will not longer be necessary or practical; any problems should be handled 
+				like typical production network problems.</t>
 	    </section>
 			
 			<section title="Consider Traffic Protection">
@@ -405,7 +408,8 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	 </section>
 	 
 	    <section title="Acknowledgements">
-			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Dan Rice, and Greg White for their review and feedback on this document.</t>
+			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, and Greg White for their review and 
+			feedback on this document.</t>
 		</section>
 	
 	    <section title="IANA Considerations">
