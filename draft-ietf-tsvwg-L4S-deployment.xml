@@ -194,9 +194,7 @@
 				    are not interacting with in 
 			    real-time. The other was Non-Queue-Building (NQB) - such as DNS lookups, voice interaction 
 			    with artificial intelligence (AI) assistants, video conferencing, gaming, and so on. NQB 
-			    flows tend to be limited in their capacity needs - for example a DNS lookup will not need to 
-			    consume the full capacity of an end user's connection - but the end user is highly sensitive 
-			    to any delays.</t>
+			    flows tend to be ones where the end user is highly sensitive to any delays.</t>
 			    
 			    
 				<t>Thus, the IETF created specifications for how two different network processing 
@@ -236,31 +234,57 @@ processing queue is introduced on one or more links on the end-to-end path. The 
 		    <t>Network Neutrality (a.k.a. Net Neutrality, and NN hereafter) is a concept that can mean a variety 
 		    of things within a country, as well as between different countries, based on 
 		    different opinions, market structures, business practices, laws, and regulations. Generally speaking, 
-		    at least in the context of the United States' marketplace, it has 
-		    come to mean that Internet Service Providers (ISPs) should not block, throttle, or deprioritize 
-		    lawful application traffic, and should not engage in paid prioritization, among other things. The meaning of NN 
-		    can be complex and ever changing, so the specific details are out of scope for this document. 
-		    Despite that, NN concerns certainly bear on the deployment of new technologies by ISPs, at least in the US, 
-		    and so should be taken into account in making deployment design decisions. </t>
-		    
-		    <t>It is also possible that there can be confusion for people who are not deep in this highly technical subject 
-			    between prioritization, provisioned 
-		    end user capacity (throughput), and low latency networking. As it is envisioned in the design of the 
+		    NN means that Internet Service Providers (ISPs) should not limit user choice or affect competition between 
+			application providers. In the context of the United States' marketplace, it has come to mean that ISPs 
+			should not block, throttle, or deprioritize lawful application traffic, and should not engage in paid 
+			prioritization, among other things. The meaning of NN can be complex and ever changing, so the specific 
+			details are out of scope for this document. Despite that, NN concerns certainly bear on the deployment 
+			of new technologies by ISPs, at least in the US, and so should be taken into account in making deployment 
+			design decisions.</t>
+
+			<t>It is also possible that there can be confusion - for people who are not deep in this highly technical subject - 
+			between prioritization, provisioned 
+		    end user capacity (throughput or bandwidth), and low latency networking. As it is envisioned in the design of the 
 		    protocols, the addition of a low latency packet processing queue at a network link is merely a second 
 		    packet queue and does not mean that this queue is prioritized or that it has different or greater 
 		    capacity from the classic queue. Thus, a low latency queue does not create a so-called "fast lane" (in the way that 
-		    this term is used in policy-related discussions in the U.S. to describe higher than best effort priority or greater capacity being assigned to some traffic compared to default traffic) - 
+		    this term is used in policy-related discussions in the U.S. to describe higher than best effort priority or greater 
+			capacity being assigned to some traffic compared to default traffic) - 
 		    but there are certainly other NN considerations in the operational implementation worth exploring.</t>
-		    
+			
+			<t>In short: implemented right, low latency networking is fully-aligned with net neutrality and has no 
+			impact on user choice and competition.</t>
+
+			<t>The principles below describe guidelines for a user-centric, application-agnostic, and monetizable implementation of  
+			low latency networking that is aligned with NN frameworks and interpretations, at least in the U.S. and Europe.</t>
+
+			<section title="Application-Agnostic Low Latency Networking">
+
+			<t>A key principle of NN is that all applications should be treated the same by ISPs. As such, any application 
+			should be able to request access to low latency networking using the available marking techniques, and the 
+			network should forward packets through a low latency queue only based on such markings, without inferring 
+			or taking into consideration from which application certain packets originate.</t>
+
+			<section title="User-Centric Monetization, Not Application Provider Monetization">
+
+			<t>To incentivize low latency networking deployments, ISPs should be able to monetize it in some way, such as 
+			by enabling it on specific tiers of service. This could be misinterpreted as paid prioritization. To avoid such 
+			conflicts or misinterpretations, ISPs should charge users (and not application providers) for access to 
+			low latency networking, and follow common charging regimes used for best-effort services. For example, 
+			different price-points may be achieved by adjusting the throughput, monthly data allowance, in home network 
+			equipment maintenance, in home network services (e.g., parental controls), provision of low latency networking, 
+			or other service attributes. ISPs should not limit the number or types of applications that can access low 
+			latency networking, as this would eventually conflict with the application-agnostic requirement described above.</t>
+
 	    
-			<section title="Prioritization: Same for All Traffic">
+			<section title="Prioritization: Same Best Effort Priority for All Traffic">
 		    	<t>As noted above, a key aspect of NN goals is that traffic to certain Internet destinations or for certain 
 			    applications should not be prioritized over other Internet traffic. This means in practice that all Internet traffic 
 			    in an ISP network should be carried at the same (best effort) priority and that any network management practices 
 			    imposed by the network should be protocol (application) agnostic. Low latency networking is fully consistent with this aspect of NN, 
-			    because it is designed so that all traffic is treated on a best effort (BE) basis in the ISP network (this may not necessarily 
+			    because it is designed so that all traffic is treated on a best effort basis in the ISP network (this is not necessarily 
 			    be the case for a user's in-home Wi-Fi network due to the particulars of how the IEEE 802.11 wireless protocol functions at the current 
-			    time).</t>
+			    time - see <xref target="RFC8325"/>).</t>
 			    
 			    <t>In addition, as noted above, unlike with bandwidth priority on a highly/fully utilized link, low latency is not a zero sum game - everyone 
 			can potentially have lower latency at no one else's expense.</t>
@@ -387,6 +411,28 @@ implemented for example in end user CPE, last mile network equipment, and/or els
 private internal use of DSCP 45, then they alone should be responsible for any necessary remarking for traffic passing through their network (it would be 
 unfair and unreasonable for a given network's private use of a DSCP mark to pose a burden on other networks).</t>
 			</section>	
+
+
+			<section title="In Home Wi-Fi LAN Considerations">
+				<t>As noted above with respect to prioritization of packets in the ISP network, all packets should be handled with the same 
+				best effort priority. However, in a user's home Wi-Fi local area network (LAN), this is more complicated because 
+				there is not a precise mapping between IETF packet marking and IEEE 802.11 marking, explored in 
+				<xref target="RFC8325"/>.</t>
+
+				<t>In short, today's 802.11 specifications enable a Wi-Fi network to have multiple queues, using different "User Priority" and "Access 
+				Category" values. At the current time, these queues are:</t>
+				<ul>
+					<li>User Priority 1 or 2, AC_BK = Background</li>
+					<li>User Priority 0 or 3, AC_BE = Best Effort</li>
+					<li>User Priority 4 or 5, AC_VI = Video</li>
+					<li>User Priority 6 or 7, AC_VO = Voice</li>
+				</ul>
+
+				<t>Thus, as recommended in <xref target="I-D.ietf-tsvwg-nqb"/>, the low latency queue should be different from the best effort queue. 
+				That means default best effort traffic will be in User Priority 0 or 3 (AC_BE) and it is recommended that the low latency queue 
+				will be in User Priority 4 or 5 (AC_VI). For additional context, please refer to Section 8.1 of  <xref target="I-D.ietf-tsvwg-nqb"/>.</t>
+
+			</section>	
 	  
 	 </section>
 	  
@@ -408,8 +454,8 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	 </section>
 	 
 	    <section title="Acknowledgements">
-			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, and Greg White for their review and 
-			feedback on this document.</t>
+			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg White, 
+			and Yiannis Yiakoumis for their review and feedback on this document.</t>
 		</section>
 	
 	    <section title="IANA Considerations">
@@ -453,6 +499,8 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	    <!-- References split to informative and normative -->
 	
 	   <references title="Informative References">
+		&RFC8325;
+
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4s-arch.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-aqm-dualq-coupled.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ecn-l4s-id.xml"/>
