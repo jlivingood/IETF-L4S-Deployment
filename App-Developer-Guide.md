@@ -36,7 +36,10 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 **7. Example Linux Server Configuration Guidance**
 - See this [Google Doc](https://docs.google.com/document/d/121yxshjVd4la3mF_PHZroO_MWg-YFcDLhMrPVcL0wvs/edit#heading=h.gjdgxs) from Neal Cardwell
 
-**8. Consider Application Needs in Choosing L4S vs. NQB**
+**8. Example Server Configuration Guidance**
+- See this from Apple [https://github.com/network-quality/server]
+
+**9. Consider Application Needs in Choosing L4S vs. NQB**
 -	Determine whether your application needs “sparse” flows or “congestion-controlled” (higher capacity) flows.
 -	Sparse flows that are latency senstive should be marked as NQB (thus DSCP-45, see next section). This may be things like DNS queries or VoIP media flows where maximizing the bandwidth of the flow is not necesary.
 - Latency sensitive flows that are congestion controlled are identified via ECN marking - these are flows that need higher bandwidth than the sparse NQB flows described above. The bandwidth is not inherently limited by the application, which means the application QoE (e.g. video resolution) may improve as more and more bandwidth can be used. Think of flows such as video conferencing, where more bandwidth may enable video shown to go from SD to 4K quality as bandwidth increases. 
