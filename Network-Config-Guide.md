@@ -24,10 +24,12 @@ L4S uses the Explicit Congestion Notification (ECN) field of the packet header. 
 
 **4. Marking for a Low Latency Queue**
 If a network link supports dual queue, then to put packets into the low latency queue, one of the following must occur:
-- DSCP = 45
+- DSCP = 45 
 - ECN = ECT(1)
 - ECN = CE
 - Or DSCP = 45 & ECT(1) or CE (both markings)
+- Or DSCP = 40, 46, 56 in the short term (only supported upstream and for a TBD period of time, since some applications developed to
+  these code points before the NQB specifications solidified)
 
 **5. In the Wireless LAN (WiFi)**
 The WLAN is often a bottleneck but IEEE 802.11 packet marking and IETF marking are not easily mapped, though WMM have various queue types (i.e., AC_BE, AC_VO, AC_VI). For experimental purposes in the early phases of deployment, we therefore recommend:
