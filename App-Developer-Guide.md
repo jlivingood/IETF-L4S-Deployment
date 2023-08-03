@@ -43,7 +43,7 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 
 **Non-Queue-Building (NQB) in the Future:**
 
--	The NQB specifications are still under development at the IETF. If approved, this will specific how to use DSCP-45 for NQB traffic (in the short term, we will also enable upstream DSCP-40, 45, 46, 65 to be used to trigger the low latency flow since the NQB specification is not yet finalized and developers may have been using these alternative marks until 45 was finalized).
+-	The NQB specifications are still under development at the IETF. If approved, this will specific how to use DSCP-45 for NQB traffic (in the short term, we will also enable upstream DSCP-40, 45, 46, 56 to be used to trigger the low latency flow since the NQB specification is not yet finalized and developers may have been using these alternative marks until 45 was finalized).
 
 -	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/). 
 
