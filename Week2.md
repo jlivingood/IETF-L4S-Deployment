@@ -10,11 +10,11 @@ Please run each of these – in total this is approximately 30 minutes of work.
 
 Run these tests below. In a new browser tab open our survey form and enter the results after you perform each test.  
 
-### Apple’s Network Responsiveness Test
+### Apple’s Network Responsiveness Test:
 Only applies if you have a MacOS computer. 
 See directions and note results at https://app.smartsheet.com/b/form/d3ca6000600044219862dfcb9324742e
 
-### Ookla’s web-based speed test: https://www.speedtest.net
+### Ookla’s web-based speed test:
 See directions and note results at https://app.smartsheet.com/b/form/077ba9bbb7534335b531363715bb46ff
 
 ###  Cloudflare’s speed test: 
