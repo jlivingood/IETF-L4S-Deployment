@@ -30,7 +30,7 @@ See directions and note results at https://app.smartsheet.com/b/form/ddfbf7bff55
 See directions and note results at https://app.smartsheet.com/b/form/fe7f0861907e4e1e92d2f4c0ebd472e0 
 
 ### Optional: 
-Download the Chrome browser extension Network X-Ray at https://chrome.google.com/webstore/detail/network-x-ray/ 
+Download the Chrome browser extension Network X-Ray at https://chrome.google.com/webstore/detail/network-x-ray/blcijcaekjplheogmjkallmnnofgikmh 
 It runs automatically when using Google Meet, Zoom, and a few other video conferencing apps and on www.domos.ai. 
 To use it, simply install the extension in Chrome and navigate to one of the supported websites 
 (meet.google.com, domos.ai, for instance). You do not need to tell us the results in a survey form. More details are 
