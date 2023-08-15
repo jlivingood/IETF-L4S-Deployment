@@ -1,0 +1,43 @@
+# Week 3 - Field Trial Instructions
+
+Our trials continue this week, with our focus shifting to specific applications and how they are affected 
+by low latency networking. 
+
+## Action Requested
+
+Our focus is on Apple’s Facetime application, for both iOS and Mac OS. We will need you to enable this in your device's operating 
+system and then try Facetime while running a traffic generator. Feel free to skip this if it seems too complicated! 
+ 
+What we’re trying to see is whether your Facetime experience is affected by high network traffic volume that is competing 
+with Facetime.  
+
+### Mac Setup: 
+If you run macOS, you will need to be on macOS 14 (Sonoma). If that is the case, you can turn on low latency in the 
+terminal app by typing “**defaults write -g network_enable_l4s -bool true**” (copy & paste into terminal) and hitting enter. 
+That enables low latency packet marking.  
+
+### iPhone/iPad Setup: 
+If you run iOS, you will need to be on iOS 17. To turn this on in iOS you currently need to be in their developer 
+program (which I suspect few of you are). If you are, go into Settings / Developer and turn on L4S.  
+
+
+### Mac-Based Test:
+If you followed the Mac directions, then make a Facetime call while running the traffic generator (see below). 
+  
+
+### iPhone/iPad-Based Test:
+If you followed the iOS directions, then make a Facetime call with that device while running the traffic generator (see below) 
+on another device.
+
+### Download the Traffic Generator:
+You can download our traffic generation tool at https://www.dropbox.com/s/ou7ii0qsfemfavb/iperf3-tool.zip?dl=0. 
+There is a version in there for Mac, Windows, and Linux. This tool will automatically generate load on your 
+connection. It only runs for 5 minutes, during which you should run a Facetime call. On the Mac, you will likely 
+need to give permission to this app in the System Settings / Security & Privacy, scroll down to Security and 
+click “Open Anyway”. 
+
+## ACTION: Complete Results Form
+Submit this results form - https://app.smartsheet.com/b/form/8f46b4a6ba2a4bf6a53a5dc47c979730
+
+## Report Problems Here: 
+https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07
