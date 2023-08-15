@@ -36,3 +36,8 @@ Link TBD
 
 ## Report Problems Here: 
 https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07
+
+
+OPEN ISSUE - Have a test run BEFORE the Windows config change and then after. 
+
+OPEN Q FOR DNS TEAM - what's most valuable - cached or uncached QRT?
