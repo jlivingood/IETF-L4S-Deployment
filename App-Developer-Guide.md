@@ -52,4 +52,4 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 
 [https://l4s.cablelabs.com/l4s-testing/README.html](https://l4s.cablelabs.com/l4s-testing/README.html) and 
 [https://l4s.cablelabs.com/ ](https://l4s.cablelabs.com/)
-[https://www.l4sgear.com/ ] (https://www.l4sgear.com/)
+[https://www.l4sgear.com/ ](https://www.l4sgear.com/)
