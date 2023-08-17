@@ -48,7 +48,8 @@ L4S strongly recommends the use of a scalable congestion control, such as DCTCP,
 -	These are for “sparse flows” that do not need much bandwidth, such as DNS lookups. Details to come once an RFC is issued; the [current document is here](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-nqb/). 
 
 
-**CableLabs References:** 
+**Other References:** 
 
 [https://l4s.cablelabs.com/l4s-testing/README.html](https://l4s.cablelabs.com/l4s-testing/README.html) and 
 [https://l4s.cablelabs.com/ ](https://l4s.cablelabs.com/)
+[https://www.l4sgear.com/ ] (https://www.l4sgear.com/)
