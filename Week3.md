@@ -28,7 +28,7 @@ If you followed the iOS directions, then make a FaceTime call with that device w
 on another device.
 
 ### Download the Traffic Generator:
-You can download our traffic generation tool at https://www.dropbox.com/s/ou7ii0qsfemfavb/iperf3-tool.zip?dl=0. 
+You can download our traffic generation tool at https://www.dropbox.com/scl/fi/auerbv51wq6dbl8wxcut2/iPerf3-tool-v2.zip?rlkey=e8kj06zg3pjwzqsq4selh48nr&dl=0. 
 There is a version in there for Mac, Windows, and Linux. This tool will automatically generate load on your 
 connection. It only runs for 5 minutes, during which you should run a Facetime call. On the Mac, you will likely 
 need to give permission to this app in the System Settings / Security & Privacy, scroll down to Security and 
