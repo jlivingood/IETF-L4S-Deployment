@@ -3,6 +3,8 @@
 Our trials continue this week, with our focus shifting to specific applications and how they are affected 
 by low latency networking. 
 
+*This week’s testing only applies if you have a Mac, iPhone, or iPad. If you use Windows and Android, you can skip this week’s formal tests.*
+
 ## Action Requested
 
 Our focus is on Apple’s **FaceTime** application, for both iOS and Mac OS. We will need you to enable this in your device's operating 
@@ -13,12 +15,15 @@ with Facetime.
 
 ### Mac Setup: 
 If you run macOS, you will need to be on macOS 14 (Sonoma). If that is the case, you can turn on low latency in the 
-terminal app by typing “**defaults write -g network_enable_l4s -bool true**” (copy & paste into terminal) and hitting enter. 
-That enables low latency packet marking.  
+terminal app by typing “**defaults write -g network_enable_l4s -bool true**” (copy & paste into terminal - see note) and hitting enter. 
+That enables low latency packet marking.
+
+*Note: To run the Terminal application, click the magnifying glass icon in the upper right of the screen on your Mac to search, and type terminal, then hit enter or click the terminal application. This opens what is called a ‘command line’ application for you.*
 
 ### iPhone/iPad Setup: 
 If you run iOS, you will need to be on iOS 17. To turn this on in iOS you currently need to be in their developer 
-program (which I suspect few of you are). If you are, go into Settings / Developer and turn on L4S.  
+program (which I suspect few of you are). If you are, go into Settings / Developer and turn on L4S.  *If you are not in the Apple Developers Program and running iOS 17 – just skip this.*
+
 
 ### Mac-Based Test:
 If you followed the Mac directions, then make a FaceTime call while running the traffic generator (see below). 
