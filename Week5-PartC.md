@@ -8,7 +8,7 @@ This testing is OPTIONAL and requires a device running MacOS.
 
 1. Open the Terminal application.
 2. In Terminal, type (easiest is copy & paste) "defaults write -g network_enable_l4s -bool true". This sets the OS to use low latency networking.
-3. In Terminal, paste in this text: "networkQuality -s -C https://rpm-nqtest-st.comcast.net/config" and hit enter. NOTE RESULT IN THE SURVEY
+3. In Terminal, paste in this text: *networkQuality -s -v -C https://rpm-nqtest-st.comcast.net/config* and hit enter. NOTE RESULT IN THE SURVEY
 
 ## Complete the Survey Form to Submit Results
 Link TBD
