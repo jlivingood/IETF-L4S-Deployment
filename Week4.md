@@ -5,7 +5,7 @@ Our trials continue this week, with our focus shifting to online gaming.
 *This week’s testing only applies if you are already an active gamer - and use Xbox. If that does not apply to you, please skip this week’s tests.*
 
 ## Action Requested - Game Testing
-Follow the directions here
+Follow the directions below
 
 ### Xbox - Only if You Have an Xbox 
 See PDF at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Xbox%20One%20LLD%20Trial%20Instructions.pdf
