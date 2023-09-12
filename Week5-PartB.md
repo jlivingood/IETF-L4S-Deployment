@@ -15,10 +15,13 @@ should be deleted.** Finally, please add two off-network public servers: 8.8.8.8
 ### Configure Windows
 Next, we want you to configure Windows to mark outbound DNS traffic with the DSCP-45 marking.  
  
-#### Step 1 - Access the “Local Group Policy” Editor
+#### Step 1 - Run the DNS Benchmark Application (Without Low Latency)
+Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
+
+#### Step 2 - Access the “Local Group Policy” Editor to Setup Low Latency DNS
 To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
  
-#### Step 2 – Configure the Policy
+#### Step 3 – Configure the Low Latency DNS Policy
 - Name the policy “**DNS Low Latency**”
 - Enter “**45**” into the “**Specify DSCP Value Field**”.
 - Select “**All Applications**” and select next to continue.
@@ -28,16 +31,11 @@ To do this, click the Start Menu and type: “Local Group Policy”.  In the win
 - Next, select “To this destination port” and enter **53**.
 - Then select “Finish” 
 
-#### Step 3 - Run the DNS Benchmark Application 
-Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results.
+#### Step 4 - Run the DNS Benchmark Application (With Low Latency)
+Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in the [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07) and then submit it.
 
 ## Complete the Survey Form to Submit Results
-Link TBD
+https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
 
 ## Report Problems Here: 
 https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07
-
-
-OPEN ISSUE - Have a test run BEFORE the Windows config change and then after. 
-
-OPEN Q FOR DNS TEAM - what's most valuable - cached or uncached QRT?
