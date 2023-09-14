@@ -1,6 +1,6 @@
 # Week 5 - Field Trial Instructions
 
-Our trials continue this week, continuing our focus shifting to online gaming.
+Our trials continue this week, continuing our focus shifting to online gaming. This test is for VERY ADVANCED users only.
 
 *This week’s testing only applies if you are already an active gamer - and use Windows. If that does not apply to you, please skip this test and see Part B of this week at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Week5-PartB.md and Part C at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Week5-PartC.md.*
 
