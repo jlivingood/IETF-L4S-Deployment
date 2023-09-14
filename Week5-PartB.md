@@ -2,6 +2,8 @@
 
 This testing is OPTIONAL and requires a device running Windows.  
 
+*If you do not use Windoes, please skip this test and see Part C of this week at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Week5-PartC.md.*
+
 ## Action Requested
 
 ### Download DNS Benchmark 
