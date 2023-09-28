@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-02"
+	  docName="draft-livingood-low-latency-deployment-03"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP L4S Deployment Design">Comcast ISP Low Latency Deployment Design Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-02"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-03"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="May" day="23" year="2023"/>
+	    <date month="September" day="28" year="2023"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -302,7 +302,7 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 			    	low latency networking.</t>
 	    	</section>
 	    	
-	    	<section title="Can Work on All Types of Network">
+	    	<section title="Can Work on All Types of Network Technology">
 		    	<t>Ultimately, the emergence of low latency networking represents a fundamental new network 
 			    	capability that applications can choose to utilize as their needs dictate. It reflects a new ground truth 
 			    	about two fundamentally different types of application traffic and demonstrates that networks 
@@ -344,9 +344,9 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    <li>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
 		    to accurately determine application protocols and to further infer which flows will benefit from low latency 
 		    and which flows may be harmed because they need to build a queue.</li>
-		    <li>To correctly utilize L4S, the application needs to use a scalable congestion control algorithm in order to 
-			use the packet marking for L4S. This is done by using the ECN field of the packet header, with an ECT(1) marking, 
-			according to Section 4.1 of <xref target="RFC9331"/>. 
+		    <li>To correctly utilize L4S, the application and the server needs to use a scalable congestion control algorithm in order to 
+			use the packet marking for L4S and respond to congestion experience (CE) marking. This is done by using the ECN field of the packet header, with an ECT(1) marking, 
+			according to Section 4.1 of <xref target="RFC9331"/> and being responsibe to Congestion Experienced (CE) marks. 
 			But only the application (not the network) knows what congestion control it is using. So, with L4S, the network cannot properly 
 			mark on behalf of the application.</li>
 			<li>To correctly utilize NQB for non-L4S traffic, then the DSCP field of the packet header is used, with a DSCP 45 marking, according to Section 
@@ -401,13 +401,13 @@ that a network bottleneck could occur may benefit from this technology.</t>
 			    unlikely that a user should ever want or need to turn it off. On the other hand, it is also possible that it may be desirable 
 			    in some troubleshooting situations to turn it off.</t> 
 			    
-				<t>As this technology enters full production, there will not be a long term need or 
-			    practical benefit to having an opt out mechanism will not longer be necessary or practical; any problems should be handled 
+				<t>As this technology enters normal production operation, there will not be a long term need or 
+			    practical benefit to having an opt out mechanism. Thus, that mechanism will no longer be necessary or practical; any problems should be handled 
 				like typical production network problems.</t>
 	    </section>
 			
 			<section title="Consider Traffic Protection">
-				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a Queue Protection Function [ref]. The document says that Traffic Protection is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily to correct mismarking). This may be 
+				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a Queue Protection Function <xref target="I-D.briscoe-docsis-q-protection"/>. The document says that Traffic Protection is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily to correct mismarking). This may be 
 implemented for example in end user CPE, last mile network equipment, and/or elsewhere in the ISP network - or closely monitors network statistics and user feedback for any indication of widespread NQB packet mismarking by applications.</t>
 			</section>	
 			
@@ -441,8 +441,9 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 				<t>It is also worth noting that, in the short-term, Microsoft has taken a slightly different approach to packet 
 				marking on their Xbox platform <xref target="Microsoft"/>. They are using DSCP-46 rather than DSCP-45, though presumably 
 				once the IANA port assignment 
-				for DSCP-45 is made this will change. As a result, a more permissive WLAN marking policy is recommended, which will put packets 
-				marked with DSCP-46 into the low latency queue. They are also using the AC_VO queue rather than the AC_VI queue, but it 
+				for DSCP-45 is made this will change. As a result, a more permissive WLAN marking policy is initially recommended until RFCs for 
+				NQB are published and developers coalesce around DSCP-45. This means that the network which will put packets 
+				marked with DSCP-46 (and potentially other values, such as 40 and 56) into the low latency queue. They are also using the AC_VO queue rather than the AC_VI queue, but it 
 				is not known if that may change when the DSCP marking changes.</t>
 
 			</section>	
@@ -467,7 +468,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	 </section>
 	 
 	    <section title="Acknowledgements">
-			<t>Thanks to Bob Briscoe, Mat Ford, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg White, 
+			<t>Thanks to Bob Briscoe, Mat Ford, Vidhi Goel, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg White, 
 			and Yiannis Yiakoumis for their review and feedback on this document.</t>
 		</section>
 	
@@ -495,6 +496,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	      <t>v00: First draft</t>
 	      <t>v01: Incorporate comments from 1st version after IETF-115</t>
 		  <t>v02: Incorporate feedback from the TSVWG mailing list</t>
+		  <t>v03: Final feedback from TSVWG and prep for sending to ISE</t>
 	    </section>
 	    
 	    <section title="Open Issues">
@@ -520,6 +522,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
+		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.briscoe-docsis-q-protection.xml"/>
 		   
 		   <reference anchor="BITAG" target="https://bitag.org/documents/BITAG_latency_explained.pdf">
 			   <front>
