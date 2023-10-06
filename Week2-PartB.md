@@ -1,4 +1,4 @@
-# Week 5 - Field Trial Instructions
+# Week  - Field Trial Instructions
 
 This testing is OPTIONAL and requires a device running MacOS.  
 
