@@ -1,4 +1,4 @@
-# Week 5 - Field Trial Instructions
+# Week 4 - Field Trial Instructions
 
 Our trials continue this week, continuing our focus shifting to online gaming. This test is for VERY ADVANCED users only.
 
