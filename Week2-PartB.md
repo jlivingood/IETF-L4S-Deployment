@@ -12,7 +12,7 @@ This testing is OPTIONAL and requires a device running MacOS.
    IF YOU GET THE ERROR "illegal option" then paste in this text: *networkQuality -russjc9-ve-vfe-006.aaplimg.com -s* and hit enter. 
 
 ### Complete the Survey Form to Submit Results (for 1st test)
-https://app.smartsheet.com/b/form/1d676cf10eb142948515ceb3d15819cd
+https://app.smartsheet.com/b/form/d3ca6000600044219862dfcb9324742e
 
 ## Run the Apple Network Quality Test - USING ETHERNET & SPECIAL SERVER FROM COMCAST
 
