@@ -11,8 +11,11 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
  
 ### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 3**
+
 Please follow **one** of the two following steps to install and enable Group Policy Editor into your Windows Home Edition:
+
 _Download the batch script here: <URL_HERE>
+
 _Right-Click on the downloaded file and select "Run as Administrator." A window will popup and show the progress of downloading and installing the software. You will get errors if you skip this step.
 
 ### Step 3 - 
