@@ -21,7 +21,7 @@ Please follow **one** of the two following steps to install and enable Group Pol
 1. **Method 2**: Manual Installation
    * Click the Window Start Menu and type: cmd
    * In the popup window, click "Run as administrator".
-   * In the Command Prompt window that opened, cut and paste the following line folled by Enter:
+   * In the Command Prompt window that opened, cut and paste the following line followed by Enter:
    ```
    FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
    ```
