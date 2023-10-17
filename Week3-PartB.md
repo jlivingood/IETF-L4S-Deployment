@@ -4,20 +4,23 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
 
 ## Action Requested
 
-### Download DNS Benchmark 
+### Step 1 - Download DNS Benchmark 
 1. Get the application at https://www.grc.com/files/DNSBench.exe.
 1. Download the .ini file with the DNS servers pre-configured: <URL_HERE>.
 1. Place the files in the same folder.
  
-### Install Group Policy Editor for Windows 10/11 Home Edition
-Next, we want you to configure Windows to mark outbound DNS traffic with the DSCP-45 marking.  
+### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
+**If you have Windows 10/11 Pro installed, please 
+
+### Step 3 - 
+
+To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
  
-#### Step 1 - Run the DNS Benchmark Application (Without Low Latency)
+#### Step 4 - Run the DNS Benchmark Application (Without Low Latency)
 Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
 
 #### Step 2 - Install Group Policy Editor into Windows 10/11 Home Edition
 
-To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
  
 #### Step 3 – Configure the Low Latency DNS Policy
 - Name the policy “**DNS Low Latency**”
