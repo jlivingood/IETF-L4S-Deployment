@@ -10,8 +10,11 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
 1. Place the files in the same folder.
  
 ### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
-**If you have Windows 10/11 Pro installed, please skip to setp 3**
-
+**If you have Windows 10/11 Pro installed, please skip to step 3**
+Please follow **one** of the two following steps to install and enable Group Policy Editor into your Windows Home Edition:
+1.Method 1: Run a batch script
+*Download the batch script here: <URL_HERE>
+*
 ### Step 3 - 
 
 To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
