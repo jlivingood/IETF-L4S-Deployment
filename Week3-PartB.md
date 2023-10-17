@@ -16,7 +16,17 @@ Please follow **one** of the two following steps to install and enable Group Pol
 1. **Method 1**: Download and run a batch script to automate the installation
    * Download the batch script here: <URL_HERE>
    * Right-Click on the downloaded file and select "Run as Administrator." You will get errors if you skip this step.
-   * A window will popup and show the progress of downloading and installing the software. 
+   * A window will popup and show the progress of downloading and installing the software. This will take several minutes.
+   * Reboot your PC and continue to Step 3.
+1. **Method 2**: Manual Installation
+   * Click the Window Start Menu and type: cmd
+   * In the popup window, click "Run as administrator".
+   * In the Command Prompt window that opened, cut and paste the following line folled by Enter:
+   ```
+   FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
+   ```
+   * The whole process will take several minutes
+
 
 ### Step 3 - 
 
