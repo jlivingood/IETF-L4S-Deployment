@@ -10,7 +10,7 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
 1. Place the files in the same folder.
  
 ### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
-**If you have Windows 10/11 Pro installed, please 
+**If you have Windows 10/11 Pro installed, please skip to setp 3**
 
 ### Step 3 - 
 
