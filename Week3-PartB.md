@@ -2,12 +2,11 @@
 
 This testing is OPTIONAL and requires a device running Windows.  This test is for advanced users.
 
-*If you do not use Windows, please skip this test and see Part C of this week at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Week5-PartC.md.*
-
 ## Action Requested
 
 ### Download DNS Benchmark 
-Get the application at https://www.grc.com/files/DNSBench.exe. 
+1. Get the application at https://www.grc.com/files/DNSBench.exe
+1. Download the .ini file with the DNS servers pre-configured: <URL_HERE>
 
 ### Configure DNS Benchmark
 Open the DNS Benchmark application and click **ADD** and enter the IP address **96.113.158.206** - which is a beta testing DNS server 
