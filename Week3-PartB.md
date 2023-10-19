@@ -46,17 +46,17 @@ Please follow **one** of the two following steps to install and enable Group Pol
 6. On the first screen, enter the following:
    * Policy name: Low Latency DNS
    * **Check** the box next to "Specify DSCP Value:" and enter **45** in the number field.
-7. Click Next >
-8. On the next screen, select "All applications"
-9. Click Next >
-10. On the next screen, choose the following options:
-    * Select "Any source IP address" and "Any destination IP address"
-11. Click Next >
-12. On the next screen select:
+7. Click Next.
+8. On the second screen, select **All applications**
+9. Click Next.
+10. On the third screen, choose the following options:
+    * Select **Any source IP address** and **Any destination IP address**
+11. Click Next.
+12. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to:" **TCP and UDP**
     * "Specify the source port number:" **From any source port**
     * "Specify the destination port number:" **To any destination port**
-13. Click Finish
+13. Click Finish.
 14. Reboot your PC.
  
 #### Step 4 - Run the DNS Benchmark Application (Without Low Latency)
