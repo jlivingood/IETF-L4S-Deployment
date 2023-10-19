@@ -1,8 +1,6 @@
-# Week 3 - Field Trial Instructions
+# Week 3 - Low Latency DNS Benchmark
 
-This testing is OPTIONAL and requires a device running Windows.  This test is for advanced users.
-
-## Action Requested
+This testing is **OPTIONAL** and requires a device running Windows.  Configuration required for the test is recommended for advanced users.
 
 ### Step 1 - Download DNS Benchmark 
 1. Get the application at https://www.grc.com/files/DNSBench.exe.
@@ -45,8 +43,9 @@ Please follow **one** of the two following steps to install and enable Group Pol
 3. In the Local Group Policy Editor window, click the arrow to the left of "Computer Configuration" to expand the menu.
 4. Expand the "Windows Settings" menu.
 5. Right-click on "Policy-based QoS" and select "Create new policy..."
-6. 
-To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
+6. On the first screen, enter the following:
+   * Policy name: Low Latency DNS
+   * **Check** the "Specify DSCP Value:** and enter **45** in the number field. 
  
 #### Step 4 - Run the DNS Benchmark Application (Without Low Latency)
 Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
@@ -55,7 +54,7 @@ Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of t
 
  
 #### Step 3 – Configure the Low Latency DNS Policy
-- Name the policy “**DNS Low Latency**”
+- On  the Name the policy “**DNS Low Latency**”
 - Enter “**45**” into the “**Specify DSCP Value Field**”.
 - Select “**All Applications**” and select next to continue.
 - Select **Any** source and **Any** destination IP address, then select next to continue. 
