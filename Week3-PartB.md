@@ -1,6 +1,6 @@
 # Week 3 - Low Latency DNS Benchmark
 
-This testing is **OPTIONAL** and requires a device running Windows.  Configuration required for the test is recommended for advanced users.
+This testing is optional and requires a device running Windows.  The configuration required for the test is **recommended for advanced users.**
 
 ### Step 1 - Download DNS Benchmark 
 1. Get the application at https://www.grc.com/files/DNSBench.exe.
@@ -11,10 +11,8 @@ This testing is **OPTIONAL** and requires a device running Windows.  Configurati
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
 3. Click the "Run Benchmark" button.
-
-
  
-### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
+### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 3**
 
 Please follow **one** of the two following steps to install and enable Group Policy Editor into your Windows Home Edition:
@@ -36,15 +34,15 @@ Please follow **one** of the two following steps to install and enable Group Pol
    ```
    * After the above command is done running (it will take a few minutes), reboot your PC.
 
-
-### Step 4 - 
+### Step 4 - Configure DNS requests for low latency using Group Policy Editor
+The following steps will configure Windows to mark DNS requests as low latency traffic.
 1. Click the Windows Start Menu and type: gpedit.msc
 2. In the search popup window, click "Run as administrator"
-3. In the Local Group Policy Editor window, click the arrow to the left of "Computer Configuration" to expand the menu.
-4. Expand the "Windows Settings" menu.
-5. Right-click on "Policy-based QoS" and select "Create new policy..."
+3. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
+4. Expand the **Windows Settings** menu.
+5. Right-click on **Policy-based QoS** and select "Create new policy..."
 6. On the first screen, enter the following:
-   * Policy name: Low Latency DNS
+   * Policy name: **Low Latency DNS**
    * **Check** the box next to "Specify DSCP Value:" and enter **45** in the number field.
 7. Click Next.
 8. On the second screen, select **All applications**
@@ -56,7 +54,7 @@ Please follow **one** of the two following steps to install and enable Group Pol
 12. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to": **TCP and UDP**
     * "Specify the source port number": **From any source port**
-    * "Specify the destination port number": **To any destination port**
+    * "Specify the destination port number": **53**
 13. Click Finish.
 14. Reboot your PC.
  
