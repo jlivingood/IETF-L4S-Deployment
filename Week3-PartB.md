@@ -54,9 +54,9 @@ Please follow **one** of the two following steps to install and enable Group Pol
     * **Any destination IP address**
 11. Click Next.
 12. On the final screen, make the following selections:
-    * "Select the protocol this QoS policy Applies to:" **TCP and UDP**
-    * "Specify the source port number:" **From any source port**
-    * "Specify the destination port number:" **To any destination port**
+    * "Select the protocol this QoS policy Applies to": **TCP and UDP**
+    * "Specify the source port number": **From any source port**
+    * "Specify the destination port number": **To any destination port**
 13. Click Finish.
 14. Reboot your PC.
  
