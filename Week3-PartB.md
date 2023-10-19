@@ -50,7 +50,8 @@ Please follow **one** of the two following steps to install and enable Group Pol
 8. On the second screen, select **All applications**
 9. Click Next.
 10. On the third screen, choose the following options:
-    * Select **Any source IP address** and **Any destination IP address**
+    * **Any source IP address**
+    * **Any destination IP address**
 11. Click Next.
 12. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to:" **TCP and UDP**
