@@ -8,6 +8,13 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
 1. Get the application at https://www.grc.com/files/DNSBench.exe.
 1. Download the .ini file with the DNS servers pre-configured: <URL_HERE>.
 1. Place the files in the same folder.
+
+### Step 2 - Run the DNS Benchmark Application without Low Latency
+1. Double-click the DNSBench.exe file to launch the application.
+2. Click the Nameservers tab.
+3. Click the "Run Benchmark" button.
+4. Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
+
  
 ### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 3**
@@ -20,7 +27,7 @@ Please follow **one** of the two following steps to install and enable Group Pol
    * Reboot your PC and continue to Step 3.
 1. **Method 2**: Manual Installation
    * Click the Window Start Menu and type: cmd
-   * In the popup window, click "Run as administrator".
+   * In the search popup window, click "Run as administrator".
    * In the Command Prompt window that opened, cut and paste the following line followed by Enter. It may take a few minutes to finish running:
    ```
    FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
@@ -32,8 +39,13 @@ Please follow **one** of the two following steps to install and enable Group Pol
    * After the above command is done running (it will take a few minutes), reboot your PC.
 
 
-### Step 3 - 
-
+### Step 4 - 
+1. Click the Windows Start Menu and type: gpedit.msc
+2. In the search popup window, click "Run as administrator"
+3. In the Local Group Policy Editor window, click the arrow to the left of "Computer Configuration" to expand the menu.
+4. Expand the "Windows Settings" menu.
+5. Right-click on "Policy-based QoS" and select "Create new policy..."
+6. 
 To do this, click the Start Menu and type: “Local Group Policy”.  In the window that appears, navigate to, “Local Computer Policy” > “Computer Configuration” > “Windows Settings” Right Click on the “Policy-based QoS” and select “Create new Policy”. 
  
 #### Step 4 - Run the DNS Benchmark Application (Without Low Latency)
