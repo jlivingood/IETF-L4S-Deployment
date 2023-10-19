@@ -13,7 +13,7 @@ This testing is OPTIONAL and requires a device running Windows.  This test is fo
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
 3. Click the "Run Benchmark" button.
-4. Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
+
 
  
 ### Step 2 - Install Group Policy Editor for Windows 10/11 Home Edition
