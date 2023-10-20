@@ -33,7 +33,7 @@ Enter numerical value for "Uplink Responsiveness"
 Example - if you got the result below, enter 2156  
 Uplink Responsiveness: High (27.829 milliseconds | **2156** RPM)
 
-### Complete the Survey Form to Submit Results (for 1st test)
+### Complete the Survey Form to Submit Results (for Apple Server)
 https://app.smartsheet.com/b/form/d3ca6000600044219862dfcb9324742e
 
 ## 2. Run the Apple Network Quality Test - USING SPECIAL SERVER FROM COMCAST
@@ -62,7 +62,7 @@ Enter numerical value for "Uplink Responsiveness"
 Example - if you got the result below, enter 2156
 Uplink Responsiveness: High (27.829 milliseconds | **2156** RPM)
 
-### Complete the Survey Form to Submit Results (for 2nd test)
+### Complete the Survey Form to Submit Results (for Comcast Server)
 https://app.smartsheet.com/b/form/1d676cf10eb142948515ceb3d15819cd
 
 ## Report Problems Here: 
