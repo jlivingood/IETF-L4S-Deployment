@@ -19,8 +19,8 @@ https://app.smartsheet.com/b/form/d3ca6000600044219862dfcb9324742e
 
 ## Run the Apple Network Quality Test - USING SPECIAL SERVER FROM COMCAST
 
-1. In the Terminal application window you have open from the previous test, paste in this text: `networkQuality -C https://rpm-nqtest-st.comcast.net/.well-known/nq -s -f h3,noL4S` and hit enter. NOTE RESULT IN THE SURVEY
-2. Next, paste in this text: `networkQuality -C https://rpm-nqtest-st.comcast.net/.well-known/nq -s -f h3,L4S` and hit enter. NOTE RESULT IN THE SURVEY
+1. In the Terminal application window you have open from the previous test, paste in this text: `networkQuality -C https://rpm-nqtest-st.comcast.net/.well-known/nq -k -s -f h3,noL4S` and hit enter. NOTE RESULT IN THE SURVEY
+2. Next, paste in this text: `networkQuality -C https://rpm-nqtest-st.comcast.net/.well-known/nq -k -s -f h3,L4S` and hit enter. NOTE RESULT IN THE SURVEY
 
 ### Complete the Survey Form to Submit Results (for 2nd test)
 https://app.smartsheet.com/b/form/1d676cf10eb142948515ceb3d15819cd
