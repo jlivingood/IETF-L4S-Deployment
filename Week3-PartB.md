@@ -4,7 +4,7 @@ This testing is optional and requires a device running Windows.  The configurati
 
 ### Step 1 - Download DNS Benchmark 
 1. Download the DNS Benchmark application at https://www.grc.com/files/DNSBench.exe.
-1. Download the .ini file with the DNS servers pre-configured: <URL_HERE>.
+1. Download the .ini file with the DNS servers pre-configured: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/DNSBench.ini.
 1. Place the files in the same folder if not already.
 
 ### Step 2 - Run the DNS Benchmark Application without Low Latency
