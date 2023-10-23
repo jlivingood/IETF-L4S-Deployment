@@ -24,7 +24,17 @@ This testing is optional and requires a device running Windows.  The configurati
 
    ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-6.jpg)
  
-### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
+### Step 3 - Run the DNS Benchmark Application without Low Latency and background traffic
+1. Double-click the Traffic Generator tool to launch it (iperf3-gui-windows-x86_64-10102023-v2.exe).
+2. Click the Play button to start the background traffic.
+3. Launch the DNSBench.exe application
+4. Click the Nameservers tab.
+5. Click `Run Benchmark`.
+6. When the test is finished running, click the "Tablular Data" tab in the app.
+5. Right-click on the results in the app window and choose "Save All Text to File"
+6. Name the file "**DNS 2**". You will submit the results file when you are done.
+
+### Step 4 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 4**
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
@@ -46,7 +56,7 @@ Please **choose only one of the following methods** to install and enable Group 
    ```
    * After the above command is done running (it will take a few minutes), reboot your PC.
 
-### Step 4 - Configure DNS requests for low latency using Group Policy Editor
+### Step 5 - Configure DNS requests for low latency using Group Policy Editor
 The following steps will configure Windows to mark DNS requests as low latency traffic.
 1. Click the Windows Start Menu and type: `gpedit.msc`
    
@@ -76,14 +86,14 @@ The following steps will configure Windows to mark DNS requests as low latency t
 15. Click Finish.
 16. Reboot your PC.
  
-### Step 5 - Run the DNS Benchmark Application with Low Latency
+### Step 6 - Run the DNS Benchmark Application with Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
 1. Click the Nameservers tab.
 1. Click the `Run Benchmark` button.
 1. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
 1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the [results form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
 
-### Step 6 - Removal of DNS Low Latency Policy (Optional)
+### Step 7 - Removal of DNS Low Latency Policy (Optional)
 Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, follow these steps:
 1. Click the Windows Start Menu and type: `gpedit.msc`
 2. In the search popup window, click "Run as administrator"
