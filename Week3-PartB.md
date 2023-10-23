@@ -48,7 +48,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 5. Right-click on **Policy-based QoS** and select "Create new policy..."
 6. On the first screen, enter the following:
    * Policy name: **`Low Latency DNS`**
-   * **Check** the box next to "Specify DSCP Value:" and enter **45** in the number field.
+   * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
 7. Click Next.
 8. On the second screen, select **All applications**
 9. Click Next.
@@ -59,7 +59,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 12. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to": **TCP and UDP**
     * "Specify the source port number": **From any source port**
-    * "Specify the destination port number": **53**
+    * "Specify the destination port number": **`53`**
 13. Click Finish.
 14. Reboot your PC.
  
