@@ -7,6 +7,7 @@ This testing is optional and requires a device running Windows.  The configurati
 1. Download the .ini file with the DNS servers pre-configured: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/DNSBench.ini
    *   Click above link and then the "Download Raw" button to save the .ini file in the proper format
    ![Screenshot Download Raw](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-5.jpg)
+
 3. 1. Place the files in the same folder if not already.
 
 ### Step 2 - Run the DNS Benchmark Application without Low Latency
