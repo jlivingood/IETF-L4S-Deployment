@@ -12,7 +12,7 @@ This testing is optional and requires a device running Windows.  The configurati
 2. Click the Nameservers tab.
 3. Click the `Run Benchmark` button.
 4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
-5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
+5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the [results form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07). 
 
    ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
  
@@ -73,7 +73,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 1. Click the Nameservers tab.
 1. Click the `Run Benchmark` button.
 1. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
-1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the results form.
+1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the [results form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07)..
 
 ### Step 6 - Removal of DNS Low Latency Policy (Optional)
 Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, follow these steps:
