@@ -14,7 +14,7 @@ This testing is optional and requires a device running Windows.  The configurati
 4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
 5. For the four nameservers we're testing to, please enter **Uncached Name Avg** result on the results form.
 
-![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/Screenshot_231019-1.jpg)
+![Screenshot of Benchmark Tabular Data tab](https://./Screenshot_231019-1.jpg)
 
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
