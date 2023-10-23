@@ -19,7 +19,7 @@ This testing is optional and requires a device running Windows.  The configurati
 3. Click the `Run Benchmark` button.
 4. When the test is finished running, click the "Tablular Data" tab in the app.
 5. Right-click on the results in the app window and choose "Save All Text to File"
-6. Name the file "DNS 1". You will submit the results file when you are done.
+6. Name the file "**DNS 1**". You will submit the results file when you are done.
 
    ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-6.jpg)
  
