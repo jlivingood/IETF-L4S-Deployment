@@ -82,7 +82,7 @@ Leaving the policy we created in step 4 on your computer will not affect your PC
 4. Right-click on the **Low Latency DNS** policy created earlier and select **Delete policy**.
 5. Reboot your PC.
 
- ![Screenshot of delete LLD DNS QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-4.jpg)
+ ![Screenshot of delete LLD DNS QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-4.jpg)
 
 ## Complete the Survey Form to Submit Results
 https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
