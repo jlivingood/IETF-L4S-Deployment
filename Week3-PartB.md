@@ -43,12 +43,14 @@ The following steps will configure Windows to mark DNS requests as low latency t
 1. Click the Windows Start Menu and type: `gpedit.msc`
    
    ![Screenshot of Policy Editor](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-2.jpg)
+   
 3. In the search popup window, click "Run as administrator"
 4. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
 5. Expand the **Windows Settings** menu.
 6. Right-click on **Policy-based QoS** and select "Create new policy..."
 
    ![Screenshot of Policy Editor new QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-3.jpg)
+   
 8. On the first screen, enter the following:
    * Policy name: **`Low Latency DNS`**
    * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
