@@ -71,7 +71,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 
    ![Screenshot of Policy Editor new QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-3.jpg)
    
-8. On the first screen, enter the following:
+8. On the first screen of the new window, enter the following:
    * Policy name: **`Low Latency DNS`**
    * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
 9. Click Next.
