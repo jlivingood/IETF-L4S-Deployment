@@ -2,7 +2,7 @@
 
 This testing is optional and requires a device running Windows.  The configuration required for the test is **recommended for advanced users.**
 
-### Step 1 - Download DNS Benchmark 
+### Step 1 - Download DNS Benchmark and Traffic Generator
 1. Download the DNS Benchmark application at https://www.grc.com/files/DNSBench.exe.
 1. Download the .ini file with DNS servers pre-configured: 
    *   Click the following link and then click the "Download Raw file" button to save the file in the proper format
