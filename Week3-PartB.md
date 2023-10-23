@@ -48,22 +48,24 @@ The following steps will configure Windows to mark DNS requests as low latency t
 4. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
 5. Expand the **Windows Settings** menu.
 6. Right-click on **Policy-based QoS** and select "Create new policy..."
-7. On the first screen, enter the following:
+
+   ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-3.jpg)
+8. On the first screen, enter the following:
    * Policy name: **`Low Latency DNS`**
    * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
-8. Click Next.
-9. On the second screen, select **All applications**
-10. Click Next.
-11. On the third screen, choose the following options:
+9. Click Next.
+10. On the second screen, select **All applications**
+11. Click Next.
+12. On the third screen, choose the following options:
     * **Any source IP address**
     * **Any destination IP address**
-12. Click Next.
-13. On the final screen, make the following selections:
+13. Click Next.
+14. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to": **TCP and UDP**
     * "Specify the source port number": **From any source port**
     * "Specify the destination port number": **`53`**
-14. Click Finish.
-15. Reboot your PC.
+15. Click Finish.
+16. Reboot your PC.
  
 #### Step 5 - Run the DNS Benchmark Application with Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
