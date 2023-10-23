@@ -103,7 +103,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 2. Fill out the form and darg your three test files into the **File Upload** box.
 3. Click Submit.
 
-#### Thank you!
+## Thank you!
 
 ### Step 8 - Removal of DNS Low Latency Policy (Optional)
 Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, follow these steps:
