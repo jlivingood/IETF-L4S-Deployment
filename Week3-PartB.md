@@ -9,7 +9,8 @@ This testing is optional and requires a device running Windows.  The configurati
        * https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/DNSBench.ini
          
        ![Screenshot Download Raw](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-5.jpg)
-1. Place the files in the same folder if not already.
+1. Place the .exe and .ini in the same folder if not already.
+2. Download and unzip the Traffic Generator tool: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iPerf3-Tool-Mac-Win-10102023.zip
 
 ### Step 2 - Run the DNS Benchmark Application without Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
