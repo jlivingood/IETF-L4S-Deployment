@@ -21,7 +21,7 @@ This testing is optional and requires a device running Windows.  The configurati
 5. Right-click on the results in the app window and choose "Save All Text to File"
 6. Name the file "DNS 1". You will submit the results file when you are done.
 
-   ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-6.jpg)
+   ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-6.jpg)
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 4**
