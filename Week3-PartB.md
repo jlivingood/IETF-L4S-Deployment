@@ -43,13 +43,13 @@ Please **chose only one of the following methods** to install and enable Group P
 The following steps will configure Windows to mark DNS requests as low latency traffic.
 1. Click the Windows Start Menu and type: `gpedit.msc`
    
-   ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-2.jpg)
+   ![Screenshot of Policy Editor](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-2.jpg)
 3. In the search popup window, click "Run as administrator"
 4. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
 5. Expand the **Windows Settings** menu.
 6. Right-click on **Policy-based QoS** and select "Create new policy..."
 
-   ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-3.jpg)
+   ![Screenshot of Policy Editor new QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-3.jpg)
 8. On the first screen, enter the following:
    * Policy name: **`Low Latency DNS`**
    * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
@@ -67,16 +67,22 @@ The following steps will configure Windows to mark DNS requests as low latency t
 15. Click Finish.
 16. Reboot your PC.
  
-#### Step 5 - Run the DNS Benchmark Application with Low Latency
+### Step 5 - Run the DNS Benchmark Application with Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
 1. Click the Nameservers tab.
 1. Click the `Run Benchmark` button.
 1. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
-1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
+1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the results form.
 
-![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
+### Step 6 - Removal of DNS Low Latency Policy (Optional)
+Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, please follow these steps:
+1. Click the Windows Start Menu and type: `gpedit.msc`
+2. In the search popup window, click "Run as administrator"
+3. Click the arrows to the left of **Computer Configuration** > **Windows Settings** > **Policy-Based QoS** to expand the menus
+4. Right-click on the **Low Latency DNS** policy created earlier and select **Delete policy**.
+5. Reboot your PC.
 
-
+ ![Screenshot of delete LLD DNS QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-4.jpg)
 
 ## Complete the Survey Form to Submit Results
 https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
