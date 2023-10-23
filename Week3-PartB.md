@@ -14,7 +14,7 @@ This testing is optional and requires a device running Windows.  The configurati
 4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
 5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
 
-![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
+   ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
 
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
@@ -41,27 +41,28 @@ Please **chose only one of the following methods** to install and enable Group P
 
 ### Step 4 - Configure DNS requests for low latency using Group Policy Editor
 The following steps will configure Windows to mark DNS requests as low latency traffic.
-1. Click the Windows Start Menu and type: gpedit.msc
-2. In the search popup window, click "Run as administrator"
-3. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
-4. Expand the **Windows Settings** menu.
-5. Right-click on **Policy-based QoS** and select "Create new policy..."
-6. On the first screen, enter the following:
+1. Click the Windows Start Menu and type: `gpedit.msc`
+   
+3. In the search popup window, click "Run as administrator"
+4. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
+5. Expand the **Windows Settings** menu.
+6. Right-click on **Policy-based QoS** and select "Create new policy..."
+7. On the first screen, enter the following:
    * Policy name: **`Low Latency DNS`**
    * **Check** the box next to "Specify DSCP Value:" and enter **`45`** in the number field.
-7. Click Next.
-8. On the second screen, select **All applications**
-9. Click Next.
-10. On the third screen, choose the following options:
+8. Click Next.
+9. On the second screen, select **All applications**
+10. Click Next.
+11. On the third screen, choose the following options:
     * **Any source IP address**
     * **Any destination IP address**
-11. Click Next.
-12. On the final screen, make the following selections:
+12. Click Next.
+13. On the final screen, make the following selections:
     * "Select the protocol this QoS policy Applies to": **TCP and UDP**
     * "Specify the source port number": **From any source port**
     * "Specify the destination port number": **`53`**
-13. Click Finish.
-14. Reboot your PC.
+14. Click Finish.
+15. Reboot your PC.
  
 #### Step 5 - Run the DNS Benchmark Application with Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
