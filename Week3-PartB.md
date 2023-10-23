@@ -21,7 +21,7 @@ This testing is optional and requires a device running Windows.  The configurati
    ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
-**If you have Windows 10/11 Pro installed, please skip to step 3**
+**If you have Windows 10/11 Pro installed, please skip to step 4**
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
