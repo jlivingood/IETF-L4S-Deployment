@@ -42,6 +42,7 @@ Please **chose only one of the following methods** to install and enable Group P
 ### Step 4 - Configure DNS requests for low latency using Group Policy Editor
 The following steps will configure Windows to mark DNS requests as low latency traffic.
 1. Click the Windows Start Menu and type: `gpedit.msc`
+   
    ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-2.jpg)
 3. In the search popup window, click "Run as administrator"
 4. In the Local Group Policy Editor window on the left side, click the arrow to the left of **Computer Configuration** to expand the menu.
