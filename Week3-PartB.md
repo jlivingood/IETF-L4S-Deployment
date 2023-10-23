@@ -37,7 +37,7 @@
 7. Stop or close the Traffic Generator tool.
 
 ### Step 4 - Install Group Policy Editor for Windows 10/11 Home Edition
-**If you have Windows 10/11 Pro installed, please skip to step 5**
+**If you PC has Windows 10/11 Pro, skip to step 5**
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
