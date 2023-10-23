@@ -74,7 +74,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the results form.
 
 ### Step 6 - Removal of DNS Low Latency Policy (Optional)
-Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, please follow these steps:
+Leaving the policy we created in step 4 on your computer will not affect your PC even if you no longer have Low Latency service, but if you wish to remove it, follow these steps:
 1. Click the Windows Start Menu and type: `gpedit.msc`
 2. In the search popup window, click "Run as administrator"
 3. Click the arrows to the left of **Computer Configuration** > **Windows Settings** > **Policy-Based QoS** to expand the menus
