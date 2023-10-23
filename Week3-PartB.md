@@ -11,15 +11,17 @@ This testing is optional and requires a device running Windows.  The configurati
        ![Screenshot Download Raw](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-5.jpg)
 1. Place the .exe and .ini in the same folder if not already.
 2. Download and unzip the Traffic Generator tool: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iPerf3-Tool-Mac-Win-10102023.zip
+   * Click "Download Raw file" button as above to save the .zip file.
 
 ### Step 2 - Run the DNS Benchmark Application without Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
 3. Click the `Run Benchmark` button.
-4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
-5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** on the [results form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07). 
+4. When the test is finished running, click the "Tablular Data" tab in the app.
+5. Right-click on the results in the app window and choose "Save All Text to File"
+6. Name the file "DNS 1". You will submit the results file when you are done.
 
-   ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
+   ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-6.jpg)
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 4**
