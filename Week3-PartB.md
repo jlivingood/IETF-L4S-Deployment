@@ -10,7 +10,7 @@ This testing is optional and requires a device running Windows.  The configurati
 ### Step 2 - Run the DNS Benchmark Application without Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
-3. Click the "`Run Benchmark`" button.
+3. Click the `Run Benchmark` button.
 4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
 5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
 
