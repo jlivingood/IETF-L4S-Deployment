@@ -14,7 +14,7 @@ This testing is optional and requires a device running Windows.  The configurati
    * https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iPerf3-Tool-Mac-Win-10102023.zip
    * Click "Download Raw file" button as above to save the .zip file.
 
-### Step 2 - Run the DNS Benchmark Application without Low Latency
+### Step 2 - Run the DNS Benchmark Application Without Low Latency
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
 3. Click the `Run Benchmark` button.
@@ -24,7 +24,7 @@ This testing is optional and requires a device running Windows.  The configurati
 
    ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-6.jpg)
  
-### Step 3 - Run the DNS Benchmark Application without Low Latency and background traffic
+### Step 3 - Run the DNS Benchmark Application Without Low Latency and background traffic
 1. Double-click the Traffic Generator tool to launch it (iperf3-gui-windows-x86_64-10102023-v2.exe).
 2. Click the Play button to start the background traffic.
 3. Launch the DNSBench.exe application
@@ -36,7 +36,7 @@ This testing is optional and requires a device running Windows.  The configurati
 7. Stop or close the Traffic Generator tool.
 
 ### Step 4 - Install Group Policy Editor for Windows 10/11 Home Edition
-**If you have Windows 10/11 Pro installed, please skip to step 6**
+**If you have Windows 10/11 Pro installed, please skip to step 5**
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
@@ -57,7 +57,7 @@ Please **choose only one of the following methods** to install and enable Group 
    ```
    * After the above command is done running (it will take a few minutes), reboot your PC.
 
-### Step 5 - Configure DNS requests for low latency using Group Policy Editor
+### Step 5 - Configure DNS requests for Low Latency Using Group Policy Editor
 The following steps will configure Windows to mark DNS requests as low latency traffic.
 1. Click the Windows Start Menu and type: `gpedit.msc`
    
@@ -87,7 +87,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 15. Click Finish.
 16. Reboot your PC.
  
-### Step 6 - Run the DNS Benchmark Application with Low Latency and Background Traffic
+### Step 6 - Run the DNS Benchmark Application With Low Latency and Background Traffic
 1. Double-click the Traffic Generator tool to launch it (iperf3-gui-windows-x86_64-10102023-v2.exe).
 2. Click the Play button to start the background traffic.
 3. Launch the DNSBench.exe application
