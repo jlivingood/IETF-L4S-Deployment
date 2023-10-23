@@ -11,6 +11,10 @@ This testing is optional and requires a device running Windows.  The configurati
 1. Double-click the DNSBench.exe file to launch the application.
 2. Click the Nameservers tab.
 3. Click the "Run Benchmark" button.
+4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
+5. For the four nameservers we're testing to, please enter **Uncached Name Avg** result on the results form.
+
+
  
 ### Step 3 - Install Group Policy Editor for Windows 10/11 Home Edition
 **If you have Windows 10/11 Pro installed, please skip to step 3**
