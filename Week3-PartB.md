@@ -23,13 +23,13 @@ This testing is optional and requires a device running Windows.  The configurati
 Please **chose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
    * Download the batch script here: <URL_HERE>
-   * Right-Click on the downloaded file and select `Run as Administrator`. You will get errors if you skip this step.
+   * Right-Click on the downloaded script and select `Run as Administrator`. You will get errors if you skip this step.
    * A window will popup and show the progress of downloading and installing the software. This will take several minutes.
    * Reboot your PC and continue to Step 3.
 1. **Method 2**: Manual Installation
-   * Click the Window Start Menu and type: cmd
-   * In the search popup window, click "Run as administrator".
-   * In the Command Prompt window that opened, cut and paste the following line followed by Enter. It may take a few minutes to finish running:
+   * Click the Window Start Menu and type: `cmd`
+   * In the search popup window, click `Run as administrator`.
+   * In the Command Prompt window that opened, cut and paste the following line followed by Enter. It will take a few minutes to finish running:
    ```
    FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
    ```
