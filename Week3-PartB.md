@@ -5,8 +5,8 @@ This testing is optional and requires a device running Windows.  The configurati
 ### Step 1 - Download DNS Benchmark and Traffic Generator
 1. Download the DNS Benchmark application at https://www.grc.com/files/DNSBench.exe.
 1. Download the .ini file with DNS servers pre-configured: 
-   *https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/DNSBench.ini
-   *Click the following link and then click the "Download Raw file" button to save the file in the proper format
+   * https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/DNSBench.ini
+   * Click the following link and then click the "Download Raw file" button to save the file in the proper format
          
    ![Screenshot Download Raw](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-5.jpg)
 1. Place the .exe and .ini in the same folder if not already.
