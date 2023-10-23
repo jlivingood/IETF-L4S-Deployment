@@ -1,6 +1,7 @@
 # Week 3 - Low Latency DNS Benchmark
 
-This testing is optional and requires a device running Windows.  The configuration required for the test is **recommended for advanced users.**
+* This testing is optional and requires a device running Windows.
+* The configuration required for the test is **recommended for advanced users.**
 
 ### Step 1 - Download DNS Benchmark and Traffic Generator
 1. Download the DNS Benchmark application at https://www.grc.com/files/DNSBench.exe.
