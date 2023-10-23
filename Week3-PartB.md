@@ -63,24 +63,16 @@ The following steps will configure Windows to mark DNS requests as low latency t
 13. Click Finish.
 14. Reboot your PC.
  
-#### Step 4 - Run the DNS Benchmark Application (Without Low Latency)
-Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in this [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07).
+#### Step 5 - Run the DNS Benchmark Application with Low Latency
+1. Double-click the DNSBench.exe file to launch the application.
+1. Click the Nameservers tab.
+1. Click the `Run Benchmark` button.
+1. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
+1. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
 
-#### Step 2 - Install Group Policy Editor into Windows 10/11 Home Edition
+![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
 
- 
-#### Step 3 – Configure the Low Latency DNS Policy
-- On  the Name the policy “**DNS Low Latency**”
-- Enter “**45**” into the “**Specify DSCP Value Field**”.
-- Select “**All Applications**” and select next to continue.
-- Select **Any** source and **Any** destination IP address, then select next to continue. 
-- Select **UDP** from the “Select the protocol this QoS policy applies to” drop box.
-- Select “From this source port” and enter **53**.
-- Next, select “To this destination port” and enter **53**.
-- Then select “Finish” 
 
-#### Step 4 - Run the DNS Benchmark Application (With Low Latency)
-Back in the DNS Benchmark client - **click “Run Benchmark”**. Take note of the results in the [survey form](https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07) and then submit it.
 
 ## Complete the Survey Form to Submit Results
 https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
