@@ -110,7 +110,7 @@ Leaving the policy we created in step 4 on your computer will not affect your PC
 1. Click the Windows Start Menu and type: `gpedit.msc`
 2. In the search popup window, click "Run as administrator"
 3. Click the arrows to the left of **Computer Configuration** > **Windows Settings** > **Policy-Based QoS** to expand the menus
-4. Right-click on the **Low Latency DNS** policy created earlier and select **Delete policy**.
+4. Right-click on the **Low Latency DNS** policy select **Delete policy**.
 5. Reboot your PC.
 
    ![Screenshot of delete LLD DNS QoS](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231023-4.jpg)
