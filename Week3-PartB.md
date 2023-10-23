@@ -12,7 +12,7 @@ This testing is optional and requires a device running Windows.  The configurati
 2. Click the Nameservers tab.
 3. Click the "Run Benchmark" button.
 4. When the test is finished running, click the "Tablular Data" tab in the DNS Benchmark app.
-5. For the four nameservers we're testing to, please enter **Uncached Name Avg** result on the results form.
+5. For each the 4 nameservers we're testing to, please enter **Uncached Name Avg** as shown in the below screenshot on the results form. 
 
 ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
 
