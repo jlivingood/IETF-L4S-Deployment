@@ -12,7 +12,7 @@ This testing is optional and requires a device running Windows.  The configurati
 2. Click the Nameservers tab.
 3. Click the `Run Benchmark` button.
 4. When the test is finished running, click the `Tablular Data` tab in the DNS Benchmark app.
-5. For each the 4 nameservers we're testing to, please enter the `**Uncached Name Avg**` as shown in the below screenshot on the results form. 
+5. For each the 4 nameservers we're testing to, please enter the **Uncached Name Avg** as shown in the below screenshot on the results form. 
 
 ![Screenshot of Benchmark Tabular Data tab](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot_231019-1.jpg)
 
@@ -23,7 +23,7 @@ This testing is optional and requires a device running Windows.  The configurati
 Please **chose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
    * Download the batch script here: <URL_HERE>
-   * Right-Click on the downloaded file and select "Run as Administrator." You will get errors if you skip this step.
+   * Right-Click on the downloaded file and select `Run as Administrator`. You will get errors if you skip this step.
    * A window will popup and show the progress of downloading and installing the software. This will take several minutes.
    * Reboot your PC and continue to Step 3.
 1. **Method 2**: Manual Installation
