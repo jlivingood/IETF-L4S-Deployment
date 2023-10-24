@@ -11,7 +11,10 @@ Please run each of these – in total this is approximately 30 minutes of work.
 Run these tests below. In a new browser tab open our survey form and enter the results after you perform each test.  
 
 ### Apple’s Network Responsiveness Test:
-Only applies if you have a MacOS computer. 
+Only applies if you have a MacOS computer.
+
+This testing requires a device running the recently released **MacOS 14 Sonoma**. If you haven’t upgraded to MacOS 14, SKIP THIS TEST.
+
 See directions and note results at https://app.smartsheet.com/b/form/d3ca6000600044219862dfcb9324742e
 
 ### Ookla’s web-based speed test:
