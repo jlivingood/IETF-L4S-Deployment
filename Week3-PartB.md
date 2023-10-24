@@ -25,7 +25,7 @@
 
    ![Screenshot of Benchmark save results](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-6.jpg)
  
-### Step 3 - Run the DNS Benchmark Application Without Low Latency and background traffic
+### Step 3 - Run the DNS Benchmark Application Without Low Latency adding background traffic
 1. Double-click the Traffic Generator tool to launch it (iperf3-gui-windows-x86_64-10102023-v2.exe).
 2. Click the Play button to start the background traffic.
 3. Launch the DNSBench.exe application
