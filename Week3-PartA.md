@@ -22,8 +22,6 @@ Some old devices are not compatible with the latest OS (e.g. iPhone 8).
 
 If your device is not compatible, skip this test.
 
-If you have two Apple devices with the latest OS and two Apple IDs, that's great!
-
 ### Download the Traffic Generator
 
 You can download our traffic generation tool:
@@ -40,9 +38,9 @@ click “Open Anyway”.
 1. Have the traffic generator ready
    * If you try FaceTime on Mac, you can run the traffic generator on that same Mac
    * If you try FaceTime on iPhone or iPad, you can run the traffic generator on a Windows or Mac computer on the same router with the iPhone or iPad. 
-1. Make a FaceTime call from your Apple device
-   * If you have another Apple device with a different Apple ID, call that device using that Apple ID
-   * Otherwise call someone
+1. Make a FaceTime call from your Apple device to ...
+   * A person/device that is not connected via your modem; an iPhone on cellular service will do
+   * A person/device with iOS 17, iPadOS 17 or macOS 14 if possible
 1. During the call, run the traffic generator
    * See if it affects your FaceTime experience
 
