@@ -12,7 +12,7 @@ We will need you to upgrade your device's operating system and then try Facetime
 Feel free to skip this test if it seems too complicated!
 
 What we’re trying to see is whether your FaceTime experience is affected by high network traffic volume that is competing 
-with Facetime.
+with FaceTime.
 
 ### Upgrade the Operating System
 
@@ -38,9 +38,9 @@ click “Open Anyway”.
 ### Run the Test
 
 1. Have the traffic generator ready
-   * If you are running FaceTime on Mac, you can run the traffic generator on that Mac
-   * If you are running FaceTime on iPhone or iPad, you can run the graffic generator on a Windows or Mac computer on the same router with the iPhone or iPad. 
-1. Make a FaceTime call from your Apple device.
+   * If you try FaceTime on Mac, you can run the traffic generator on that same Mac
+   * If you try FaceTime on iPhone or iPad, you can run the traffic generator on a Windows or Mac computer on the same router with the iPhone or iPad. 
+1. Make a FaceTime call from your Apple device
    * If you have another Apple device with a different Apple ID, call that device using that Apple ID
    * Otherwise call someone
 1. During the call, run the traffic generator
