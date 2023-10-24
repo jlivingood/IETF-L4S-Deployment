@@ -3,41 +3,48 @@
 Our trials continue this week, with our focus shifting to specific applications and how they are affected 
 by low latency networking. 
 
-*This week’s testing only applies if you have a Mac, iPhone, or iPad. If you use Windows and Android, you can skip this week’s formal tests.*
+*This testing only applies if you have a Mac, iPhone, or iPad.*
 
 ## Action Requested
 
-Our focus is on Apple’s **FaceTime** application, for both iOS and Mac OS. We will need you to enable this in your device's operating 
-system and then try Facetime while running a traffic generator. Feel free to skip this if it seems too complicated! 
- 
+Our focus is on Apple’s **FaceTime** application, for iOS, iPadOS, and macOS.
+We will need you to upgrade your device's operating system and then try Facetime while running a traffic generator from a Mac or Windows computer.
+Feel free to skip this test if it seems too complicated!
+
 What we’re trying to see is whether your FaceTime experience is affected by high network traffic volume that is competing 
-with Facetime.  
+with Facetime.
 
-### Mac Setup: 
-If you run macOS, you will need to be on macOS 14 (Sonoma). If that is the case, you can turn on low latency in the 
-terminal app by typing “**defaults write -g network_enable_l4s -bool true**” (copy & paste into terminal - see note) and hitting enter. 
-That enables low latency packet marking.
+### Upgrade the Operating System
 
-*Note: To run the Terminal application, click the magnifying glass icon in the upper right of the screen on your Mac to search, and type terminal, then hit enter or click the terminal application. This opens what is called a ‘command line’ application for you.*
+Apple released the latest operating systems in September 2023: **iOS 17**, **iPadOS 17**, and **macOS 14**.
+You can upgrade to the latest OS in **Settings / General / Software Update**.
+Some old devices are not compatible with the latest OS (e.g. iPhone 8).
 
-### iPhone/iPad Setup: 
-If you run iOS, you will need to be on iOS 17. To turn this on in iOS you currently need to be in their developer 
-program (which I suspect few of you are). If you are, go into Settings / Developer and turn on L4S.  *If you are not in the Apple Developers Program and running iOS 17 – just skip this.*
+If your device is not compatible, skip this test.
 
+If you have two Apple devices with the latest OS and two Apple IDs, that's great!
 
-### Mac-Based Test:
-If you followed the Mac directions, then make a FaceTime call while running the traffic generator (see below). 
-  
-### iPhone/iPad-Based Test:
-If you followed the iOS directions, then make a FaceTime call with that device while running the traffic generator (see below) 
-on another device.
+### Download the Traffic Generator
 
-### Download the Traffic Generator:
-You can download our traffic generation tool. There is a version for [MacOS](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-macos-10102023-v2.zip) and [Windows](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe). This tool will automatically generate load on your 
-connection. It only runs for 5 minutes, during which you should run a Facetime call. On the Mac, you will likely 
+You can download our traffic generation tool:
+  * MacOS - https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-macos-10102023-v2.zip
+  * Windows - https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe
+
+This tool will automatically generate load on your connection.
+It only runs for 5 minutes, during which you should run a Facetime call. On the Mac, you will likely 
 need to give permission to this app in the System Settings / Security & Privacy, scroll down to Security and 
 click “Open Anyway”. 
 
+### Run the Test
+
+1. Have the traffic generator ready
+   * If you are running FaceTime on Mac, you can run the traffic generator on that Mac
+   * If you are running FaceTime on iPhone or iPad, you can run the graffic generator on a Windows or Mac computer on the same router with the iPhone or iPad. 
+1. Make a FaceTime call from your Apple device.
+   * If you have another Apple device with a different Apple ID, call that device using that Apple ID
+   * Otherwise call someone
+1. During the call, run the traffic generator
+   * See if it affects your FaceTime experience
 
 ## ACTION: Complete Results Form
 Submit this results form - https://app.smartsheet.com/b/form/8f46b4a6ba2a4bf6a53a5dc47c979730
