@@ -33,10 +33,11 @@ If you followed the iOS directions, then make a FaceTime call with that device w
 on another device.
 
 ### Download the Traffic Generator:
-You can download our traffic generation tool. There is a version for [MacOS](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-macos-08182023.zip) and [Windows](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-08182023.exe). This tool will automatically generate load on your 
+You can download our traffic generation tool. There is a version for [MacOS](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-macos-10102023-v2.zip) and [Windows](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe). This tool will automatically generate load on your 
 connection. It only runs for 5 minutes, during which you should run a Facetime call. On the Mac, you will likely 
 need to give permission to this app in the System Settings / Security & Privacy, scroll down to Security and 
 click “Open Anyway”. 
+
 
 ## ACTION: Complete Results Form
 Submit this results form - https://app.smartsheet.com/b/form/8f46b4a6ba2a4bf6a53a5dc47c979730
