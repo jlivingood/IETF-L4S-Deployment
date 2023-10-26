@@ -11,8 +11,8 @@
          
    ![Screenshot Download Raw](https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/Screenshot-231023-5.jpg)
 1. Place the .exe and .ini in the same folder if not already.
-2. Download and unzip the Traffic Generator tool:
-   * https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iPerf3-Tool-Mac-Win-10102023.zip
+2. Download and unzip the Traffic Generator tool. Pleae download this file even if you have downloaded the tool previously.
+   * https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe
    * Click "Download Raw file" button as above to save the .zip file.
 
 ### Step 2 - Run the DNS Benchmark Application Without Low Latency
@@ -41,7 +41,8 @@
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
-   * Download the and unzip the batch script here: <URL_HERE>
+   * Download and unzip the batch script here: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Windows_Home_Group_Policy_Editor_Script.zip
+   * Click the above link and then click the "Download Raw file" button to save the file in the proper format
    * Right-Click on the downloaded script and select "Run as Administrator". You will get errors if you skip this step.
    * A window will popup and show the progress of downloading and installing the software. This will take several minutes.
    * Reboot your PC and continue to Step 3.
@@ -101,7 +102,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 
 ### Step 7 - Submit Your Results
 1. Go to the results submission form: https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
-2. Fill out the form and darg your three test files into the **File Upload** box.
+2. Fill out the form and drag your three test files into the **File Upload** box.
 3. Click Submit.
 
 ## Thank you!
