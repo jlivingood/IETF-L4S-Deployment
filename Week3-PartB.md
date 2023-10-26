@@ -41,7 +41,7 @@
 
 Please **choose only one of the following methods** to install and enable Group Policy Editor into Windows Home Edition:
 1. **Method 1**: Download and run a batch script to automate the installation
-   * Download the and unzip the batch script here: https://github.com/elocmcs/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe
+   * Download and unzip the batch script here: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/iperf3-GUI-windows-x86_64-10102023-v2.exe
    * Click the above link and then click the "Download Raw file" button to save the file in the proper format
    * Right-Click on the downloaded script and select "Run as Administrator". You will get errors if you skip this step.
    * A window will popup and show the progress of downloading and installing the software. This will take several minutes.
