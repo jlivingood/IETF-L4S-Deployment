@@ -102,7 +102,7 @@ The following steps will configure Windows to mark DNS requests as low latency t
 
 ### Step 7 - Submit Your Results
 1. Go to the results submission form: https://app.smartsheet.com/b/form/8266ec3c2c0a47c485334a7dc7461b07
-2. Fill out the form and darg your three test files into the **File Upload** box.
+2. Fill out the form and drag your three test files into the **File Upload** box.
 3. Click Submit.
 
 ## Thank you!
