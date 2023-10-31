@@ -10,7 +10,7 @@ https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/CS2_LLD_Trial_Instru
 * Download the directions for Dota2 here: https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Dota_2_LLD_Trial_Instructions.pdf
 
 ## ACTION: Complete Results Form - Counter-Strike 2 
-Submit the results form
+Submit the results forms
 * Game statistics: [https://app.smartsheet.com/b/form/b57ea3a3364f4b69a97c4ed1fbc37a74](https://app.smartsheet.com/b/form/b57ea3a3364f4b69a97c4ed1fbc37a74)
 * Subjective Feedback: [https://app.smartsheet.com/b/form/1f8a26bed7ab40a5916fb1ad7f5ebf23](https://app.smartsheet.com/b/form/1f8a26bed7ab40a5916fb1ad7f5ebf23)
 
