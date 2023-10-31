@@ -2,7 +2,7 @@
 
 Our trials continue this week, with our focus shifting to online gaming.
 
-*This week’s testing only applies if you are already an active gamer - and use Xbox. If that does not apply to you, please skip this week’s tests.*
+*This week’s testing only applies if you are already an active gamer - and use a Xbox Series X|S. If that does not apply to you, please skip this week’s tests.*
 
 ## Action Requested - Game Testing
 Follow the directions below
