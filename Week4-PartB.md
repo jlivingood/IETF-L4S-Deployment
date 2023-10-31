@@ -15,7 +15,7 @@ Submit the results forms
 * Subjective Feedback: [https://app.smartsheet.com/b/form/1f8a26bed7ab40a5916fb1ad7f5ebf23](https://app.smartsheet.com/b/form/1f8a26bed7ab40a5916fb1ad7f5ebf23)
 
 ## ACTION: Complete Results Form - Dota 2 
-Submit this results form -  [https://app.smartsheet.com/b/form/b1b7c10f57fa4750b1d140452b74f3f6](https://app.smartsheet.com/b/form/b1b7c10f57fa4750b1d140452b74f3f6)
+Submit the results form -  [https://app.smartsheet.com/b/form/b1b7c10f57fa4750b1d140452b74f3f6](https://app.smartsheet.com/b/form/b1b7c10f57fa4750b1d140452b74f3f6)
 
 ## Report Problems Here: 
 https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07
