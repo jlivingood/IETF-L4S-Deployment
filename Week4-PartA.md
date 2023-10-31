@@ -7,7 +7,7 @@ Our trials continue this week, with our focus shifting to online gaming.
 ## Action Requested - Game Testing
 Follow the directions below
 
-### Xbox - Only if You Have an Xbox 
+### Xbox - Only if You Have an Xbox Sseries X|S
 See PDF at https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Xbox_One_Trial_Instructions.pdf
 
 ## ACTION: Complete Results Form - Xbox Testing
