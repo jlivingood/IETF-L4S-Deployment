@@ -10,7 +10,7 @@ L4S Test App by CableLabs (www.cablelabs.com) runs upstream and downstream traff
    * Visit https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/CableLabs_L4S_Testing_Application.dmg
    * Click the *Download raw file* icon on the right of page
 
-     ![t_download](images/CableLabs_l4s_test_download.png)    
+     ![t_download](images/CableLabs_l4s_test_download_raw.png)    
 
 1. Open the downloaded `.dmg` file.  The *L4S Test Application* volume will be open as a folder.
 1. Run the appDouble click `l4s_test` in the folder.
