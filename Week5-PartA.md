@@ -13,7 +13,7 @@ L4S Test App by CableLabs (www.cablelabs.com) runs upstream and downstream traff
      ![t_download](images/CableLabs_l4s_test_download_raw.png)    
 
 1. Open the downloaded `.dmg` file.  The *L4S Test Application* volume will be open as a folder.
-1. Run the appDouble click `l4s_test` in the folder.
+1. Double click `l4s_test` in the folder.
    * When you first double click the app, you may get a MacOS security warning that this app hasn’t been checked by Apple:
 
      ![t_warning](images/CableLabs_l4s_test_warning.png)    
