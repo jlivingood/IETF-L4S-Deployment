@@ -41,5 +41,9 @@ L4S Test App by CableLabs (www.cablelabs.com) runs upstream and downstream traff
 
 The measurements will be collected at CableLabs' server, so no need to submit results.
 
+## Run the Test Multiple Times
+
+You only need to submit the test results form once. But it will help us and CableLabs collect more & better data if you can run the test several times over the course of the week.
+
 ## Report Problems Here: 
 https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07
