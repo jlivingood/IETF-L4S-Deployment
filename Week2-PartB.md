@@ -50,7 +50,7 @@ Hit enter.
 
 Enter the RPM value for "Uplink Responsiveness" in the survey form.
 
-### Complete the Survey Form to Submit Results (for Comcast Server)
+### Complete the Survey Form to Submit Results
 https://app.smartsheet.com/b/form/1d676cf10eb142948515ceb3d15819cd
 
 ## Report Problems Here:
