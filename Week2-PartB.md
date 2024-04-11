@@ -16,9 +16,9 @@ Open the Terminal application and copy and paste in this text:
 Hit enter.
 
 Enter the RPM value for "Downlink Responsiveness" in the survey form.
-Example - if you got the result below, enter `2156`.
+Example - if you got the result below, enter `142`.
 
-> Downlink Responsiveness: High (27.829 milliseconds | `2156` RPM)
+> Downlink Responsiveness: Low (422.535 milliseconds | `142` RPM)
 
 ### Step 2: Downlink Responsiveness with Low Latency ON
 
