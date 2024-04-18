@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-03"
+	  docName="draft-livingood-low-latency-deployment-04"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP L4S Deployment Design">Comcast ISP Low Latency Deployment Design Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-03"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-04"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="September" day="28" year="2023"/>
+	    <date month="April" day="18" year="2024"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -497,6 +497,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	      <t>v01: Incorporate comments from 1st version after IETF-115</t>
 		  <t>v02: Incorporate feedback from the TSVWG mailing list</t>
 		  <t>v03: Final feedback from TSVWG and prep for sending to ISE</t>
+		  <t>v04: Refresh expiration before major revision</t>
 	    </section>
 	    
 	    <section title="Open Issues">
