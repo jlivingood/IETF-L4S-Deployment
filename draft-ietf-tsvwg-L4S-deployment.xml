@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-05"
+	  docName="draft-livingood-low-latency-deployment-06"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP Dual Queue Networking Deployment Recommendations">ISP Dual Queue Networking Deployment Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-04"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-06"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -242,8 +242,7 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 			should not block, throttle, or deprioritize lawful application traffic, and should not engage in paid 
 			prioritization, among other things. The meaning of NN can be complex and ever changing, so the specific 
 			details are out of scope for this document. Despite that, NN concerns certainly bear on the deployment 
-			of new technologies by ISPs in many countries and so should be taken into account in making deployment 
-			design decisions.</t>
+			of new technologies by ISPs in many countries and so should be taken into account in making deployment decisions.</t>
 
 			<t>It is also possible that there can be confusion - for people who are not deep in this highly technical subject - 
 			between prioritization, provisioned 
@@ -304,7 +303,7 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 			    	low latency networking.</t>
 	    	</section>
 	    	
-	    	<section title="Can Work on All Types of Network Technology">
+	    	<section title="Access-Agnostic: Can Work on All Types of Network Technology">
 		    	<t>Ultimately, the emergence of low latency networking represents a fundamental new network 
 			    	capability that applications can choose to utilize as their needs dictate. It reflects a new ground truth 
 			    	about two fundamentally different types of application traffic and demonstrates that networks 
@@ -318,12 +317,12 @@ that a network bottleneck could occur may benefit from this technology.</t>
 	    
 	    </section>
 	    
-	    <section title="Recommended Deployment Design Decisions">
+	    <section title="Recommended Deployment Decisions">
 		    
 		    <t>Like any network or system, a good deployment design and configuration matters and 
-		    can be the difference between a well-functioning and accepted design and one that experiences 
+		    can be the difference between a well-functioning and accepted system and one that experiences 
 		    problems and faces opposition. In the context of deploying low latency networking in an ISP network, 
-		    this document describes some recommended deployment design decisions that should help 
+		    this document describes some recommendations that should help 
 		    to ensure a deployment is resilient, well-accepted, and creates the environment for generating 
 		    strong network effects. In contrast, creating barriers to adoption in the early stages through design and 
 		    policy decisions will presumably reduce the predicted potential network effect, thus choking off further 
@@ -386,12 +385,13 @@ that a network bottleneck could occur may benefit from this technology.</t>
 	    
 	    <section title="End User CPE Choice"> 
 		    
-		   <t>Both customer-owned and ISP-administered Customer Premises Equipment (CPE) should be supported, when 
-		   applicable (not all networks support this nor is it necessary in some networks). This avoids the risk that an ISP can be 
+		   <t>Both customer-owned and ISP-administered Customer Premises Equipment (CPE) should be supported (assuming that is 
+           typical and technically feasible in a particular type of access network), when applicable. This avoids the risk that an 
+           ISP can be 
 		   perceived as giving preference to their own network demarcation devices, which may carry some monthly recurring fee or other 
 		   cost. This also means that retail CPE manufacturers need to make the necessary development investment to 
 		   correctly implement low latency networking, though this may not interest or may be outside the capabilities of some organizations.
-		   In any case, the more devices that implement low latency networking, the broader adoption would be, positively 
+		   In addition, the more devices that implement low latency networking, the broader adoption would be, positively 
            driving network effects.</t>
 		   
 	    </section>
@@ -458,10 +458,18 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 				is not known if that may change when the DSCP marking changes.</t>
 
 			</section>	
+
+            <section title="Pass Markings to Customer-Administered CPE">
+				<t>In some cases, dual queue networking and associated packet marking is supported up to the ISP's demarcation point - 
+                such as in a cable modem. It is recommended that packet markings should pass from such a demarcation point to 
+                any attached customer-administered CPE, such as a router or wireless access point. That can, for example, 
+                enable a customer-administered router to also implement dual queue networking, or for a wireless access point to act 
+                on packet marking to put low latency networking traffic into the AC_VI Wi-Fi queue.</t>
+			</section>	
 	  
 	 </section>
 	  
-	 <section title="Summary of Recommended Deployment Design Decisions">
+	 <section title="Summary of Recommended Deployment Decisions">
 		 
 		 <ol type="%d">
 			 
@@ -472,6 +480,8 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 			<li>Opt Out Capability During Technical Trial Experiments: Users can opt out during technical trial expriments</li>
 			<li>Consider Traffic Protection: Consider potentially deploying a network function to detect mismarking of NQB traffic</li>
 			<li>Avoid Internal Remarking of DSCP Values if Possible: Try to maintain DSCP 45 on an end-to-end basis with remarking</li>
+            <li>Pass Markings to Customer-Administered CPE: Allow markings to pass to customer-administered network devices like routers 
+            and access points</li>
 	
 		 </ol>
 		 
@@ -479,7 +489,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	 </section>
 	 
 	    <section title="Acknowledgements">
-			<t>Thanks to Bob Briscoe, Mat Ford, Vidhi Goel, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg Skinner, 
+			<t>Thanks to Bob Briscoe, Mat Ford, Vidhi Goel, Eliot Lear, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg Skinner, 
             Greg White, and Yiannis Yiakoumis for their review and feedback on this document.</t>
 		</section>
 	
@@ -510,6 +520,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 		  <t>v03: Final feedback from TSVWG and prep for sending to ISE</t>
 		  <t>v04: Refresh expiration before major revision</t>
           <t>v05: Changes from Greg Skinner</t>
+          <t>v05: Changes from Eliot Lear</t>
 	    </section>
 	    
 	    <section title="Open Issues">
