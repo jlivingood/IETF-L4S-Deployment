@@ -29,3 +29,23 @@ OpenWrt:
 * By doing so, ECN marks will pass end-to-end without bleaching. The parameters "ingress_ecn" and "egress_ecn" are on by default, allowing ECN marking.
 * For NQB you need to allow DSCP-45 marks to pass in both directions. Set the parameters "squash_dscp" and "squash_ingress" to "0" to allow marking.
 
+UniFi:
+* TBC
+
+eero:
+* TBC
+
+NetGear:
+* TBC
+
+Linksys:
+* TBC
+
+Asus: 
+* TBC
+
+TP-Link:
+* TBC
+
+
+
