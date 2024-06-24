@@ -24,6 +24,8 @@ L4S and NQB is critical.
 
 
 Example configurations:
+
+
 OpenWrt:
 * Turn on SQM - https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm_configuration?s[]=ecn
 * By doing so, ECN marks will pass end-to-end without bleaching. The parameters "ingress_ecn" and "egress_ecn" are on by default, allowing ECN marking.
