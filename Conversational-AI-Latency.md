@@ -24,7 +24,7 @@ demo uses a phone that is connected to the local network via USB-C-based Etherne
 It is also unclear what the upstream connection is - whether it is to an enterprise-grade fiber network or via consumer ISP. In any case, asking end 
 users to connect their phone via a wired connection to use C-AI will obviously not work - you need a network that can support this natively. 
 
-# Components of Network Delay 
+## Components of Network Delay 
 
 Nokia developed a very informative chart showing the components of delay and their variability. ![Nokia-Latency](https://github.com/jlivingood/IETF-L4S-Deployment/assets/8984861/d7142472-7936-4eb2-9031-804b32679cdb)
 
@@ -36,6 +36,14 @@ usable for the mass of end users. That delay occurs as bottleneck links on the e
 While propagation and interface delays are important - they tens to be measured in tens of milliseconds or perhaps as much as 200 ms. But queuing delay is 
 far more significant and far more variable - running from tens of milliseconds to whole seconds. And that is *per round trip* - and most interactions 
 on the internet take several round trips. Thus, those queuing delays can grow very quickly and significant impact user QoE. 
+
+### Working Latency (a.k.a. Network Responsiveness)
+
+TBC
+
+### Jitter 
+
+TBC
 
 ## Network Requirements for High Quality Conversational AI
 
@@ -52,7 +60,11 @@ if we assume that loading the user's spoken prompt into the Large Language Model
 
 Unfortunately, many users routinely experience working latency well in excess of 386 ms. So how can networks and application developers work together to reduce and tightly control network delay?
 
-### Move Compute Close to Users, A La CDNs
+## How to Achieve Acceptable Latency for C-AI
+
+There are several steps summarized briefly below that can be taken now to control latency and jitter to achieve high QoE for conversational AI. 
+
+### Move Compute Close to Users, a La CDNs
 
 One well-tested way to combat propagation delay is to follow the path laid down by Content Delivery Networks (CDNs) - which is to place servers one hop away from 
 ISP networks and to deploy into all of the major cities of the country. This eliminates the need to backhaul traffic across national backbones, with the associated speed of light delays - which is typically between 60 - 100 milliseconds (ms).
@@ -63,15 +75,15 @@ points of aggregation. For example, in a DOCSIS network, this could be next to t
 As a guideline for the purposes of this analysis, let's assume that the round-trip latency between an ISP peering edge and locally-interconnected 
 compute servers (akin to CDN servers) is 10 ms. That leaves us with a remaining delay budget of 376 ms.
 
-### Working Latency (a.k.a. Network Responsiveness)
+### Implement AQM
 
 TBC
 
-### Jitter 
+### Implement Dual Queue
 
 TBC
 
-## Can Dual Queue Networking Deliver High C-AI QoE?
+### Implement Wi-Fi Prioritization (WMM)
 
 TBC
 
