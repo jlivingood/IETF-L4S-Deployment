@@ -50,8 +50,7 @@ A recent paper from Microsoft begins to delve into how network delay affects C-A
 if we assume that loading the user's spoken prompt into the Large Language Model (LLM) and generating the response takes a total of 14 ms, then we have 386 ms of 
 "budget" for network round trip latency. 
 
-Unfortunately, many users routinely experience working latency well in excess of 386 ms. So how can networks and application developers work together to reduce 
-and tightly control network delay?
+Unfortunately, many users routinely experience working latency well in excess of 386 ms. So how can networks and application developers work together to reduce and tightly control network delay?
 
 ### Move Compute Close to Users, A La CDNs
 
@@ -62,7 +61,7 @@ Many ISPs are also discussing "edge compute" where servers would be deployed dir
 points of aggregation. For example, in a DOCSIS network, this could be next to the Cable Modem Termination System (CMTS) to which end user cable modems connect. 
 
 As a guideline for the purposes of this analysis, let's assume that the round-trip latency between an ISP peering edge and locally-interconnected 
-compute servers (akin to CDN servers) is 10 ms. That leaves us with a remaining delay budget os 376 ms.
+compute servers (akin to CDN servers) is 10 ms. That leaves us with a remaining delay budget of 376 ms.
 
 ### Working Latency (a.k.a. Network Responsiveness)
 
@@ -76,5 +75,11 @@ TBC
 
 TBC
 
+## Can 5G FWA Delivery High C-AI QoE?
+
+TBC
+
 ## Next Steps
+
+TBC
 
