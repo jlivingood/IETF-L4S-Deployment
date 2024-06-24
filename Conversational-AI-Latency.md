@@ -75,7 +75,17 @@ TBC
 
 TBC
 
-## Can 5G FWA Delivery High C-AI QoE?
+## Comparison of Network Technologies and High CA-I QoE
+
+|            | Idle Latency | p99 Working Latency | RPMs | Jitter | Latency Budget Consumed | Projected QoE |
+|------------|--------------|---------------------|------|--------|-------------------------|---------------|
+| DOCSIS AQM |              |                     |      |        |                         |               |
+| LL DOCSIS  |              |                     |      |        |                         |               |
+| 5G FWA     |              |                     |      |        |                         |               |
+| 5G Mobile  |              |                     |      |        |                         |               |
+| DSL        |              |                     |      |        |                         |               |
+| LEO        |              |                     |      |        |                         |               |
+| PON        |              |                     |      |        |                         |               |
 
 TBC
 
