@@ -49,5 +49,8 @@ Asus:
 TP-Link:
 * TBC
 
+Google Home:
+* TBC
+
 
 
