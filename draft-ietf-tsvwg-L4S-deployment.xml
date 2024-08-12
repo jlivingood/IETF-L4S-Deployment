@@ -508,7 +508,7 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	    <section title="Privacy Considerations">
 		  <t>RFC Editor: Please remove this section before
 			 publication.</t>
-	      <t>This memo includes no security considerations.</t>
+	      <t>This memo includes no privacy considerations.</t>
 	    </section>
 	    
 	    <section title="Revision History">
