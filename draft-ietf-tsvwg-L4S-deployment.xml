@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="April" day="18" year="2024"/>
+	    <date month="October" day="14" year="2024"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -126,12 +126,9 @@
 	    <abstract>
 	      <t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
 	      Low Loss, Scalable Throughput (L4S) and new Non-Queue-Building (NQB) per hop behavior. 
-	      These documents do a good job of describing a new architecture 
-	      and protocol for deploying low latency networking. 
-          But as is normal for many such standards, especially those in experimental status, 
-	      certain deployment decisions are ultimately left to implementers. This document explores the potential 
-	      implications of key deployment decisions and makes recommendations for those decisions that may help drive 
-	      adoption.</t>
+	      These documents describe a new architecture and protocol for deploying low latency networking. 
+          Since deployment decisions are left to implementers, this document explores the potential 
+	      implications of those decisions and makes recommendations that can help drive adoption and acceptance of L4S and NQB.</t>
 	    </abstract>
 	
 		<!-- Note here if needed
@@ -167,13 +164,15 @@
 		suggests that certain specific deployment decisions can help maximize the value of low latency networking to both users and 
 		network operators.</t> 
 		
-		<t>It is also apparent from the IETF's work that it is clear that nearly all modern application types need low latency 
-			to some degree and that applications are best positioned to express their needs via application code and packet marking. 
+		<t>The IETF documents on L4S and NQB also made clear that nearly all modern application types - from video conferencing to web 
+        browsing - can benefit from low latency networking. In addition, the design of the protocols also make clear 
+        that applications developers are best positioned to understand the needs of their applications and to, 
+        by extension, express any such low latency needs via appropriate L4S or NQB packet marking. 
 			Furthermore, unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
 			balance the needs of different types of best effort flows (with some caveats - see <xref target="NewThinking"/>).
 			</t>
 		
-		<t>For additional background on latency and why latency matters so much to the Internet, please read <xref target="BITAG"/></t>
+		<t>For additional background on latency and why latency matters so much to the Internet, please read <xref target="BITAG"/>.</t>
 		  
 	    <!--  <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 	      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -200,14 +199,24 @@
 			    
 			    
 				<t>Thus, the IETF created specifications for how two different network processing 
-					queues. Early results, such as from the IETF-114 hackathon 
-					<xref target="IETF-114-Slides"/>, 
-					demonstrate that L4S and NQB (a.k.a. dual queue networking, and simply "low latency networking" hereafter) can work 
-					across a variety of access network technologies and deliver 
-					extraordinary levels of responsiveness for a variety of applications. It seems likely that 
+					queues. The performance value of dual queue networking (simply "low latency 
+					networking" hereafter) has proven out in Comcast's 
+					dual queue networking field trial <xref target="Comcast"/>. That field trial lasted for over a year and was 
+					regularly reported on over time at several IETF TSVWG meetings <xref target="TSVWG-117"/> <xref target="TSVWG-118"/> 
+					<xref target="TSVWG-119"/> <xref target="TSVWG-120"/> and demonstrated that 
+					L4S and NQB can work deliver excellent responsiveness for a variety of applications - from video 
+					conferencing to cloud gaming, DNS and other applications. It seems likely that 
 					this new capability will enable entirely new classes of applications to become possible, 
 					driving a wave of new Internet innovation, while also improving the applications people use 
 					today.</t>
+
+				<t>
+					<table>
+					<tr><td>May Benefit from L4S/NQB</td><td>Classic Queue Building</td></tr>
+					<tr><td>User interacting with screen</td><td>Unattended background process</td></tr>
+					<tr><td>Video conference, audio conference, live event video stream, cloud document editing</td><td>Cloud file backup, cloud file restoration, game platform update, operating system update</td></tr>
+					</table>
+				</t>
 					
 
 		</section>
@@ -233,85 +242,36 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 			
 		</section>
 	    
-	    <section title="Network Neutrality and Low Latency Networking">
-		    <t>Network Neutrality (a.k.a. Net Neutrality, and NN hereafter) is a concept that can mean a variety 
-		    of things within a country, as well as between different countries, based on 
-		    different opinions, market structures, business practices, laws, and regulations. Generally speaking, 
-		    NN means that Internet Service Providers (ISPs) should not limit user choice or affect competition between 
-			application providers. In the context of the United States' marketplace, it has come to mean that ISPs 
-			should not block, throttle, or deprioritize lawful application traffic, and should not engage in paid 
-			prioritization, among other things. The meaning of NN can be complex and ever changing, so the specific 
-			details are out of scope for this document. Despite that, NN concerns certainly bear on the deployment 
-			of new technologies by ISPs in many countries and so should be taken into account in making deployment decisions.</t>
-
-			<t>It is also possible that there can be confusion - for people who are not deep in this highly technical subject - 
-			between prioritization, provisioned 
-		    end user capacity (throughput or bandwidth), and low latency networking. As it is envisioned in the design of the 
-		    protocols, the addition of a low latency packet processing queue at a network link is merely a second 
-		    packet queue and does not mean that this queue is hierarchically prioritized or that it has more 
-		    capacity. Thus, a low latency queue does not create a so-called "fast lane" (in the way that 
-		    this term is used in policy-related discussions in the U.S. to describe higher than best effort priority or greater 
-			capacity being assigned to some traffic compared to default traffic) - 
-		    but there are certainly other NN considerations in the operational implementation worth exploring.</t>
-			
-			<t>In short: implemented right, low latency networking is fully-aligned with net neutrality and has no 
-			impact on user choice and competition.</t>
-
-			<t>The principles below describe guidelines for a user-centric, application-agnostic, and monetizable implementation of  
-			low latency networking that is aligned with NN frameworks and interpretations, at least in the U.S. and Europe.</t>
-
-			<section title="Application-Agnostic Low Latency Networking">
-
-			<t>A key principle of NN is that all applications should be treated the same by ISPs. As such, any application 
-			should be able to request access to low latency networking using the available marking techniques, and the 
-			network should forward packets through a low latency queue only based on such markings, without inferring 
-			or taking into consideration from which application certain packets originate.</t>
-
-			</section>
-
-			<section title="User-Centric Monetization, Not Application Provider Monetization">
-
-			<t>To incentivize low latency networking deployments, ISPs should be able to monetize it in some way, such as 
-			by enabling it on specific tiers of service. This could be misinterpreted as paid prioritization. To avoid such 
-			conflicts or misinterpretations, ISPs should charge users (and not application providers) for access to 
-			low latency networking, and follow common charging regimes used for best-effort services. For example, 
-			different price-points may be achieved by adjusting the throughput, monthly data allowance, in home network 
-			equipment maintenance, in home network services (e.g., parental controls), provision of low latency networking, 
-			or other service attributes. Thus, ISPs should not limit the number or types of applications that can access low 
-			latency networking, as this would eventually conflict with the application-agnostic requirement.</t>
-
-			</section>
-
+	    <section title="Key Low Latency Networking Concepts">
 	    
 			<section title="Prioritization: Same Best Effort Priority for All Traffic">
-		    	<t>A key aspect of NN is that traffic to certain Internet destinations or for certain 
-			    applications should not be prioritized over other Internet traffic. This means in practice that all Internet traffic 
-			    in an ISP network should be carried at the same (best effort) priority and that any network management practices 
-			    imposed by the network should be protocol (application) agnostic. Low latency networking is fully consistent with this aspect of NN, 
-			    because it is designed so that all traffic is treated on a best effort basis in the ISP network (this is not necessarily 
-			    be the case for a user's in-home Wi-Fi network due to the particulars of how the IEEE 802.11 wireless protocol <xref target="IEEE"/> functions at the current 
-			    time - see <xref target="RFC8325"/>).</t>
-			    
-			    <t>In addition, as noted above, unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
-				balance the needs of different types of best effort flows.</t>
+		    	<t>Low latency traffic to is not prioritized over other 
+				(best effort priority) "classic" Internet traffic. That is the case over the ISP network and the 
+				broader internet, though it may not not necessarily be the case for a user's in-home Wi-Fi network 
+				due to the particulars of how the IEEE 802.11 wireless protocol <xref target="IEEE"/> functions 
+				at the current time - see <xref target="RFC8325"/>). In addition, some user access points 
+				may prioritize certain traffic (such as gaming) and some traffic such as NQB may use the 
+				AC_VI Wi-Fi link layer queue <xref target="I-D.ietf-tsvwg-nqb"/>. This best effort approach stands 
+				in contrast to prior differential quality of service (QoS) approaches or to what has been discussed 
+				for 5G network slicing <xref target="CDT-NN"/> <xref target="van-Schewick-1A"/> 
+				<xref target="van-Schewick-1B"/> <xref target="van-Schewick-2"/> <xref target="van-Schewick-3"/>.</t>
 	    	</section>
 	    
 			<section title="Throughput: Shared Across All Traffic">
-		    	<t>Low latency networking is also consistent with the NN goal of not creating a fast lane, because the same end user 
-			    	throughput in an ISP access network is shared between both classic and low latency (L4S/NQB) queues. Thus, 
-			    	applications do not get access to greater throughput depending on whether or not the leverage 
-			    	low latency networking.</t>
+		    	<t>Low latency networking flows do not get access to greater throughput than "classic" flows. 
+				Thus, a user's total provisioned or permitted throughput on an ISP access network link is 
+				shared between both classic and low latency queues.</t>
 	    	</section>
 	    	
 	    	<section title="Access-Agnostic: Can Work on All Types of Network Technology">
 		    	<t>Ultimately, the emergence of low latency networking represents a fundamental new network 
 			    	capability that applications can choose to utilize as their needs dictate. It reflects a new ground truth 
 			    	about two fundamentally different types of application traffic and demonstrates that networks 
-			    	continue to evolve in exciting ways.</t>
-				
-				<t>In addition, this new network capability can be implemented in a variety of network technologies. For example in access network 
-technologies this could be implemented in DOCSIS <xref target="LLD"/>, 5G <xref target="Ericsson"/>, PON <xref target="CTI"/>, and many other types of networks. Anywhere 
-that a network bottleneck could occur may benefit from this technology.</t>
+			    	continue to evolve in exciting ways. This new network capability can be implemented in a 
+					variety of network technologies. For example in access network technologies this could be 
+					implemented in DOCSIS <xref target="LLD"/>, 5G <xref target="Ericsson"/>, 
+					PON <xref target="CTI"/>, and many other types of networks. Anywhere that a network bottleneck 
+					could occur may benefit from this technology.</t>
 	    	</section>
 	    
 	    
@@ -321,20 +281,18 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    
 		    <t>Like any network or system, a good deployment design and configuration matters and 
 		    can be the difference between a well-functioning and accepted system and one that experiences 
-		    problems and faces opposition. In the context of deploying low latency networking in an ISP network, 
+		    problems and faces user and/or developer opposition. In the context of deploying low latency networking in an ISP network, 
 		    this document describes some recommendations that should help 
 		    to ensure a deployment is resilient, well-accepted, and creates the environment for generating 
-		    strong network effects. In contrast, creating barriers to adoption in the early stages through design and 
-		    policy decisions will presumably reduce the predicted potential network effect, thus choking off further 
-		    investment across the Internet ecosystem, leading to a vicious circle of decline - and then the potential 
-		    value is never realized.</t>
+		    strong network effects. Following these recommendations should help avoid barriers to adoption and help provide a strong foundation 
+			for growth.</t>
 		    
 	   
 	    
-	    <section title="Only Applications Mark Traffic">
+	    <section title="Applications Mark Traffic">
 		    
-		    <t>Only applications should mark traffic to indicate their preference for the low latency queue, 
-			not the network. This is for several reasons:</t>
+		    <t>The best approach is for applications to mark traffic to indicate their preference for the low latency queue, 
+			not the network making such a decision on its own. This is for several reasons:</t>
 		    <ul>
 		    <li>According to the end-to-end principle, this function is best delegated to the edge of 
 		    the network as an architectural best practice (the edge being the application in this case).</li>
@@ -342,150 +300,104 @@ that a network bottleneck could occur may benefit from this technology.</t>
 		    eliminating the need for close coordination between networks and application developers.</li>
 		    <li>Application developers know best whether their application is compatible with low 
 			    latency networking and which aspects of their traffic flows will or will not benefit.</li>
+			<li>Only the application (not the network) knows whether a scalable congestion control algorithm congestion control is being 
+			used on the application server. Thus, only the developer and server administrator know if they are correctly responding to 
+			Congestion Experienced (CE) markings for L4S (see Section 4.1 of <xref target="RFC9331"/>). </li>
 		    <li>Application traffic is almost entirely encrypted, which makes it very difficult for networks 
 		    to accurately determine application protocols and to further infer which flows will benefit from low latency 
-		    and which flows may be harmed because they need to build a queue.</li>
-		    <li>To correctly utilize L4S, the application and the server needs to use a scalable congestion control algorithm in order to 
-			use the packet marking for L4S and respond to Congestion Experienced (CE) marking. This is done by using the ECN field of the packet header, with an ECT(1) marking, 
-			according to Section 4.1 of <xref target="RFC9331"/> and being responsibe to CE marks. 
-			But only the application (not the network) knows what congestion control it is using. So, with L4S, the network cannot properly 
-			mark on behalf of the application.</li>
-			<li>To correctly utilize NQB for non-L4S traffic, then the DSCP field of the packet header is used, with a DSCP 45 marking, according to Section 
-			4.1 of <xref target="I-D.ietf-tsvwg-nqb"/>. But the majority of traffic is now encrypted, 
-			so it seems implausible for a network to try to infer the type of traffic and whether an application could benefit from NQB treatment; this 
-			is best left to application developers to determine as they are the experts in the particular needs of their application. </li>
-		    <li>Network operators and equipment vendors attempting to infer application type and application need 
-		    will sometimes make mistakes, incorrectly classifying traffic <xref target="Lotus"/>, and potentially negatively 
-		    affecting certain flows.</li>  
+		    and which flows may be harmed because they need to build a queue. It is likely that false positives <xref target="Lotus"/> and false negatives 
+			will occur if network-based 
+			inference is used; all of which can be avoided simply by relying solely on application marking.</li>
 		    <li>The pace of innovation and iteration is necessarily faster-moving in the application edge at layer 7, 
 		    rather than in the network at layer 3 (and below) - where there is greater standards stability and a lower rate of 
 		    major changes. As a result, the application layer is best suited to rapid experimentation and iteration. Network 
 		    operators and equipment vendors trying to infer application needs will in comparison always be in a reactive 
 		    mode, one step behind changes made in applications.</li>
-			<li>Note, however, that this does not preclude an ISP from changing packet marking within their internal network due to an existing use of a 
-			particular code point.</li>
 		    </ul>
 		    
 	    </section>
 	    
 	    
-	    <section title="All Application Providers Welcome"> 
+	    <section title="Any Application Provider Can Mark Traffic - No Advance Permission"> 
 		    
 		    <t>Any application provider should be able to mark their traffic for the low latency queue, with no restrictions 
 		    other than standards compliance or other reasonable and openly documented technical guidelines. This 
 		    maintains the loose cross-layer coupling that is a key tenet of the Internet's architecture by eliminating 
-		    or greatly reducing any need for application providers and networks to coordinate on deployment (though 
-		    such coordination is normal in the early experimental phase of any deployment).</t>
-		    
-		    <t>As noted above, this is another example that low latency networking will have strong network 
-		    effects, any barriers to adoption such as this should be avoided in order to maximize the value to users 
-		    and the network of a new low latency queue.</t> 
+		   the need for application providers and networks to coordinate and creates an environment of so-called "permissionless innovation".</t> 
 		    
 	    </section>
 	    
-	    <section title="End User CPE Choice"> 
+	    <section title="Support a Variety of End User Equipment"> 
 		    
-		   <t>Both customer-owned and ISP-administered Customer Premises Equipment (CPE) should be supported (assuming that is 
-           typical and technically feasible in a particular type of access network), when applicable. This avoids the risk that an 
-           ISP can be 
-		   perceived as giving preference to their own network demarcation devices, which may carry some monthly recurring fee or other 
-		   cost. This also means that retail CPE manufacturers need to make the necessary development investment to 
-		   correctly implement low latency networking, though this may not interest or may be outside the capabilities of some organizations.
-		   In addition, the more devices that implement low latency networking, the broader adoption would be, positively 
+		   <t>To create the best foundation for growth, both customer-owned and ISP-administered Customer Premises Equipment (CPE) should be supported 
+		   (assuming that is typical and technically feasible in a particular type of access network), when applicable. In mobile networks, where a user 
+		   device connects directly to the network, this may be easier as it simply depends upon operating system software in that end user device. In 
+		   fixed networks, there is usually CPE that demarcates between the ISP network and the user's home LAN. The software running on those CPE devices 
+		   will also need to support low latency networking, as well as software in other ISP network devices where CPE connections are aggregated. The more 
+		   CPE devices that are enabled, the greater the pool of potential users, and thus the broader adoption would be, positively 
            driving network effects.</t>
 		   
 	    </section>
 			
-
-			
-	    <section title="Opt Out Capability During Technical Trial Experiments">
-		    <t>During technical trial experiments of low latency networking, ISPs should consider making available some 
-			    mechanism for users to opt out of (deactivate) it. If low latency networking is functioning correctly, it seems extremely 
-			    unlikely that a user should ever want or need to turn it off. On the other hand, it is also possible that it may be 
-                desirable in some troubleshooting situations to turn it off.</t> 
-			    
-				<t>As this technology enters normal production operation, there will not be a long term need or 
-			    practical benefit to having an opt out mechanism. Thus, that mechanism will no longer be necessary or practical; 
-                any problems should be handled 
-				like typical production network problems.</t>
-	    </section>
-			
-			<section title="Consider Traffic Protection">
+			<section title="Consider Queue Protection">
 				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a 
-                Queue Protection Function <xref target="I-D.briscoe-docsis-q-protection"/>. The document says that Traffic Protection 
+                Queue Protection Function <xref target="I-D.briscoe-docsis-q-protection"/> or simply Queue Protection. The document says that Traffic Protection 
                 is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with 
                 two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily 
                 to correct mismarking). This may be implemented, for example, in end user CPE, last mile network equipment, 
                 and/or elsewhere in the ISP network - or closely monitors network statistics and user feedback for any indication of 
-                widespread NQB packet mismarking by applications.</t>
+                widespread low latency packet mismarking by applications.</t>
 			</section>	
 			
 			<section title="Avoid Internal Remarking of DSCP Values if Possible">
-				<t>If possible, based on a network's existing use of DSCP values, a network should try to maintain the use of DSCP 45 on an end-to-end basis 
-				without remarking. While this may not be possible in all networks, it can reduce complexity, enable simpler network operations, and ease troubleshooting of NQB traffic flows. In some cases a network may need to migrate an existing, private internal use of DSCP 45 to some other mark to achieve this. In the long term that may be best, even if it takes a bit more initial effort when deploying low latency networking. In addition, if a network does have their own 
-private internal use of DSCP 45, then they alone should be responsible for any necessary remarking for traffic passing through their network (it would be 
-unfair and unreasonable for a given network's private use of a DSCP mark to pose a burden on other networks).</t>
+				<t>If possible, for operational simplicity, a network should try to maintain the use of DSCP 45 on an end-to-end basis 
+				without remarking in their interior network hops. This may not be possible in all networks, because some may already use DSCP 45 for some private 
+				internal reason. In such cases, packets must obviously be remarked to and from DSCP 45 at the customer edge (CPE) and network ingress/egress to other 
+				networks. But if DSCP 45 is not used internally, it is far simpler for network operations and troubleshooting to preserve that mark on an end 
+				to end basis.</t>
 			</section>	
 
 
-			<section title="In Home Wi-Fi LAN Considerations">
-				<t>As noted above with respect to prioritization of packets in the ISP network, all packets should be handled with the same 
-				best effort priority. However, in a user's home Wi-Fi (wireless) local area network (WLAN), this is more complicated, 
-                because there is not a precise mapping between IETF packet marking and IEEE 802.11 marking, explored in 
-				<xref target="RFC8325"/>.</t>
+			<section title="In Home Wi-Fi LAN Configuration">
+				<t>As noted above with respect to prioritization of packets in the ISP network, all packets should be 
+				handled with the same best effort priority. However, in a user's home 
+				Wi-Fi (wireless) local area network (WLAN), this is more complicated, 
+                because there is not a precise mapping between IETF packet marking and IEEE 802.11 marking,
+				 explored in 
+				<xref target="RFC8325"/>. In short, today's 802.11 specifications enable a Wi-Fi network to have multiple queues, 
+				using different "User Priority" and "Access 
+				Category" values. At the current time, these queues are AC_BK (Background), AC_BE (Best Effort), 
+				AC_VI (Video), and AC_VO (Voice).</t>
 
-				<t>In short, today's 802.11 specifications enable a Wi-Fi network to have multiple queues, using different "User Priority" and "Access 
-				Category" values. At the current time, these queues are:</t>
-				<ul>
-					<li>User Priority 1 or 2, AC_BK = Background</li>
-					<li>User Priority 0 or 3, AC_BE = Best Effort</li>
-					<li>User Priority 4 or 5, AC_VI = Video</li>
-					<li>User Priority 6 or 7, AC_VO = Voice</li>
-				</ul>
+				<t>As explored in <xref target="I-D.ietf-tsvwg-nqb"/>, packets in the low latency queue 
+				may be marked for the best effort (AC_BE) or video (AC_VI) wireless queue. For additional context, 
+				please refer to Section 8.1 of  <xref target="I-D.ietf-tsvwg-nqb"/>. In some situations, such as a 
+				user-owned wireless access point or CPE, it may not be possible for the user to select which wireless 
+				queue is used. In cases where the CPE is ISP-administered, selecting a specific wireless queue may be 
+				possible - though it is not yet clear what the best practice may be for this selection until ISPs and 
+				application developers have more experience with low latency networking.</t>
+			</section>	
 
-				<t>Thus, as recommended in <xref target="I-D.ietf-tsvwg-nqb"/>, the low latency queue should be different from 
-                the best effort queue. That means default best effort traffic will be in User Priority 0 or 3 (AC_BE), and it is 
-                recommended that the low latency queue 
-				will be in User Priority 4 or 5 (AC_VI). For additional context, please refer to 
-                Section 8.1 of  <xref target="I-D.ietf-tsvwg-nqb"/>.</t>
-
-				<t>It is also worth noting that, in the short-term, Microsoft has taken a slightly different approach to packet 
-				marking on their Xbox platform <xref target="Microsoft"/>. They are using DSCP-46 rather than DSCP-45, though presumably 
-				once the IANA port assignment 
-				for DSCP-45 is made this will change. As a result, a more permissive WLAN marking policy is initially recommended until RFCs for 
-				NQB are published and developers coalesce around DSCP-45. This means that the network will put packets 
-				marked with DSCP-46 (and potentially other values, such as 40 and 56) into the low latency queue. They are also using the AC_VO queue rather than the AC_VI queue, but it 
-				is not known if that may change when the DSCP marking changes.</t>
+			<section title="Use Permissive Upstream NQB Queue Admission">
+				<t>Since the IETF's NQB specification is only recently completed, many applications that have 
+				been using other DSCP marks for their latency-sensitive flows have not yet shifted to adopt DSCP-45. 
+				One example is the Microsoft Xbox platform <xref target="Microsoft"/>, which is using DSCP-46. 
+				So in the relatively short-term, ISPs may find it beneficial to their customers to 
+				use a more permissive upstream NQB admission policy, allowing DSCP-40, 45, 46, and 56 admission 
+				into the low latency queue. It may take a year or more after the NQB DSCP assignment is made by IANA for  
+				developers to shift to DSCP-45, given other items in their development backlog and their 
+				software release schedule.</t>
 
 			</section>	
 
             <section title="Pass Markings to Customer-Administered CPE">
 				<t>In some cases, dual queue networking and associated packet marking is supported up to the ISP's demarcation point - 
                 such as in a cable modem. It is recommended that packet markings should pass from such a demarcation point to 
-                any attached customer-administered CPE, such as a router or wireless access point. That can, for example, 
-                enable a customer-administered router to also implement dual queue networking, or for a wireless access point to act 
-                on packet marking to put low latency networking traffic into the AC_VI Wi-Fi queue.</t>
+                any attached customer-administered CPE, such as a router or wireless access point. That enables a 
+				customer-administered router to implement dual queue networking, rather that it only being possible with 
+				ISP-administered CPE.</t>
 			</section>	
 	  
-	 </section>
-	  
-	 <section title="Summary of Recommended Deployment Decisions">
-		 
-		 <ol type="%d">
-			 
-		 	<li>Only Applications Mark Traffic: Not the network</li>
-		 	<li>All Application Providers Welcome: Any application provider can mark with no restrictions other than standards compliance 
-			 	or other reasonable and openly documented technical guidelines</li>
-			<li>End User CPE Choice: When applicable, both customer-owned and ISP-administered devices supported</li>
-			<li>Opt Out Capability During Technical Trial Experiments: Users can opt out during technical trial expriments</li>
-			<li>Consider Traffic Protection: Consider potentially deploying a network function to detect mismarking of NQB traffic</li>
-			<li>Avoid Internal Remarking of DSCP Values if Possible: Try to maintain DSCP 45 on an end-to-end basis with remarking</li>
-            <li>Pass Markings to Customer-Administered CPE: Allow markings to pass to customer-administered network devices like routers 
-            and access points</li>
-	
-		 </ol>
-		 
-		 
 	 </section>
 	 
 	    <section title="Acknowledgements">
@@ -500,16 +412,46 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	    </section>
 	
 	    <section title="Security Considerations">
-		  <t>RFC Editor: Please remove this section before
-			 publication.</t>
-	      <t>This memo includes no security considerations.</t>
+		  <t>The key security consideration pertains to Queue Protection. As the current time, it is recommended that 
+		  implementers utilize Queue Protection, to ensure that any traffic that is incorrectly marked for low latency 
+		  can be detected and remarked for the classic queue. The necessity of Queue Protection remains something of 
+		  a debate, with some firmly believing it is necessary but others believing that it is not needed. The latter 
+		  view is that application developers have a natural incentive to correctly mark their traffic, because to 
+		  do otherwise would worsen the quality of experience (QoE) for their users. In that line of thinking, if a 
+		  developer mismarks, they and/or their users will notice and they will fix that error. However, it is 
+		  also conceivable that malicious software could be operating on a user's device or home network and that 
+		  malicious software could try to send some much traffic to the low latency queue that the queue or both 
+		  queues become unusable. This is quite similar to other "traditional" denial of servce (DoS) attacks, so it 
+		  does not necessarily seems unique to low latency networking. But due to the possibility of this occuring, and 
+		  low latency networking being such a new approach, it seems prudent to implement Queue Protection.</t>
 	    </section>
-	    
-	    <section title="Privacy Considerations">
-		  <t>RFC Editor: Please remove this section before
-			 publication.</t>
-	      <t>This memo includes no privacy considerations.</t>
-	    </section>
+
+		<section title="Regulatory Considerations">
+		    <t>Network Neutrality (a.k.a. Net Neutrality) can mean a variety 
+		    of things within a country, as well as between different countries, based on 
+		    different opinions, market structures, business practices, laws, and regulations. Generally speaking, 
+		    In the context of the United States' market, it has come to mean that Internet Service Providers (ISPs) 
+			should not block, throttle, or deprioritize lawful application traffic, and should not engage in paid 
+			prioritization, among other things. Net Neutrality concerns can sometimes affect the deployment 
+			of new technologies by ISPs, so they should carefully consider regulatory issues when 
+			making deployment decisions.</t>
+
+			<t>As it is envisioned in the design of the IETF's new low latency networking protocols, the addition 
+			of a low latency packet processing queue at a network link is merely a second 
+		    packet queue and does not mean that this queue is hierarchically prioritized or that it has more 
+		    capacity. As a result, low latency networking appears to pose no new Net Neutrality issues. However, 
+			it is important for ISPs to keep these risks in mind as they make deployment design decisions.</t>
+
+			<t>One key aspect of low latencty networking is that it operates, from the perspective of an ISP's 
+			deployment, is application-agnostic. The ISP creates a second network queue on key network links, but 
+			does not decide on their own what applications can use this queue. Rather, they add the queue and 
+			packet flows are sent to that queue based on packet marking set by application developers. This 
+			approach is far superior to older approaches, which caused significant Net Neutrality risks
+			<xref target="Lotus"/>, 
+			that used middleboxes to attempt to infer applications based on observing packet flows on ISP 
+			network links.</t>
+
+			</section>
 	    
 	    <section title="Revision History">
 		  <t>RFC Editor: Please remove this section before
@@ -519,8 +461,9 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 		  <t>v02: Incorporate feedback from the TSVWG mailing list</t>
 		  <t>v03: Final feedback from TSVWG and prep for sending to ISE</t>
 		  <t>v04: Refresh expiration before major revision</t>
-          <t>v05: Changes from Greg Skinner</t>
-          <t>v05: Changes from Eliot Lear</t>
+          <t>v05: Changes from Greg Skinner and Eliot Lear</t>
+          <t>v06: More changes from Eliot Lear</t>
+
 	    </section>
 	    
 	    <section title="Open Issues">
@@ -646,8 +589,137 @@ unfair and unreasonable for a given network's private use of a DSCP mark to pose
 	            </author>
 	            <date year="2022" month="August" day="19"/>
 			   </front>
-			   
 			</reference>
+
+			<reference anchor="Comcast" target="https://corporate.comcast.com/stories/comcast-kicks-off-industrys-first-low-latency-docsis-field-trials">
+			   <front>
+	            <title>Comcast Kicks Off Industry’s First Low Latency DOCSIS Field Trials</title>
+	            <author>
+	              <organization>Comcast</organization>
+	            </author>
+	            <date year="2023" month="June" day="16"/>
+			   </front>
+			</reference>
+
+			<reference anchor="Comcast" target="https://corporate.comcast.com/stories/comcast-kicks-off-industrys-first-low-latency-docsis-field-trials">
+			   <front>
+	            <title>Comcast Kicks Off Industry’s First Low Latency DOCSIS Field Trials</title>
+				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
+				  </author>
+	            <date year="2023" month="June" day="16"/>
+			   </front>
+			</reference>
+
+			<reference anchor="IETF-TSVWG-120" target="https://datatracker.ietf.org/doc/slides-120-tsvwg-52-comcasts-l4s-nqb-field-trials/">
+			   <front>
+	            <title>TSVWG Meeting at IETF-120</title>
+				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
+				  </author>
+	            <date year="2024" month="July" day="26"/>
+			   </front>
+			</reference>
+
+			<reference anchor="IETF-TSVWG-119" target="https://datatracker.ietf.org/doc/slides-119-tsvwg-sessa-41-comcasts-l4s-nqb-field-trials/">
+			   <front>
+	            <title>TSVWG Meeting at IETF-119</title>
+				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
+				  </author>
+	            <date year="2024" month="March" day="18"/>
+			   </front>
+			</reference>
+
+			<reference anchor="IETF-TSVWG-118" target="https://datatracker.ietf.org/doc/slides-118-tsvwg-sessa-61-l4s-experience/">
+			   <front>
+	            <title>TSVWG Meeting at IETF-118</title>
+				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
+				  </author>
+	            <date year="2023" month="November" day="18"/>
+			   </front>
+			</reference>
+
+			<reference anchor="IETF-TSVWG-117" target="https://datatracker.ietf.org/doc/slides-118-tsvwg-sessa-61-l4s-experience/">
+			   <front>
+	            <title>TSVWG Meeting at IETF-117</title>
+				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
+				  </author>
+	            <date year="2023" month="July" day="27"/>
+			   </front>
+			</reference>
+
+			<reference anchor="CDT-NN" target="https://arxiv.org/pdf/2308.05829">
+			   <front>
+	            <title>Slicing the Network: Maintaining Neutrality, Protecting Privacy, and Promoting Competition. 
+				A technical and policy overview with recommendations for operators and regulators.</title>
+				  <author fullname="Nick Doty" initials="N" surname="Doty"><organization>Center for Democracy and Technology</organization>
+				  </author>
+				   <author fullname="Mallory Knodel" initials="M" surname="Knodel"><organization>Center for Democracy and Technology</organization>
+				  </author>
+	            <date year="2023" month="April"/>
+			   </front>
+			</reference>
+
+			<reference anchor="van-Schewick-1A" target="https://www.fcc.gov/ecfs/document/103120890811342/1">
+			   <front>
+	            <title>FCC Ex Parte In the matter of Safeguarding and Securing the Open Internet, 
+				WC Docket No. 23-320</title>
+				  <author fullname="Barbara van Schewick" initials="B" surname="van Schewick">
+				  <organization>Center for Internet and Society, Stanford Law School</organization>
+				  </author>
+				  <author fullname="Scott Jordan" initials="S" surname="Jordan">
+				  <organization>University of California at Irvine</organization>
+				  </author>
+				  <author>
+				  <organization>Open Technology Institute at New America</organization>
+				  </author>
+				  <author>
+				  <organization>Public Knowledge</organization>
+				  </author>
+	            <date year="2024" month="March" day="20"/>
+			   </front>
+			</reference>
+			
+			<reference anchor="van-Schewick-1B" target="https://www.fcc.gov/ecfs/document/10323701322790/2">
+			   <front>
+	            <title>Net Neutrality &amp; Non-BIAS Data Services</title>
+				  <author fullname="Barbara van Schewick" initials="B" surname="van Schewick">
+				  <organization>Center for Internet and Society, Stanford Law School</organization>
+				  </author>
+				  <author fullname="Scott Jordan" initials="S" surname="Jordan">
+				  <organization>University of California at Irvine</organization>
+				  </author>
+				  <author>
+				  <organization>Open Technology Institute at New America</organization>
+				  </author>
+				  <author>
+				  <organization>Public Knowledge</organization>
+				  </author>
+	            <date year="2024" month="March" day="20"/>
+			   </front>
+			</reference>
+
+
+			<reference anchor="van-Schewick-2" target="https://law.stanford.edu/wp-content/uploads/2024/08/van-Schewick-2024-5G-Network-Slicing-and-Net-Neutrality-Shetler-Steffen1.pdf">
+			   <front>
+	            <title>Net Neutrality &amp; 5G Network Slicing</title>
+				  <author fullname="Barbara van Schewick" initials="B" surname="van Schewick">
+				  <organization>Center for Internet and Society, Stanford Law School</organization>
+				  </author>
+	            <date year="2024" month="April" day="3"/>
+			   </front>
+			</reference>
+			
+			<reference anchor="van-Schewick-3" target="https://law.stanford.edu/wp-content/uploads/2024/08/van-Schewick-2024-5G-Network-Slicing-and-No-Throttling-Rule-20240418.pdf">
+			   <front>
+	            <title>Network Slicing and Net Neutrality: No Throttling Rule</title>
+				  <author fullname="Barbara van Schewick" initials="B" surname="van Schewick">
+				  <organization>Center for Internet and Society, Stanford Law School</organization>
+				  </author>
+	            <date year="2024" month="April" day="18"/>
+			   </front>
+			</reference>
+
+			
+			
 			
 		   
 	   </references>
