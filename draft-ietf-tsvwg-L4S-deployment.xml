@@ -202,21 +202,37 @@
 					queues. The performance value of dual queue networking (simply "low latency 
 					networking" hereafter) has proven out in Comcast's 
 					dual queue networking field trial <xref target="Comcast"/>. That field trial lasted for over a year and was 
-					regularly reported on over time at several IETF TSVWG meetings <xref target="TSVWG-117"/> <xref target="TSVWG-118"/> 
-					<xref target="TSVWG-119"/> <xref target="TSVWG-120"/> and demonstrated that 
+					regularly reported on over time at several IETF TSVWG meetings <xref target="IETF-TSVWG-117"/> <xref target="IETF-TSVWG-118"/> 
+					<xref target="IETF-TSVWG-119"/> <xref target="IETF-TSVWG-120"/> and demonstrated that 
 					L4S and NQB can work deliver excellent responsiveness for a variety of applications - from video 
 					conferencing to cloud gaming, DNS and other applications. It seems likely that 
 					this new capability will enable entirely new classes of applications to become possible, 
 					driving a wave of new Internet innovation, while also improving the applications people use 
 					today.</t>
 
-				<t>
-					<table>
-					<tr><td>May Benefit from L4S/NQB</td><td>Classic Queue Building</td></tr>
-					<tr><td>User interacting with screen</td><td>Unattended background process</td></tr>
-					<tr><td>Video conference, audio conference, live event video stream, cloud document editing</td><td>Cloud file backup, cloud file restoration, game platform update, operating system update</td></tr>
-					</table>
-				</t>
+			
+  <table>
+    <name>Comparison of Traffic Types</name>
+    <thead>
+      <tr>
+        <td>May Benefit from L4S/NQB</td>
+        <td>Classic Queue Building</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>User interacting with screen</td>
+        <td>Unattended background process</td>
+      </tr>
+      <tr>
+        <td>Video conference, audio conference, live event video stream, cloud document editing</td>
+        <td>Cloud file backup, cloud file restoration, game platform update, operating system update</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
 					
 
 		</section>
@@ -593,7 +609,7 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 
 			<reference anchor="Comcast" target="https://corporate.comcast.com/stories/comcast-kicks-off-industrys-first-low-latency-docsis-field-trials">
 			   <front>
-	            <title>Comcast Kicks Off Industry’s First Low Latency DOCSIS Field Trials</title>
+	            <title>Comcast Kicks Off Industry's First Low Latency DOCSIS Field Trials</title>
 	            <author>
 	              <organization>Comcast</organization>
 	            </author>
@@ -601,14 +617,6 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 			   </front>
 			</reference>
 
-			<reference anchor="Comcast" target="https://corporate.comcast.com/stories/comcast-kicks-off-industrys-first-low-latency-docsis-field-trials">
-			   <front>
-	            <title>Comcast Kicks Off Industry’s First Low Latency DOCSIS Field Trials</title>
-				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
-				  </author>
-	            <date year="2023" month="June" day="16"/>
-			   </front>
-			</reference>
 
 			<reference anchor="IETF-TSVWG-120" target="https://datatracker.ietf.org/doc/slides-120-tsvwg-52-comcasts-l4s-nqb-field-trials/">
 			   <front>
