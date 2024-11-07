@@ -2,7 +2,7 @@ This document is a guide to developers and network operators that would like to 
 This is a new way to handle traffic flows that are latency sensitive by creating a second network queue at bottlenecks; one for classic traffic 
 and one for low latency traffic. 
 
-See also the [Network Configuration Guide](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Network-Config-Guide.md) and [Low Latency Deployment Design Recommendations](https://datatracker.ietf.org/doc/draft-livingood-low-latency-deployment/) and [Configuring UDP Sockets for ECN for Common Platforms (https://www.ietf.org/archive/id/draft-duke-tsvwg-udp-ecn-01.html)]
+See also the [Network Configuration Guide](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Network-Config-Guide.md) and [Low Latency Deployment Design Recommendations](https://datatracker.ietf.org/doc/draft-livingood-low-latency-deployment/) and [Configuring UDP Sockets for ECN for Common Platforms](https://www.ietf.org/archive/id/draft-duke-tsvwg-udp-ecn-01.html)
 
 
 **1.	Background Reading**
