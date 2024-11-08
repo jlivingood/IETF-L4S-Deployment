@@ -4,6 +4,8 @@ and one for low latency traffic.
 
 See also the [Network Configuration Guide](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/Network-Config-Guide.md) and [Low Latency Deployment Design Recommendations](https://datatracker.ietf.org/doc/draft-livingood-low-latency-deployment/), [Configuring UDP Sockets for ECN for Common Platforms](https://www.ietf.org/archive/id/draft-duke-tsvwg-udp-ecn-01.html), and [slides for the UDP sockets draft](https://datatracker.ietf.org/meeting/121/materials/slides-121-tsvwg-configuring-udp-sockets-for-ecn-00.pdf).
 
+Also - try an [L4S-ready test](https://ready4l4s.cerfca.st/).
+
 
 **1.	Background Reading**
 
