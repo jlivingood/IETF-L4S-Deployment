@@ -2,7 +2,9 @@ This document is a guide to developers and network operators that would like to 
 This is a new way to handle traffic flows that are latency sensitive by creating a second network queue at bottlenecks; one for classic traffic 
 and one for low latency traffic. 
 
-See also the [Application Developer Guide](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/App-Developer-Guide.md) and [Low Latency Deployment Design Recommendations](https://datatracker.ietf.org/doc/draft-livingood-low-latency-deployment/)
+See also the [Application Developer Guide](https://github.com/jlivingood/IETF-L4S-Deployment/blob/main/App-Developer-Guide.md) and [Low Latency Deployment Design Recommendations](https://datatracker.ietf.org/doc/draft-livingood-low-latency-deployment/).
+
+Also - try an [L4S-ready test](https://ready4l4s.cerfca.st/).
 
 **1. Key Points**
 -	Traffic marked for the low latency queue is NOT HIGHER PRIORITY than packets using the classic queue - they are both best effort
