@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-07"
+	  docName="draft-livingood-low-latency-deployment-08"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP Dual Queue Networking Deployment Recommendations">ISP Dual Queue Networking Deployment Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-07"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-08"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="October" day="17" year="2024"/>
+	    <date month="April" day="21" year="2025"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -125,11 +125,12 @@
 	
 
 	    <abstract>
-	      <t>The IETF's Transport Area Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
+	      <t>The IETF's Transport and Services Working Group (TSVWG) has finalized experimental RFCs for Low Latency, 
 	      Low Loss, Scalable Throughput (L4S) and new Non-Queue-Building (NQB) per hop behavior. 
 	      These documents describe a new architecture and protocol for deploying low latency networking. 
           Since deployment decisions are left to implementers, this document explores the potential 
-	      implications of those decisions and makes recommendations that can help drive adoption and acceptance of L4S and NQB.</t>
+	      implications of those decisions and makes recommendations that can help drive adoption and acceptance of 
+		  L4S and NQB.</t>
 	    </abstract>
 	
 		
@@ -143,109 +144,78 @@
 
 	    <section title="Introduction">
 			    
-		<t>The IETF's Transport Area Working Group (TSVWG) has finalized RFCs for Low Latency, 
+		<t>The IETF's Transport and Services Working Group (TSVWG) has finalized RFCs for Low Latency, 
 		Low Loss, Scalable Throughput (L4S) and Non-Queue-Building (NQB) per hop behavior <xref target="RFC9330"/> 
-		<xref target="RFC9331"/> <xref target="RFC9332"/> 
-		<xref target="I-D.ietf-tsvwg-l4sops"/> <xref target="I-D.ietf-tsvwg-nqb"/> 
-		<xref target="I-D.ietf-tsvwg-dscp-considerations"/>. These documents do a good job of describing 
+		<xref target="RFC9331"/> <xref target="RFC9332"/> <xref target="RFC9435"/>
+		<xref target="I-D.ietf-tsvwg-l4sops"/> <xref target="I-D.ietf-tsvwg-nqb"/>. These documents do a good 
+		job of describing 
 		a new architecture and protocol for deploying low latency networking. 
-		But as is normal for many such standards, especially those in 
-		experimental status, certain deployment decisions are ultimately left to implementers.</t>
+		But as is normal for many such standards, especially new or experimental ones, certain deployment decisions 
+		are ultimately left to implementers.</t>
 		
 		<t>This document explores the potential implications of key deployment decisions and makes 
-		recommendations for those decisions that may help drive adoption. In particular, there are best practices based 
-        on prior experience 
-		as a network operator that should be considered and there are network neutrality types of considerations 
-		as well. These technologies are benign on their own, but the way they are operationally implemented can 
-		determine whether they are ultimately perceived positively and adopted by the broader Internet ecosystem. 
-		That is a key issue for low latency networking, because the more applications developers and edge platforms that adopt 
-		new packet marking for low latency traffic, then the greater the value to end users, so ensuring it is received well 
+		recommendations for those decisions that may help drive adoption by network operators and application 
+		developers. That is a key issue for low latency networking, because the more applications developers 
+		and edge platforms that adopt 
+		new packet marking for low latency traffic, then the greater the value to end users, so ensuring 
+		it is received well 
 		is key to driving strong initial adoption.</t>
 		
-		<t>It is worth stating though that these decisions are not embedded in or inherent to L4S and NQB per se, but are decisions 
-		that can change depending upon differing technical, regulatory, business or other requirements. Even two network operators with the 
-		same type of access technology and in the same market area may choose to implement in different ways. Nevertheless, this document 
-		suggests that certain specific deployment decisions can help maximize the value of low latency networking to both users and 
-		network operators.</t> 
+		<t>It is worth stating though that these decisions are not embedded in or inherent to L4S and NQB per se, 
+		but are decisions 
+		that can change depending upon differing technical, regulatory, business or other requirements. Even two 
+		network operators with the 
+		same type of access technology and in the same market area may choose to implement in different ways. 
+		Nevertheless, this document 
+		suggests that certain specific deployment decisions can help maximize the value of low latency 
+		networking to end users, network operators, and application developers.</t> 
 		
-		<t>The IETF documents on L4S and NQB also made clear that nearly all modern application types - from video conferencing to web 
-        browsing - can benefit from low latency networking. In addition, the design of the protocols also make clear 
+		<t> In addition, the design of the protocols also make clear 
         that applications developers are best positioned to understand the needs of their applications and to, 
-        by extension, express any such low latency needs via appropriate L4S or NQB packet marking. Furthermore, 
-        unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better balance 
-        the needs of different types of best effort flows (with some caveats - see <xref target="NewThinking"/>).</t>
+        by extension, express any such low latency needs via appropriate L4S or NQB packet marking.</t>
 		
-		<t>For additional background on latency and why latency matters so much to the Internet, please 
+		<t>For additional background on latency and why latency matters to the Internet, please 
         read <xref target="BITAG"/>.</t>
 	
 	    
 	    <section title="A Different Understanding of Application Needs">
 		    <t>In the course of working to improve the responsiveness of network protocols, the IETF 
-			    concluded with their L4S and NQB work that there were fundamentally two types of Internet traffic 
-			    and that these two major traffic types could benefit from having separate network processing queues 
-			    in order to improve the way the Internet works for all applications, and especially for 
-                interactive applications.</t>
+			    concluded with their L4S and NQB work that there were two main types of traffic 
+			    and that these two traffic types could benefit from having separate network processing queues 
+			    in order to improve the way the performance of delay-sensitive and/or interactive applications. 
+				In addition, introducing a new queue better supports incremental development of a new standard 
+				rather than changing existing congestion control algorithms - which would be complex.</t>
 			    
-			    <t>One of the two major traffic types is Queue Building (QB) - things like file downloads and 
-				    backups that are designed utilize as much network capacity as possible but with which users 
-				    are usually not interacting with in 
-			    real-time. The other was Non-Queue-Building (NQB) - such as DNS lookups, voice interaction 
-			    with artificial intelligence (AI) assistants, video conferencing, gaming, and so on. NQB 
-			    flows tend to be ones where the end user is sensitive to any delays.</t>
+			    <t>One of the two major traffic types is mostly file download or upload, such as downloading an operating 
+				system update or uploading files to a cloud backup. This type of traffic tends not to be particularly 
+				delay-sensitive, at least on a millisecond level basis. The other type of traffic is real-time, 
+				interactive traffic that is typically latency-sensitive, such as video conferencing and gaming.</t>
 			    
-				<t>Thus, the IETF created specifications for how to use two different network processing 
-					queues. The performance value of dual queue networking (simply "low latency 
-					networking" hereafter) has proven out in Comcast's 
-					dual queue networking field trial <xref target="Comcast"/>. That field trial lasted for over a year and was 
-					regularly reported on over time at several IETF TSVWG meetings <xref target="IETF-TSVWG-117"/> <xref target="IETF-TSVWG-118"/> 
-					<xref target="IETF-TSVWG-119"/> <xref target="IETF-TSVWG-120"/> and demonstrated that 
-					L4S and NQB can work deliver excellent responsiveness for a variety of applications - from video 
-					conferencing to cloud gaming, DNS and other applications. It seems likely that 
-					this new capability will enable entirely new classes of applications to become possible, 
-					driving a wave of new Internet innovation, while also improving the applications people use 
-					today.</t>
-
-			
-        <table>
-            <name>Comparison of Traffic Types</name>
-            <thead>
-                <tr>
-                    <td>May Benefit from L4S/NQB</td>
-                    <td>Classic Queue Building</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>User interacting with screen</td>
-                    <td>Unattended background process</td>
-                </tr>
-                <tr>
-                    <td>Video conference, audio conference, live event video stream, cloud document editing</td>
-                    <td>Cloud file backup, cloud file restoration, game platform update, operating system update</td>
-                </tr>
-            </tbody>
-        </table>
+				<t>The value of dual queue networking (simply "low latency networking" hereafter) 
+				seems potentially good, and at least one major ISP has deployed it <xref target="Comcast"/>. 
+				It seems possible that 
+					this new capability might enable entirely new classes of applications to become possible, 
+					driving a wave of new Internet innovation, while also improving the latency-sensitive 
+					applications that people use today.</t>
 
 		</section>
 		
-		<section title="New Thinking on Low Latency Packet Processing" anchor="NewThinking">
-			<t>The Introduction says that unlike with bandwidth priority on a highly/fully utilized link, low latency networking can better 
-				balance the needs of different types of best effort flows.
-			But this bears a bit of further discussion to understand more fully.</t>
+		<section title="New Thinking on Low Latency Packet Processing" anchor="NewThinking">			
+			<t>L4S does *not* provide low latency in the same way as previous technologies like DiffServ Quality 
+			of Service (QoS). That prior 
+			QoS approach used packet prioritization, where it was possible to assign a higher 
+			relative priority to certain application traffic, such as Voice over IP (VoIP) telephony. This approach 
+			could provide consistent and relatively low latency by assigning high priority to a partition 
+			of the capacity of a link, and then policing the rate of packets using that partition. This 
+			traditional approach to QoS is hierarchical in nature.</t>
 			
-			<t>L4S does *not* provide low latency in the same way as previous technologies like DiffServ Quality of Service (QoS). That prior 
-			QoS approach used packet 
-prioritization, where it was possible to assign a higher relative priority to certain application traffic, such as Voice over IP (VoIP) telephony. 
-This approach could provide consistent and relatively low latency by assigning high priority to a partition of the capacity of a link, and then policing the 
-rate of packets using that partition. This traditional approach to QoS is hierarchical in nature.</t>
-			
-			<t>That QoS approach 
-			is to some extent predicated on an idea that network capacity is 
-			very limited and that links are often highly utilized. But in today's Internet, it is increasingly the case that there is an 
-			abundance of capacity to end users (e.g., symmetric 1 Gbps), which makes such traditional QoS approaches ineffective in 
-			delivering ever-lower latency. This new low latency networking approach is not based on hierarchical QoS prioritization. 
-			Rather, it is built upon conditional 
-			priority scheduling between its two queues that operate at best effort QoS priority.</t>
+			<t>That QoS approach is to some extent predicated on the idea that network capacity is 
+			very limited and that links are often highly utilized. But on today's Internet, many users have 
+			experienced poor application performance, such as video conferencing, despite having sufficient bandwidth. 
+			In many of these scenarios, prioritization will not improve a flow. But finding a way to reduce latency 
+			has proven beneficial. This new low latency networking approach is not based on hierarchical 
+			QoS prioritization. Rather, it is built upon conditional priority scheduling between two queues 
+			that operate at best effort QoS priority.</t>
 			
 		</section>
         </section>
@@ -255,14 +225,10 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 	    
 	    <section title="Key Low Latency Networking Concepts">
 
-        <t>Before proceeding into deployment recommendations, it is important to first explore a few key concepts 
-        about low latency networking. This is critical because in the past many networks have thought of only 
-        bandwidth and/or priority at the sole network attributes that could be adjusted in order to improve 
-        application or network quality. The advent of low latency networking forces a re-examination of those 
-        old assumptions, as we take into account the profound impact that latency and jitter have on the quality of 
-        the end user experience.</t>
+        <t>In the past, many thought that the only way to improve application quality was via more bandwidth or 
+		by using QoS priority. The advent of low latency networking enables a re-examination of those approaches.</t>
 	    
-			<section title="Prioritization: Same Best Effort Priority for All Traffic">
+			<section title="Best Effort Priority">
 		    	<t>Low latency traffic to is not prioritized over other 
 				(best effort priority) "classic" Internet traffic. That is the case over the ISP network and the 
 				broader internet, though it may not not necessarily be the case for a user's in-home Wi-Fi network 
@@ -275,35 +241,31 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 				<xref target="van-Schewick-1B"/> <xref target="van-Schewick-2"/> <xref target="van-Schewick-3"/>.</t>
 	    	</section>
 	    
-			<section title="Throughput: Shared Across All Traffic">
+			<section title="Shared Throughput">
 		    	<t>Low latency networking flows do not get access to greater throughput than "classic" flows. 
 				Thus, a user's total provisioned or permitted throughput on an ISP access network link is 
 				shared between both classic and low latency queues.</t>
 	    	</section>
 	    	
-	    	<section title="Access-Agnostic: Can Work on All Types of Network Technology">
-		    	<t>Ultimately, the emergence of low latency networking represents a fundamental new network 
-			    	capability that applications can choose to utilize as their needs dictate. It reflects a new ground truth 
-			    	about two fundamentally different types of application traffic and demonstrates that networks 
-			    	continue to evolve in exciting ways. This new network capability can be implemented in a 
+	    	<section title="Access-Agnostic">
+		    	<t>Low latency networking can be implemented in a 
 					variety of network technologies. For example in access network technologies this could be 
 					implemented in DOCSIS <xref target="LLD"/>, 5G <xref target="Ericsson"/>, 
-					PON <xref target="CTI"/>, and many other types of networks. Anywhere that a network bottleneck 
-					could occur may benefit from this technology.</t>
+					PON <xref target="CTI"/>, and many other types of networks.</t>
 	    	</section>
 	    </section>
 	    
         <!--  END MAJOR SECTION --> 
         <!--  START NEW MAJOR SECTION --> 
 
-        <section title="Recommendations for Application Developers">
+        <section title="Application Developer Recommendations">
         <t>Application developers need to add L4S or NQB packet marking to their application, which will often depend 
         upon the capabilities of a device's operation system (OS) or a software development kit (SDK) 
         <xref target="Apple"/> that the OS developer makes available. In addition, the application server will 
         also need to support the appropriate marking and, when L4S is used, to implement a responsive congestion 
         controller.</t>
 
-        <section title="Delivery Infrastructure Needs for L4S">
+        <section title="Delivery Infrastructure for L4S">
         <t>Since L4S uses the Explicit Congestion Notification (ECN) field of the packet header, to ensure 
         ECN works end-to-end, application developers need to be certain that their servers, datacenter routers, 
         and any transit, cloud provider, or content delivery network (CDN) server involved in their application 
@@ -316,73 +278,146 @@ rate of packets using that partition. This traditional approach to QoS is hierar
         of <xref target="RFC9330"/> and Section 4.3 of <xref target="RFC9331"/> for more information about this.</t>
         </section>
 
-        <section title="Delivery Infrastructure Needs for NQB">
+        <section title="Delivery Infrastructure for NQB">
         <t>Since NQB uses the DSCP-45 code point in the DiffServ part of the packet header, to ensure 
         NQB works end-to-end, application developers need to be certain that their servers, datacenter routers, 
         and any transit, cloud provider, or content delivery network (CDN) server involved in their application 
-        IS NOT altering or bleaching a DSCP-45 mark. One relative advantage of NQB is that the server does not need to run 
-        a special responsive congestion controller. On the other hand, NQB is geared toward bandwidth-limited sparse 
-        flows rather than capacity-seeking flows, so it will depend on your application's needs. In addition, it is 
-        common for networks to bleach or modify DSCP marks on ingress, which means that networks will need to change that 
-        packet handling policy for NQB to function on an end-to-end basis. In contrast, it is far less common for the 
-        ECN field of the packet header to be modified.</t>
+        IS NOT altering or bleaching a DSCP-45 mark. The server DOES NOT need to run 
+        a special responsive congestion controller. However, it is 
+        common for networks to bleach or modify DSCP marks on ingress today, so networks will need to change that 
+        policy for NQB to work end-to-end (in contrast, ECN is rarely bleached).</t>
         </section>
 
-        <section title="Don't Mark Non-Delay-Sensitive Traffic for L4S or NQB">
-        <t>It may seem tempting to mark all traffic for L4S or NQB handling, but this will likely harm the experience 
-        of queue-building apps like file downloads. Also, remember that the network priority for L4S and NQB is still 
-        best efforts and so there is not more bandwidth for L4S or NQB compared to classic traffic; 
-        they share the same bandwidth and best-efforts priority. It is also possible that some flows from an 
-        application can benefit, while others will not. For example, a video gaming service may benefit from using L4S or 
+        <section title="Only Mark Delay-Sensitive Traffic for L4S or NQB">
+        <t>It may seem tempting to mark all traffic for L4S or NQB handling, but it may not help in all cases. 
+		For example, a video gaming service may benefit from using L4S or 
         NQB for real-time controller inputs and gameplay, while major game software updates would best be left in 
         the classic queue.</t>    
         </section>
 
-       <section title="Consider Application Needs in Choosing L4S vs. NQB"> 
-
-        <t>Determine whether your application needs "sparse" flows or "congestion-controlled" (higher capacity) 
-        flows. Sparse flows that are latency senstive should be marked as NQB (thus DSCP-45). This may be things 
-        like DNS queries or VoIP media flows, where maximizing the bandwidth of the flow is not necesary.</t>
-        
-        <t>Latency-sensitive flows that need more bandwidth are congestion controlled, and identified via ECN marking. 
-        These types of applications are less limited by the application protocol itself (i.e., a small DNS query), 
-        which means the application quality can improve as more bandwidth is available - such as shifting a 
-        video stream or a video conference session from Standard Definition (SD) to 4K quality.</t>
-        </section>
+    
         </section>
 
         <!--  END MAJOR SECTION --> 
         <!--  START NEW MAJOR SECTION --> 
 
-	    <section title="Recommended Deployment Decisions for ISPs">
+	    <section title="ISP Recommendations">
 		    
-		    <t>Like any network or system, a good deployment design and configuration matters and 
-		    can be the difference between a well-functioning and accepted system and one that experiences 
-		    problems and faces user and/or developer opposition. In the context of deploying low latency networking in an ISP network, 
-		    this document describes some recommendations that should help 
-		    to ensure a deployment is resilient, well-accepted, and creates the environment for generating 
-		    strong network effects. Following these recommendations should help avoid barriers to adoption and help provide a strong foundation 
-			for growth.</t>
+		    <t>Like any network or system, good deployment design decisions matter. In the context of deploying 
+			low latency networking in an ISP network, 
+		    these recommendations should help ensure that a deployment is resilient, well-accepted, and creates 
+			the environment for generating strong network effects.</t>
+        
+        
+        <section title="Allow ECN Across Network Boundaries">
+        <t>Traffic sent TO a peer network marked with ECT(1) or CE in the ECN header MUST pass to that peer 
+        without altering or removing the ECT(1) or CE marking (see exception below). Traffic FROM peers marked 
+        with ECT(1) or CE in the ECN header MUST be allowed to enter the network without altering or removing 
+        the ECT(1) or CE marking (see exception below). The only exception would be when a network element is 
+        CE-aware and able to add a CE mark to signal that it is experiencing congestion at that hop.</t>
+        
+        <t>This part - allowing unmodified ECN across the network - is likely to be easier than DSCP-45 for 
+		NQB (see next section), since it 
+        appears rare that networks modify the ECN header of packet flows.</t>
+        </section>
+        
 
-            <t>The first sections below will look at the end-to-end network path from when packets come into an 
-            ISP's network (provider edge), then what happens within the ISP's network core, how packets are delivered 
-            to customner premise equiment (CPE), and finally what may happen with the Local Area Network (LAN) in a 
-            home.</t>
+        <section title="Allow DSCP-45 Across Network Boundaries">
+        <t>Traffic sent TO a peer network marked with DSCP value 45 MUST pass to that peer without 
+		altering or removing the DSCP 45 marking (see exception below).
+Traffic FROM peers marked with DSCP value 45 MUST be allowed to enter the network without altering or 
+removing the DSCP 45 marking (see exception below).</t>
 
-            <t>This section will then conclude with key deployment decisions, which have both operational as well as 
-            technology policy implications.</t> 
+		<t>However, some networks may use DSCP 45 for internal purposes other than NQB within 
+		their network. In these cases, the peer using DSCP 45 for other purposes is responsible for 
+		remarking as appropriate. If possible, for operational simplicity, a network should 
+		try to maintain the use of DSCP 45 on an end-to-end basis without remarking in their interior network hops.</t>
+		
+        </section>
 
-        <section title="Application-Originated Marking vs. Middleboxes">
+		<section title="Last Mile Network (Access Network)">
+        
+        <t>There are two hops of interest in the last mile access network. One will be a point of user aggregation, such as a Cable 
+        Modem Termination System (CMTS) or Optical Line Terminal (OLT). The second is at the user location, such as a Cable Modem (CM) 
+        or Optical Network Unit (ONU), both of which are example of CPE.</t>
+        
+       <t>In theses two queues, ISPs should consider using the optional Queue Protection function 
+	   <xref target="I-D.ietf-tsvwg-nqb"/> <xref target="I-D.briscoe-docsis-q-protection"/>. This can 
+	   potentially detect mismarking and take corrective action as needed.</t>
+
+        </section>
+        
+        <section title="Customer Premise Equipment (Customer Edge)">
+
+        <t>In most residential Internet services, there are typically two equipment modes. One is very simple CPE that hands off from 
+        the ISP's access network (i.e., DSL, 5G, DOCSIS, PON) and provides the customer with an Ethernet interface and IP address(es). 
+        The customer then connects their own router and wireless access point (often integrated into the router, typically referred 
+        to as a "wireless gateway" or "wireless router"). The other model is more typical, which is that the CPE integrates a link 
+        layer termination function (i.e., Cable Modem, 5G radio, or Optical Network Unit) as well as a wireless gateway.</t>
+
+        <t>Not all ISP networks support both of these models; sometimes only a wireless gateway is available. Even in this case, some 
+        users "double NAT" and install their own router and wireless access point(s) to get whatever functionality and control over their 
+        home network that they desire. The cases explored below are commonplace but may not apply to all networks.</t>
+           
+		<t>In some cases, dual queue networking and associated packet marking is supported up to the ISP's demarcation point - 
+                such as in a cable modem. It is recommended that packet markings should pass from such a demarcation point to 
+                any attached customer-administered CPE, such as a router or wireless access point. That enables a 
+				customer-administered router to implement dual queue networking, rather that it only being possible with 
+				ISP-administered CPE.</t>
+
+        </section>
+        
+        <section title="Inside the Home - Customer Local Area Network (LAN)">
+
+        <t>As noted above with the mention of an integrated wireless gateway, the CPE and router/wireless network 
+        gear is integrated into a single CPE device. Even though these are functionally in one piece of hardware, we can 
+        think of the wide area network interface and local area network as functionally separate for purposes of this analysis.</t>
+
+        <section title="802.11 WiFi Queuing">
+				<t>As noted above with respect to prioritization of packets in the ISP network, all packets should be 
+				handled with the same best effort priority in the ISP access network and on the internet. However, in a user's home 
+				Wi-Fi (wireless) local area network (WLAN), this is more complicated, 
+                because there is not a precise mapping between IETF packet marking and IEEE 802.11 marking,
+				 explored in 
+				<xref target="RFC8325"/>. In short, today's 802.11 specifications enable a Wi-Fi network to have multiple queues, 
+				using different "User Priority" and "Access 
+				Category" values. At the current time, these queues are AC_BK (Background), AC_BE (Best Effort), 
+				AC_VI (Video), and AC_VO (Voice).</t>
+
+				<t>As explored in <xref target="I-D.ietf-tsvwg-nqb"/>, packets in the low latency queue 
+				may be expected to be marked for the best effort (AC_BE) or video (AC_VI) wireless queue. For additional context, 
+				please refer to Section 8.1 of  <xref target="I-D.ietf-tsvwg-nqb"/>. In some situations, such as a 
+				user-owned wireless access point or CPE, it may not be possible for the user to select which wireless 
+				queue is used. In cases where the CPE is ISP-administered, selecting a specific wireless queue may be 
+				possible - though it is not yet clear what the best practice may be for this selection until ISPs and 
+				application developers have more experience with low latency networking. As of the writing of this document, 
+                it appears that the AC_VI queue may be used for the low latency queue in some networks - and that many 
+                latency-sensitive applications are already marking their upstream wireless traffic for AC_VI and AC_VO.</t>
+			</section>	
+
+			<section title="Use Permissive Upstream NQB Queue Admission">
+				<t>Since the IETF's NQB specification is only recently completed, many applications that have 
+				been using other DSCP marks for their latency-sensitive flows have not yet shifted to adopt DSCP-45. 
+				One example is the Microsoft Xbox platform <xref target="Microsoft"/>, which is using DSCP-46. 
+				So in the relatively short-term, ISPs may find it beneficial to their customers to 
+				use a more permissive upstream NQB admission policy, allowing DSCP-40, 45, 46, and 56 admission 
+				into the low latency queue. It may take a year or more after the NQB DSCP assignment is made by IANA for  
+				developers to shift to DSCP-45, given other items in their development backlog and their 
+				software release schedule.</t>
+
+			</section>	
+			</section>
+
+
+        <section title="Do Not Use Middleboxes">
         <t>As noted in <xref target="Tussle"/> there has always been a tension in the end-to-end model between how 
         much intelligence and processing takes place along the end-to-end path inside of a network and how much 
         takes place at the end of the network in servers and/or end user client devices and software. In this new 
         approach to low latency networking, entry into a low latency queue depends upon marks in the packet header 
         of a particular application flow. In practice, this marking is best left to the application edge of the network, 
-        rather than it being a funcyion of a so-called middlebox. As explored below, this is the most efficient, 
-        least prone to error or mis-classification, and is most acceptable from the standpoint of network neutrality 
-        regulation.</t>
-    
-	    <section title="Applications Mark Traffic, Not Middleboxes">
+        rather than it being a function of a so-called middlebox in the ISP network. As explored below, this is 
+		the most efficient, least prone to mis-classification, and is most acceptable from the standpoint of 
+		network neutrality.</t>
 		    
 		    <t>The best approach is for applications to mark traffic to indicate their preference for the low latency queue, 
 			not the network making such a decision on its own. This is for several reasons:</t>
@@ -406,179 +441,27 @@ rate of packets using that partition. This traditional approach to QoS is hierar
 		    major changes. As a result, the application layer is best suited to rapid experimentation and iteration. Network 
 		    operators and equipment vendors trying to infer application needs will in comparison always be in a reactive 
 		    mode, one step behind changes made in applications.</li>
-
-<!-- ADD SOMETHING ON ERRORS - A LA LOTUS -->
-
-
+			<li>This avoids issues arising from mis-classification of application flows <xref target="Lotus"/>.</li>
+			<li>Any application provider should be able to mark their traffic for the low latency queue, 
+			with no restrictions other than standards compliance or other reasonable and openly documented technical 
+			guidelines. This maintains the loose cross-layer coupling that is a key tenet of the Internet's 
+			architecture by eliminating the need for application providers and networks to coordinate and creates 
+			an environment of so-called "permissionless innovation".</li>
 		    </ul>
-		    
-	    </section>
-	    
-	    
-	    <section title="Any Application Provider Can Mark Traffic - No Advance Permission"> 
-		    
-		    <t>Any application provider should be able to mark their traffic for the low latency queue, with no restrictions 
-		    other than standards compliance or other reasonable and openly documented technical guidelines. This 
-		    maintains the loose cross-layer coupling that is a key tenet of the Internet's architecture by eliminating 
-		   the need for application providers and networks to coordinate and creates an environment of so-called "permissionless innovation".</t> 
-		               
-	    </section>
-
+		
             </section>
 
-        <section title="Interconnection Points (Provider Edge)">
-        
-        <section title="Allow ECN Across Domain (Peer) Boundaries">
-        <t>Traffic sent TO a peer network marked with ECT(1) or CE in the ECN header MUST pass to that peer 
-        without altering or removing the ECT(1) or CE marking (see exception below). Traffic FROM peers marked 
-        with ECT(1) or CE in the ECN header MUST be allowed to enter the network without altering or removing 
-        the ECT(1) or CE marking (see exception below). The only exception would be when a network element is 
-        CE-aware and able to add a CE mark to signal that it is experiencing congestion at that hop.</t>
-        
-        <t>This part - allowing unmodified ECN across the network - is likely to be easier than DSCP-45 for NQB (see next section), since it 
-        appears rare that networks modify the ECN header of packet flows.</t>
-        </section>
-        
-
-        <section title="Allow DSCP-45 Across Domain (Peer) Boundaries">
-        <t>Traffic sent TO a peer network marked with DSCP value 45 MUST pass to that peer without altering or removing the DSCP 45 marking (see exception below).
-Traffic FROM peers marked with DSCP value 45 MUST be allowed to enter the network without altering or removing the DSCP 45 marking (see exception below).
-Peer marking exception: Some peer networks may use DSCP 45 for purposes other than NQB LL within their network. In these cases, the peer using DSCP 45 for other purposes is responsible for remarking on ingress and egress from their network.
-In all cases, traffic marked DSCP 45 must still be handled as best efforts - not a higher priority than other Internet traffic.</t>
-        </section>
-
-        </section>
-
-        <section title="Inside the ISP Network (Core Network)">
-        
-        <t>Within an ISP network, packets will typically traverse edge routers, backbone routers, and regional/local routers before 
-        being send into a last-mile access network to which end users are connected. In the case of ECN, there are unlikely to be 
-        any issues in these hops, as ECN appears to pass end-to-end across most networks. Nevertheless, it is important to check 
-        network policies and router configurations to confirm this and to validate it via packet captures at an end user CPE.</t>
-
-        <t>Ensuring support for NQB via DSCP-45 may be more challenging, as network operators typically have unique uses of various 
-        DSCP marks within their network, such as to differentiate residential internet traffic from commercial internet, transit, 
-        voice services, management traffic, and so on. If DSCP-45 is already used, then a network policy will need to be created and 
-        deployed that will transform ingress packets at the peer edge marked as DSCP-45 to some internal-use value, then back again to DSCP-45 
-        when packets hit the end user CPE. Then the reverse must be done for egress packets, changing DSCP-45 marks from CPE to the 
-        internal-use value and then at the peering edge back to DSCP-45. There will also need to be a policy to transform DSCP 
-        marks from the internal-use value back to DSCP-45 at the CPE for cases when a flow is peer-to-peer, meaning directly 
-        between two end users on a given ISP network.</t>
-
-            <section title="Avoid Internal Remarking of DSCP Values if Possible">
-				<t>If possible, for operational simplicity, a network should try to maintain the use of DSCP 45 on an end-to-end basis 
-				without remarking in their interior network hops. This may not be possible in all networks, because some may already use DSCP 45 for some private 
-				internal reason. In such cases, packets must obviously be remarked to and from DSCP 45 at the customer edge (CPE) and network ingress/egress to other 
-				networks. But if DSCP 45 is not used internally, it is far simpler for network operations and troubleshooting to preserve that mark on an end 
-				to end basis.</t>
-			</section>	
-
-        </section>
-
-        <section title="Last Mile Network (Access Network)">
-        
-        <t>There are two hops of interest in the last mile access network. One will be a point of user aggregation, such as a Cable 
-        Modem Termination System (CMTS) or Optical Line Terminal (OLT). The second is at the user location, such as a Cable Modem (CM) 
-        or Optical Network Unit (ONU), both of which are example of CPE.</t>
-        
-        <section title="Consider Queue Protection">
-				<t>The specifications in <xref target="I-D.ietf-tsvwg-nqb"/> describe a concept of Traffic Protection, also known as a 
-                Queue Protection Function <xref target="I-D.briscoe-docsis-q-protection"/> or simply Queue Protection. The document says that Traffic Protection 
-                is optional and may not be needed in certain networks. In the case of an ISP deploying low latency networking with 
-                two queues, an ISP should consider deploying such a network function to at least detect mismarking (if not necessarily 
-                to correct mismarking). This may be implemented, for example, in end user CPE, last mile network equipment, 
-                and/or elsewhere in the ISP network - or closely monitors network statistics and user feedback for any indication of 
-                widespread low latency packet mismarking by applications.</t>
-
-                <t>Queue Protection can be implemented any place that there are two queues for low latency networking. For example, for 
-                downstream traffic, this would be in the aggregation device (i.e., CMTS, OLT) and in the upstream direction in 
-                the CPE (i.e., CM or ONU).</t>
-			</section>	
-        </section>
-
-        <section title="Customer Premise Equipment (Customer Edge)">
-
-        <t>In most residential internet services, there are typically two equipment modes. One is very simple CPE that hands off from 
-        the ISP's access network (i.e., DSL, 5G, DOCSIS, PON) and provides the customer with an Ethernet interface and IP address(es). 
-        The customer then connects their own router and wireless access point (often integrated into the router, typically referred 
-        to as a "wireless gateway" or "wireless router"). The other model is more typical, which is that the CPE integrates a link 
-        layer termination function (i.e., Cable Modem, 5G radio, or Optical Network Unit) as well as a wireless gateway.</t>
-
-        <t>Not all ISP networks support both of these models; sometimes only a wireless gateway is available. Even in this case, some 
-        users "double NAT" and install their own router and wireless access point(s) to get whatever functionality and control over their 
-        home network that they desire. The cases explored below are commonplace but may not apply to all networks.</t>
-        
-            <section title="Support a Variety of End User Equipment"> 
-		    
-		   <t>To create the best foundation for growth, both customer-owned and ISP-administered Customer Premises Equipment (CPE) should be supported 
-		   (assuming that is typical and technically feasible in a particular type of access network), when applicable. In mobile networks, where a user 
-		   device connects directly to the network, this may be easier as it simply depends upon operating system software in that end user device. In 
-		   fixed networks, there is usually CPE that demarcates between the ISP network and the user's home LAN. The software running on those CPE devices 
-		   will also need to support low latency networking, as well as software in other ISP network devices where CPE connections are aggregated. The more 
-		   CPE devices that are enabled, the greater the pool of potential users, and thus the broader adoption would be, positively 
-           driving network effects.</t>
-		   
-	    </section>
-
-            <section title="Pass Markings to Customer-Administered CPE">
-				<t>In some cases, dual queue networking and associated packet marking is supported up to the ISP's demarcation point - 
-                such as in a cable modem. It is recommended that packet markings should pass from such a demarcation point to 
-                any attached customer-administered CPE, such as a router or wireless access point. That enables a 
-				customer-administered router to implement dual queue networking, rather that it only being possible with 
-				ISP-administered CPE.</t>
-			</section>	
-
-        </section>
-        
-        <section title="Inside the Home (Customer Local Area Network)">
-
-        <t>As noted above with the mention of an integrated wireless gateway, and is most common, the CPE and router/wireless network 
-        gear may be integrated into a single CPE device. Even though these are functionally in one piece of hardware, we can 
-        think of the wide area network interface and local area network as functionally separate for purposes of this analysis.</t>
-
-        <section title="In Home Wi-Fi LAN Configuration">
-				<t>As noted above with respect to prioritization of packets in the ISP network, all packets should be 
-				handled with the same best effort priority in the ISP access network and on the internet. However, in a user's home 
-				Wi-Fi (wireless) local area network (WLAN), this is more complicated, 
-                because there is not a precise mapping between IETF packet marking and IEEE 802.11 marking,
-				 explored in 
-				<xref target="RFC8325"/>. In short, today's 802.11 specifications enable a Wi-Fi network to have multiple queues, 
-				using different "User Priority" and "Access 
-				Category" values. At the current time, these queues are AC_BK (Background), AC_BE (Best Effort), 
-				AC_VI (Video), and AC_VO (Voice).</t>
-
-				<t>As explored in <xref target="I-D.ietf-tsvwg-nqb"/>, packets in the low latency queue 
-				may be expected to be marked for the best effort (AC_BE) or video (AC_VI) wireless queue. For additional context, 
-				please refer to Section 8.1 of  <xref target="I-D.ietf-tsvwg-nqb"/>. In some situations, such as a 
-				user-owned wireless access point or CPE, it may not be possible for the user to select which wireless 
-				queue is used. In cases where the CPE is ISP-administered, selecting a specific wireless queue may be 
-				possible - though it is not yet clear what the best practice may be for this selection until ISPs and 
-				application developers have more experience with low latency networking. As of the writing of this document, 
-                it appears that the AC_VI queue may be used for the low latency queue in some networks - and that many 
-                latency-sensitive applications are already marking their WLAN traffic for AC_VI and AC_VO.</t>
-			</section>	
-
-			<section title="Use Permissive Upstream NQB Queue Admission">
-				<t>Since the IETF's NQB specification is only recently completed, many applications that have 
-				been using other DSCP marks for their latency-sensitive flows have not yet shifted to adopt DSCP-45. 
-				One example is the Microsoft Xbox platform <xref target="Microsoft"/>, which is using DSCP-46. 
-				So in the relatively short-term, ISPs may find it beneficial to their customers to 
-				use a more permissive upstream NQB admission policy, allowing DSCP-40, 45, 46, and 56 admission 
-				into the low latency queue. It may take a year or more after the NQB DSCP assignment is made by IANA for  
-				developers to shift to DSCP-45, given other items in their development backlog and their 
-				software release schedule.</t>
-
-			</section>	
 
         </section>
 
         <!--  END MAJOR SECTION --> 
         <!--  START NEW MAJOR SECTION --> 
-	  
-	 </section>
+	
 	 
 	    <section title="Acknowledgements">
-			<t>Thanks to Bob Briscoe, Mat Ford, Vidhi Goel, Eliot Lear, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg Skinner, 
+			<t>Thanks to Bob Briscoe, Gorry Fairhust, Mat Ford, Vidhi Goel, Mirja Kuhlewind, Eliot Lear, 
+			Sebastian Moeller, Sebnem Ozer, Jim Rampley, 
+			Dan Rice, Greg Skinner, Joe Touch, 
             Greg White, and Yiannis Yiakoumis for their review and feedback on this document.</t>
 		</section>
 	
@@ -603,7 +486,7 @@ In all cases, traffic marked DSCP 45 must still be handled as best efforts - not
 		  low latency networking being such a new approach, it seems prudent to implement Queue Protection.</t>
 	    </section>
 
-		<section title="Regulatory Considerations">
+		<section title="Network Neutrality Considerations">
 		    <t>Network Neutrality (a.k.a. Net Neutrality) can mean a variety 
 		    of things within a country, as well as between different countries, based on 
 		    different opinions, market structures, business practices, laws, and regulations. Generally speaking, 
@@ -614,10 +497,9 @@ In all cases, traffic marked DSCP 45 must still be handled as best efforts - not
 			making deployment decisions.</t>
 
 			<t>As it is envisioned in the design of the IETF's new low latency networking protocols, the addition 
-			of a low latency packet processing queue at a network link is merely a second 
+			of a low latency queue at a network link is merely a second 
 		    packet queue and does not mean that this queue is hierarchically prioritized or that it has more 
-		    capacity. As a result, low latency networking appears to pose no new Net Neutrality issues. However, 
-			it is important for ISPs to keep these risks in mind as they make deployment design decisions.</t>
+		    capacity. As a result, low latency networking appears to pose NO new Net Neutrality issues.</t>
 
 			<t>One key aspect of low latencty networking is that it operates, from the perspective of an ISP's 
 			deployment, is application-agnostic. The ISP creates a second network queue on key network links, but 
@@ -641,6 +523,7 @@ In all cases, traffic marked DSCP 45 must still be handled as best efforts - not
           <t>v05: Changes from Greg Skinner and Eliot Lear</t>
           <t>v06: More changes from Eliot Lear</t>
           <t>v07: More changes from Eliot Lear</t>
+          <t>v08: Misc updates from IETF review</t>
 
 	    </section>
 	    
@@ -664,9 +547,9 @@ In all cases, traffic marked DSCP 45 must still be handled as best efforts - not
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9330.xml"/>
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9331.xml"/>
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9332.xml"/>
+			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9435.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
-		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-dscp-considerations.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.briscoe-docsis-q-protection.xml"/>
 		   
 		   <reference anchor="BITAG" target="https://bitag.org/documents/BITAG_latency_explained.pdf">
@@ -769,50 +652,15 @@ In all cases, traffic marked DSCP 45 must still be handled as best efforts - not
 			   </front>
 			</reference>
 
-			<reference anchor="Comcast" target="https://corporate.comcast.com/stories/comcast-kicks-off-industrys-first-low-latency-docsis-field-trials">
+			<reference anchor="Comcast" target="https://corporate.comcast.com/press/releases/comcast-introduces-nations-first-ultra-low-lag-xfinity-internet-experience-with-meta-nvidia-and-valve">
 			   <front>
-	            <title>Comcast Kicks Off Industry's First Low Latency DOCSIS Field Trials</title>
+	            <title>Comcast Introduces Nation's 
+				First Ultra-Low Lag Xfinity Internet Experience with Meta, NVIDIA, 
+				and Valve</title>
 	            <author>
 	              <organization>Comcast</organization>
 	            </author>
-	            <date year="2023" month="June" day="16"/>
-			   </front>
-			</reference>
-
-
-			<reference anchor="IETF-TSVWG-120" target="https://datatracker.ietf.org/doc/slides-120-tsvwg-52-comcasts-l4s-nqb-field-trials/">
-			   <front>
-	            <title>TSVWG Meeting at IETF-120</title>
-				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
-				  </author>
-	            <date year="2024" month="July" day="26"/>
-			   </front>
-			</reference>
-
-			<reference anchor="IETF-TSVWG-119" target="https://datatracker.ietf.org/doc/slides-119-tsvwg-sessa-41-comcasts-l4s-nqb-field-trials/">
-			   <front>
-	            <title>TSVWG Meeting at IETF-119</title>
-				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
-				  </author>
-	            <date year="2024" month="March" day="18"/>
-			   </front>
-			</reference>
-
-			<reference anchor="IETF-TSVWG-118" target="https://datatracker.ietf.org/doc/slides-118-tsvwg-sessa-61-l4s-experience/">
-			   <front>
-	            <title>TSVWG Meeting at IETF-118</title>
-				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
-				  </author>
-	            <date year="2023" month="November" day="18"/>
-			   </front>
-			</reference>
-
-			<reference anchor="IETF-TSVWG-117" target="https://datatracker.ietf.org/doc/slides-118-tsvwg-sessa-61-l4s-experience/">
-			   <front>
-	            <title>TSVWG Meeting at IETF-117</title>
-				  <author fullname="Jason Livingood" initials="J" surname="Livingood"><organization>Comcast</organization>
-				  </author>
-	            <date year="2023" month="July" day="27"/>
+	            <date year="2025" month="January" day="29"/>
 			   </front>
 			</reference>
 
