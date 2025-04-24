@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-08"
+	  docName="draft-livingood-low-latency-deployment-09"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -93,7 +93,7 @@
 	  <front>
 	
 	    <title abbrev="ISP Dual Queue Networking Deployment Recommendations">ISP Dual Queue Networking Deployment Recommendations</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-08"/>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-09"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="April" day="21" year="2025"/>
+	    <date month="April" day="24" year="2025"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -293,6 +293,18 @@
 		For example, a video gaming service may benefit from using L4S or 
         NQB for real-time controller inputs and gameplay, while major game software updates would best be left in 
         the classic queue.</t>    
+        </section>
+
+        <section title="Consider Application Needs in Choosing L4S vs. NQB"> 
+
+        <t>Determine whether your application needs "sparse" flows or "congestion-controlled" (higher capacity) 
+        flows. Sparse flows that are latency senstive should be marked as NQB (thus DSCP-45). This may be things 
+        like DNS queries or VoIP media flows, where maximizing the bandwidth of the flow is not necesary.</t>
+        
+        <t>Latency-sensitive flows that need more bandwidth are congestion controlled, and identified via ECN marking. 
+        These types of applications are less limited by the application protocol itself (i.e., a small DNS query), 
+        which means the application quality can improve as more bandwidth is available - such as shifting a 
+        video stream or a video conference session from Standard Definition (SD) to 4K quality.</t>
         </section>
 
     
@@ -524,6 +536,7 @@ removing the DSCP 45 marking (see exception below).</t>
           <t>v06: More changes from Eliot Lear</t>
           <t>v07: More changes from Eliot Lear</t>
           <t>v08: Misc updates from IETF review</t>
+          <t>v09: Additional updates during review</t>
 
 	    </section>
 	    
