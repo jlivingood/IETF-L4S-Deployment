@@ -5,7 +5,7 @@ Start date: 24 September 2025
 # Field Trial Activities
 
 ## Wednesday, 9/24/25 - Sunday, 9/28/25 (No Incremental Time Commitment)
-- Use the connection as usual, report any performace issues at [https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07](https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07])
+- Use the connection as usual, report any performance issues at [https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07](https://app.smartsheet.com/b/form/c91c06bb97914742bdf54f25e294eb07])
 
 ## Monday, 9/29/25 - Friday, 10/3/25 (30 Minutes Time Commitment)
 
