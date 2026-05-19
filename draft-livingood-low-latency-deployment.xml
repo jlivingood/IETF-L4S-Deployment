@@ -79,7 +79,7 @@
 	<rfc
 	  xmlns:xi="http://www.w3.org/2001/XInclude"
 	  category="info"
-	  docName="draft-livingood-low-latency-deployment-10"
+	  docName="draft-livingood-low-latency-deployment-16"
 	  ipr="trust200902"
 	  obsoletes=""
 	  updates=""
@@ -92,8 +92,8 @@
 	
 	  <front>
 	
-	    <title abbrev="ISP Dual Queue Networking Deployment Suggestions">ISP Dual Queue Networking Deployment Suggestions</title>
-	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-10"/>
+	    <title abbrev="ISP Dual Queue Observations">ISP Dual Queue Networking Deployment Observations</title>
+	    <seriesInfo name="Internet-Draft" value="draft-livingood-low-latency-deployment-16"/>
 	
 	    <!-- add 'role="editor"' below for the editors if appropriate -->
 	    <author fullname="Jason Livingood" initials="J" surname="Livingood">
@@ -109,7 +109,7 @@
 	      </address>
 	    </author>
 	
-	    <date month="January" day="27" year="2026"/>
+	    <date month="April" day="17" year="2026"/>
 	
 	    <!-- Meta-data Declarations -->
 	    <!-- WG name at the upper left corner of the doc,
@@ -130,7 +130,7 @@
 	      These documents describe a new architecture and protocol for deploying low latency networking. 
           Since deployment decisions are left to implementers, this document explores some of the 
 	      implications of those decisions and makes suggestions that can help drive adoption and acceptance of 
-		  L4S and NQB.</t>
+		  L4S and NQB based on observations from the world's first large scale deployment.</t>
 	    </abstract>
 	
 		
@@ -155,7 +155,7 @@
 		<t>This document explores some of the key deployment decisions and makes suggestions that may help drive adoption 
 		by network operators and application developers. These decisions are not inherent to L4S and NQB per se, 
 		but are decisions that can change depending upon differing technical, regulatory, business or other 
-		requirements. This document suggests that certain specific deployment decisions can help
+		requirements. This document suggests that certain specific deployment decisions - based on observations from the world's first large scale deployment - that can help
 		maximize the value of low latency networking to end users, network operators, and application developers.</t> 
 		
 		<t>For additional background on latency and why latency matters to the Internet, please 
@@ -196,18 +196,18 @@
     <tr>
       <td align="left">Low Latency</td>
       <td align="left">VoIP, DNS, game sync packets, some machine-to-machine and IoT communications</td>
-	  <th align="left">Low data rate, application-limited flows</th>
+	  <td align="left">Low data rate, application-limited flows</td>
       <td align="left">Non-Queue-Building (NQB)</td>
     </tr>
 	<tr>
       <td align="left">Low Latency with High Throughput</td>
       <td align="left">Cloud gaming, video conferencing, adaptive video streaming, instant messaging, web browsing, VoIP, cloud-based interactive video, cloud-based virtual and augmented reality</td>
-	  <th align="left">Low data rate, application-limited flows and high data rate, throughput-limited flows</th>
+	  <td align="left">Low data rate, application-limited flows and high data rate, throughput-limited flows</td>
       <td align="left">Low Latency, Low Loss, Scalable Throughput (L4S)</td>
     </tr>
     <tr>
       <td align="left">High Throughput without Respect to Latency</td>
-	  <th align="left">Bursty traffic flows and high data rate traffic flows</th>
+	  <td align="left">Bursty traffic flows and high data rate traffic flows</td>
       <td align="left">Software Updates, Cloud Backups, P2P File Sharing</td>
       <td align="left">Queue-Building (QB)</td>
     </tr>
@@ -223,12 +223,13 @@
 			QoS approach used packet prioritization, where it was possible to assign a higher 
 			relative priority to certain application traffic, such as Voice over IP (VoIP) telephony. This approach 
 			could provide consistent and relatively low latency by assigning high priority to a partition 
-			of the capacity of a link, and then policing the rate of packets using that partition. This 
+			of the capacity of a link and then policing the rate of packets using that partition. This 
 			traditional approach to QoS is hierarchical in nature.</t>
 			
 			<t>That QoS approach is to some extent predicated on the idea that network capacity is 
 			very limited and that links are often highly utilized. But on today's Internet, many users have 
-			experienced poor application performance, such as video conferencing, despite having sufficient bandwidth. 
+			experienced poor application performance, such as video conferencing, despite seeming to have sufficient bandwidth - often 
+			referred to as buffer bloat <xref target="Bufferbloat"/>. 
 			In many of these scenarios, prioritization will not improve a flow. But finding a way to reduce latency 
 			has proven beneficial. This new low latency networking approach is not based on hierarchical 
 			QoS prioritization. Rather, it is built upon conditional priority scheduling between two queues 
@@ -238,7 +239,7 @@
 
 	<section title="Application Performance Benefits" anchor="Benefits">			
 			<t>The benefits of low latency networking to end user applications, especially interactive ones, is significant. In the Comcast network in 
-			the United States, this technolgy is deployed to over ten million homes as of January 2026. That encompasses over 300 million end user devices, 
+			the United States, this technology is deployed to over ten million homes as of January 2026. That encompasses over 300 million end user devices, 
 			based on the typical number of devices on a user Local Area Network (LAN). Comcast has shared in many IETF meeting presentations the data 
 			showing latency and jitter reductions (such as in <xref target="IETF-122-Slides"/>). At a high level, 99th percentile loaded 
 			latency for downstream traffic declined from ~65 ms to ~33 ms from implementation of downstream Active Queue Management (AQM) on the Cable Modem Termination System (CMTS). 
@@ -248,7 +249,8 @@
 
 			<t>This means that video conferencing applications such as Apple FaceTime and cloud gaming such as NVIDIA GeForce NOW and Valve's Steam platform will perform much 
 			better on a network that supports low latency networking. It benefits any marked application that is interactive in nature, where a user is interacting with a screen or other device, 
-			via mouse, keyboard, voice command, gesture, or other interactivity mechanism. Apple recently shared statistics <xref target="IETF-123-Slides"/> that they collected that confirm 
+			via mouse, keyboard, voice command, gesture, or other interactivity mechanism, and the interaction involves remote entities. 
+            Apple recently shared statistics <xref target="IETF-123-Slides"/> that they collected that confirm 
 			this performance, using Responsiveness Under Working Conditions tests <xref target="I-D.ietf-ippm-responsiveness"/>.</t>
 			
 		</section>
@@ -265,68 +267,79 @@
 		by using QoS priority. The advent of low latency networking enables a re-examination of those approaches. It was also thought that networks and applications had to choose 
 		between either high throughput or low delay - but dual queue low latency demonstrates that both can be achieved simultaneously.</t>
 	    
-			<section title="Throughput is Bounded by Congestion Control Algoritms">
-		    	<t>The Mathis Equation <xref target="Mathis"/> explains how throughput is bounded by congestion control algorithms. This equation shows that throughput scales at 
-				1/sqrt(p), where p is the packet loss probability. The square root is the problem, because achieving a ten-fold increase in throughput requires a 
-				one-hundred-fold reduction in packet loss! One solution, now understood as problematic, was to build large packet buffers so as to minimize packet loss (p). 
-				But this led to very high delay, otherwise known as bufferbloat.</t>
+			<section title="Throughput is Bounded by Congestion Control Algorithms">
+		    	<t>The Mathis Equation <xref target="Mathis"/> explains how throughput is bounded in the Reno congestion control algorithm that was in use at that time. Reflections on 
+                this approach were published later and hint at the potential for new approaches like those explored in this document <xref target="Mathis-Reflections"/>.</t>
+
+                <t>This equation shows that throughput scales at 1/sqrt(p), where p is the packet loss probability.  The square root is a problem, because achieving a
+                ten-fold increase in throughput requires a one-hundred-fold reduction in packet loss probability, and thus a ten-fold reduction in packet loss rate on a per-second basis.  
+                This becomes unscalable as path capacities increase, as the required time between congestion signals becomes longer than the typical duration of a connection.</t>
+
 
 				<t>This nonlinear relationship described in the equation means that, to take a link from 1 Gbps to 10 Gbps for example, packet loss would need to be reduced 
 				one-hundred-fold. This makes it increasingly hard to hit ever-higher data rates in real world environments, especially with WiFi and 5G links, where those levels of loss are 
 				unachievable at the current time.</t> 
-				
-				<t>L4S replaces packet loss (p) with a signal (CE mark), as a rapid feedback signal to a sender to reduce their rate. This means that with L4S, throughput scales proportionally.  
-				In a manner of speaking, L4S apps can quickly react to potential congestion by gradually tapping the brakes before there is a big congestion crash. With L4S, if you increase 
-				throughput by 10x, you only need to reduce loss by 10x rather than 100x. This is far more achievable and makes high throughput, low delay networking a realistically achievable goal.</t>
 
-				<t>This table shows examples of the loss target necessary to take a link from 1 Gbps to 10 Gbps, given certain starting packet loss levels. Wireline networks will typically have 
-				loss levels between 0.1% and 0.5%, WiFi links may experience between 0.5% and 2% loss, and 5G links between 1% and 3% loss <xref target="FCC-MBA-2023"/>.</t>
-			<table anchor="loss_reduction_comparison" align="center">
-  <name>Packet Loss Reduction Requirements: 1 Gbps to 10 Gbps</name>
+
+                <t>While the dominant congestion control algorithm today (Cubic) improves upon this, it still requires long intervals between congestion signals as rates 
+                increase <xref target="RFC9438"/>. Alternative congestion controllers like BBR <xref target="BBR-Paper"/> aim to infer the link rate without relying on packet loss as a signal but do so with very 
+                limited information from the path, and can lead to fairness issues, oscillations in throughput, starvation and other unwanted effects <xref target="Starvation"/> <xref target="BBR-Analysis"/>.</t>
+
+                <t>L4S replaces packet loss with an explicit signal (CE mark) and it takes advantage of the fact that, in contrast to packet loss, the explicit congestion signal is not a 
+                degradation of communication and thus can be provided liberally by the network.</t>
+
+                <t>L4S also depends upon a scalable congestion control algorithm on a host. The congestion control algorithm scales its throughput proportional to 1/p, where p here is the congestion marking probability. What this means 
+                in practice is that if you increase throughput by 10x, you only need to reduce the congestion signal probability by 10x rather than 100x, and the rate of congestion signals 
+                on per-second basis remains constant.  As a result, applications get very frequent and fine-grained feedback that they use to make adjustments to their sending rate, and 
+                congestion control is fully scalable, with no loss in the frequency of signals as the path capacity increases.</t>
+
+				<t>This table illustrates the implications of this for an example of a TCP connection with 50 ms RTT (example idle and working latencies can be seen in <xref target="FCC-MBA-2023"/>).</t>
+			<table anchor="congestion_signal_comparison" align="center">
+  <name>Comparison of Congestion Signal Frequency at 50ms RTT</name>
   <thead>
     <tr>
-      <th align="left">Starting Loss (1 Gbps)</th>
-      <th align="left">Req. Loss (10 Gbps Classic)</th>
-      <th align="left">Reduction (Classic)</th>
-      <th align="left">Req. Loss (10 Gbps L4S)</th>
-      <th align="left">Reduction (L4S)</th>
+      <th align="left">Data Rate</th>
+      <th align="left">Reno: Interval Between Congestion Signals</th>
+      <th align="left">Cubic: Interval Between Congestion Signals</th>
+      <th align="left">L4S: Interval Between Congestion Signals</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="left">0.1%</td>
-      <td align="left">0.0010%</td>
-      <td align="left">100x</td>
-      <td align="left">0.01%</td>
-      <td align="left">10x</td>
+      <td align="left">1 Mbps</td>
+      <td align="left">285 ms</td>
+      <td align="left">160 ms</td>
+      <td align="left">12.5 ms</td>
     </tr>
     <tr>
-      <td align="left">0.5%</td>
-      <td align="left">0.0050%</td>
-      <td align="left">100x</td>
-      <td align="left">0.05%</td>
-      <td align="left">10x</td>
+      <td align="left">10 Mbps</td>
+      <td align="left">2.85 sec</td>
+      <td align="left">350 ms</td>
+      <td align="left">12.5 ms</td>
     </tr>
     <tr>
-      <td align="left">1.0%</td>
-      <td align="left">0.0100%</td>
-      <td align="left">100x</td>
-      <td align="left">0.10%</td>
-      <td align="left">10x</td>
+      <td align="left">100 Mbps</td>
+      <td align="left">28.5 sec</td>
+      <td align="left">740 ms</td>
+      <td align="left">12.5 ms</td>
     </tr>
     <tr>
-      <td align="left">2.0%</td>
-      <td align="left">0.0200%</td>
-      <td align="left">100x</td>
-      <td align="left">0.20%</td>
-      <td align="left">10x</td>
+      <td align="left">1 Gbps</td>
+      <td align="left">4.75 min</td>
+      <td align="left">1.6 sec</td>
+      <td align="left">12.5 ms</td>
     </tr>
     <tr>
-      <td align="left">3.0%</td>
-      <td align="left">0.0300%</td>
-      <td align="left">100x</td>
-      <td align="left">0.30%</td>
-      <td align="left">10x</td>
+      <td align="left">10 Gbps</td>
+      <td align="left">47.5 min</td>
+      <td align="left">3.5 sec</td>
+      <td align="left">12.5 ms</td>
+    </tr>
+    <tr>
+      <td align="left">100 Gbps</td>
+      <td align="left">7.9 hrs</td>
+      <td align="left">7.5 sec</td>
+      <td align="left">12.5 ms</td>
     </tr>
   </tbody>
 </table>
@@ -335,13 +348,13 @@
 	    	</section>	
 
 			<section title="Best Effort Priority">
-		    	<t>Low latency traffic to is not prioritized over other 
+		    	<t>Low latency traffic is not prioritized over other 
 				(best effort priority) "classic" Internet traffic. This best effort approach stands 
 				in contrast to prior differential quality of service (QoS) approaches or to what has been discussed 
 				for 5G network slicing <xref target="CDT-NN"/> <xref target="van-Schewick-1A"/> 
 				<xref target="van-Schewick-1B"/> <xref target="van-Schewick-2"/> <xref target="van-Schewick-3"/>.</t>
 
-				<t>Those approaches are grounded in an assumption that there is scare bandwidth and so the network must grant higher priority to some flows, 
+				<t>Those approaches are grounded in an assumption that there is scarce bandwidth and so the network must grant higher priority to some flows, 
 				creating bandwidth winners and losers. That has raised the ire of network neutrality proponents, who have focused on negative effects this can 
 				have on flows that are not prioritized and the terms under which certain applications or destinations may be granted priority.</t>
 
@@ -357,13 +370,13 @@
 				AC_VI Wi-Fi link layer queue <xref target="I-D.ietf-tsvwg-nqb"/>.</t>
 	    	</section>
 	    
-			<section title="Shared Throughput">
-		    	<t>Low latency networking flows do not get access to greater throughput than "classic" flows. 
-				Thus, a user's total provisioned or permitted throughput on an ISP access network link is 
-				shared between both classic and low latency queues. This is important, as it demonstrates that there is no difference in priority between flows - so by marking for 
-				low latency treatment a flow cannot achieve any greater bandwidth than if it did not mark, removing an incentive to game the system to the detriment of other flows.</t>
+			<section title="Shared Capacity">
+		    	<t>Low latency networking flows do not get access to greater capacity than "classic" flows. 
+				Thus, a user's total provisioned or permitted capacity on an ISP access network link is 
+				shared between both classic and low latency queues. This removes an incentive to game the system through low latency 
+                packet marking.</t>
 				
-				<t>Another way to thing of L4S is that it is not really an instruction to a dual queue network link to ask for low latency treatment per se. Rather, applications marking for 
+				<t>Another way to think of L4S is that it is not really an instruction to a dual queue network link to ask for low latency treatment per se. Rather, applications marking for 
 				L4S are essentially making a promise to the network that the application will rapidly reduce throughput if needed (when detecting CE marks); it promises to help keep latency low by being a 
 				good network citizen.</t>
 	    	</section>
@@ -377,30 +390,93 @@
 	    	</section>
 
 		<section title="End-to-End Diagram"> 
-		<t>This diagram shows an example of the end-to-end path for two different user devices, one phone connected to the home WiFi network and one PC 
+		<t>This diagram shows an example of the end-to-end path for two different user devices; one phone connected to the home WiFi network and one PC 
 		connected via Ethernet to the home LAN. Along this full path, L4S or NQB marks must be able to pass between an application on a client device and 
 		an application server. While in theory dual queue low latency networking can be implemented on any of the routers on this path or the access point, 
-		the most common bottlenecks are in the home network (WiFi), the CPE router, and the aggretation router. This alone will provide a tremendous benefit to 
+		the most common bottlenecks are in the home network (WiFi), the CPE router, and the aggregation router. This alone will provide a tremendous benefit to 
 		interactive end user applications and dual queue need not in that case be deployed at any of the other hops.</t>
-		<figure>
-  <name>Network Topology Diagram</name>
-  <artwork type="ascii-art">
-<![CDATA[
-+-------+                   +---------+
-| Phone | <--802.11 WiFi--> | WiFi AP |
-+-------+                   +---------+
-                                ^
-                                |
-                                | Ethernet
-                                v
-+-------+                   +---------+      +--------+      +-----------+      +----------+      +--------+
-|  PC   | <---Ethernet--->  |   CPE   | <--> | Agg    | <--> | Core/Edge | <--> | App Edge | <--> | App    |
-|       |                   | Router  |      | Router |      | Router    |      | Router   |      | Server |
-+-------+                   +---------+      +--------+      +-----------+      +----------+      +--------+
 
-]]>
+<figure>
+  <name>Network Architecture Diagram</name>
+  <artwork type="svg">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="165px" width="730px" viewBox="0 0 730 165" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+      <path d="M 8 3 L 8 35" fill="none" stroke="black"/>
+      <path d="M 8 115 L 8 163" fill="none" stroke="black"/>
+      <path d="M 72 3 L 72 35" fill="none" stroke="black"/>
+      <path d="M 72 115 L 72 163" fill="none" stroke="black"/>
+      <path d="M 232 3 L 232 35" fill="none" stroke="black"/>
+      <path d="M 232 115 L 232 163" fill="none" stroke="black"/>
+      <path d="M 264 43 L 264 107" fill="none" stroke="black"/>
+      <path d="M 312 3 L 312 35" fill="none" stroke="black"/>
+      <path d="M 312 115 L 312 163" fill="none" stroke="black"/>
+      <path d="M 368 115 L 368 163" fill="none" stroke="black"/>
+      <path d="M 440 115 L 440 163" fill="none" stroke="black"/>
+      <path d="M 359.812 1.697 L 359.812 49.697" fill="none" stroke="black"/>
+      <path d="M 455.812 1.697 L 455.812 49.697" fill="none" stroke="black"/>
+      <path d="M 511.812 1.697 L 511.812 49.697" fill="none" stroke="black"/>
+      <path d="M 599.812 1.697 L 599.812 49.697" fill="none" stroke="black"/>
+      <path d="M 655.812 1.697 L 655.812 49.697" fill="none" stroke="black"/>
+      <path d="M 727.812 1.697 L 727.812 49.697" fill="none" stroke="black"/>
+      <path d="M 8 3 L 72 3" fill="none" stroke="black"/>
+      <path d="M 232 3 L 312 3" fill="none" stroke="black"/>
+      <path d="M 84.325 19 L 104 19" fill="none" stroke="black"/>
+      <path d="M 200 19 L 218.965 19" fill="none" stroke="black"/>
+      <path d="M 8 35 L 72 35" fill="none" stroke="black"/>
+      <path d="M 232 35 L 312 35" fill="none" stroke="black"/>
+      <path d="M 8 115 L 72 115" fill="none" stroke="black"/>
+      <path d="M 232 115 L 312 115" fill="none" stroke="black"/>
+      <path d="M 368 115 L 440 115" fill="none" stroke="black"/>
+      <path d="M 359.812 1.697 L 455.812 1.697" fill="none" stroke="black"/>
+      <path d="M 511.812 1.697 L 599.812 1.697" fill="none" stroke="black"/>
+      <path d="M 655.812 1.697 L 727.812 1.697" fill="none" stroke="black"/>
+      <path d="M 84.607 131 L 112 131" fill="none" stroke="black"/>
+      <path d="M 184 131 L 216.816 131" fill="none" stroke="black"/>
+      <path d="M 322.632 131 L 352 131" fill="none" stroke="black"/>
+      <path d="M 470.401 24.697 L 498.359 24.697" fill="none" stroke="black"/>
+      <path d="M 613.473 24.759 L 642.141 24.759" fill="none" stroke="black"/>
+      <path d="M 8 163 L 72 163" fill="none" stroke="black"/>
+      <path d="M 232 163 L 312 163" fill="none" stroke="black"/>
+      <path d="M 368 163 L 440 163" fill="none" stroke="black"/>
+      <path d="M 359.812 49.697 L 455.812 49.697" fill="none" stroke="black"/>
+      <path d="M 511.812 49.697 L 599.812 49.697" fill="none" stroke="black"/>
+      <path d="M 655.812 49.697 L 727.812 49.697" fill="none" stroke="black"/>
+      <polygon points="653.812 24.697 641.812 19.097 641.812 30.297" fill="black"/>
+      <polygon points="613.812 24.697 601.812 19.097 601.812 30.297" fill="black" transform="matrix(-1, 0, 0, -1, 1215.624, 49.394)"/>
+      <polygon points="509.812 24.697 497.812 19.097 497.812 30.297" fill="black"/>
+      <polygon points="469.812 24.697 457.812 19.097 457.812 30.297" fill="black" transform="matrix(-1, 0, 0, -1, 927.624, 49.394)"/>
+      <polygon points="365 131 353 125.4 353 136.6" fill="black"/>
+      <polygon points="325 131 313 125.4 313 136.6" fill="black" transform="matrix(-1, 0, 0, -1, 638, 262)"/>
+      <polygon points="270 109 258 103.4 258 114.6" fill="black" transform="matrix(0, 1, -1, 0, 373, -155)"/>
+      <polygon points="270 41 258 35.4 258 46.6" fill="black" transform="matrix(0, -1, 1, 0, 223, 305)"/>
+      <polygon points="230 19 218 13.4 218 24.6" fill="black"/>
+      <polygon points="229 131 217 125.4 217 136.6" fill="black"/>
+      <polygon points="86 131 74 125.4 74 136.6" fill="black" transform="matrix(-1, 0, 0, -1, 160, 262)"/>
+      <polygon points="86 19 74 13.4 74 24.6" fill="black" transform="matrix(-1, 0, 0, -1, 160, 38)"/>
+      <text x="40" y="23">Phone</text>
+      <text x="152" y="23">802.11 WiFi</text>
+      <text x="272" y="23">WiFi AP</text>
+      <text x="308" y="87">Ethernet</text>
+      <text x="36" y="135">PC</text>
+      <text x="148" y="135">Ethernet</text>
+      <text x="272" y="135">CPE</text>
+      <text x="392" y="135">Agg</text>
+      <g transform="matrix(1, 0, 0, 1, -133.902237, -142.60675)">
+        <text x="544" y="164">Core/Edge</text>
+        <text x="692" y="164">App Edge</text>
+        <text x="816" y="164">App</text>
+        <text x="532" y="180">Router</text>
+        <text x="684" y="180">Router</text>
+        <text x="828" y="180">Server</text>
+      </g>
+      <text x="268" y="151">Router</text>
+      <text x="404" y="151">Router</text>
+      <polygon points="412.489 108.197 400.489 102.597 400.489 113.797" fill="black" transform="matrix(0, 1, -1, 0, 514.686, -297.692)"/>
+	  <polygon points="412.118 55.588 400.118 49.988 400.118 61.188" fill="black" transform="matrix(0, -1, 1, 0, 350.53, 462.706)"/>
+	  <path d="M 405.905 61.708 L 406.365 102.827" fill="none" stroke="black"/>
+    </svg>
   </artwork>
 </figure>
+
 </section>
 
 
@@ -410,17 +486,17 @@
         <!--  START NEW MAJOR SECTION --> 
 
         <section title="Application Developer Implementation Suggestions">
-        <t>Application developers need to add L4S or NQB packet marking to their application, which will often depend 
+        <t>Application developers need to add L4S or NQB packet marking to their application, which will usually depend 
         upon the capabilities of a device's operation system (OS) or a software development kit (SDK) 
-        <xref target="Apple"/> that the OS developer makes available. The application server will 
-        also need to support the appropriate marking and, when L4S is used, to implement a responsive congestion 
+        <xref target="Apple"/> that the OS developer makes available. When L4S is used, the application will 
+        also need to support the appropriate marking and implement a responsive congestion 
         controller.</t>
 
         <section title="Delivery Infrastructure for L4S">
         <t>Since L4S uses the Explicit Congestion Notification (ECN) field of the packet header, to ensure 
         ECN works end-to-end, application developers need to be certain that their servers, datacenter routers, 
         and any transit, cloud provider, or content delivery network (CDN) server involved in their application 
-        is not altering or bleaching the ECN field. For an application to use the L4S queue, they must mark 
+        is not altering or bleaching (removing) the value set in the ECN field. For an application to use the L4S queue, they must mark 
         their packets with the ECT(1) code point to signal L4S-capability or with the Congestion Experienced (CE) 
         code point when appropriate. Coupled with client marking, if an application client or server detects CE marks, 
         it should respond accordingly (e.g., by reducing the send rate), which typically means that the server 
@@ -431,28 +507,27 @@
 
         <section title="Delivery Infrastructure for NQB">
         <t>NQB uses the DSCP-45 code point in the DiffServ part of the packet header to ensure 
-        NQB works end-to-end. To achive end-to-end marking, application developers need to be certain that their servers, datacenter routers, 
+        NQB works end-to-end. To achieve end-to-end marking, application developers need to be certain that their servers, datacenter routers, 
         and any transit, cloud provider, or content delivery network (CDN) server involved in their application 
-        is not altering or bleaching a DSCP-45 mark. The server does not need to run 
+        is not altering or bleaching (removing) a DSCP-45 mark. The server does not need to run 
         a special responsive congestion controller. Since it is 
-        common for networks to bleach or modify DSCP marks on ingress today, so networks will need to change that 
+        common for networks to bleach DSCP marks on ingress today, so networks will need to change that 
         policy for NQB to work end-to-end (in contrast, ECN is rarely bleached).</t>
         </section>
 
         <section title="Only Mark Delay-Sensitive Traffic for L4S or NQB">
         <t>It may seem tempting to mark all traffic for L4S or NQB handling, but it may not help in all cases. 
 		For example, a video gaming service may benefit from using L4S or 
-        NQB for real-time controller inputs and gameplay, while major game software updates would best be left in 
-        the classic queue, as doing otherwise might adversely impact game performance.</t>    
+        NQB for real-time controller inputs and gameplay.</t>    
         </section>
 
         <section title="Consider Application Needs in Choosing L4S vs. NQB"> 
 
         <t>Determine whether your application needs "sparse" flows or "congestion-controlled" (higher capacity) 
-        flows. Sparse flows that are latency senstive should be marked as NQB (thus DSCP-45). This may be things 
-        like DNS queries or VoIP media flows, where maximizing the bandwidth of the flow is not necesary.</t>
+        flows. Sparse flows that are latency sensitive should be marked as NQB (thus DSCP-45). This may be things 
+        like DNS queries or VoIP media flows, where maximizing the bandwidth of the flow is not necessary.</t>
         
-        <t>Latency-sensitive flows that need more bandwidth are congestion controlled, and identified via ECN marking. 
+        <t>Latency-sensitive flows that need more bandwidth are congestion controlled and identified via ECN marking. 
         These types of applications are less limited by the application protocol itself (i.e., a small DNS query), 
         which means the application quality can improve as more bandwidth is available - such as shifting a 
         video stream or a video conference session from Standard Definition (SD) to 4K quality.</t>
@@ -460,7 +535,7 @@
 
 		<section title="Example: iOS Application for L4S"> 
 
-        <t>Impementations will vary depending upon variables such as server operating system, transport and application protocols, and client software and operating system. To use the example of an 
+        <t>Implementations will vary depending upon variables such as server operating system, transport and application protocols, and client software and operating system. To use the example of an 
 		Apple device such as an iPhone, running iOS, L4S support is built into iOS by default <xref target="L4S-Testing"/>. If the developer uses the QUIC protocol, they can use "URLSession" <xref target="URLSession"/> 
 		which enables L4S.</t>
         </section>
@@ -477,18 +552,18 @@
 		    these suggestions should help ensure that a deployment is resilient, well-accepted, and creates 
 			the environment for generating strong network effects.</t>
 
-			<t>These suggestions focus on not modifying or bleaching ECN or DSCP-45 marks for L4S and NQB, respectively. That is because 
-			low latency networking will not work on any connected downstream metwork if these marks cannnot travel end-to-end (e.g., a 
+			<t>These suggestions focus on not bleaching (removing) ECN or DSCP-45 marks for L4S and NQB, respectively. That is because 
+			low latency networking will not work on any connected downstream network if these marks cannot travel end-to-end (e.g., a 
 			customer of the network, including fixed and mobile end users, enterprises, and other users). There are also applications 
 			that will work on a peer-to-peer, intra-domain basis in a network, and those also would not be able to take advantage of 
 			L4S and NQB.</t>
 
-			<t>ECN generally works across all domain boundaries, so unless a network has gone out of their way to modify or bleach the ECN header, 
+			<t>ECN generally works across all domain boundaries, so unless a network has gone out of their way to bleach the ECN header, 
 			this is unlikely to be a major concern.</t>
 
-			<t>The key issue for modification or bleaching is really DSCP. NQB depends upon DSCP-45 passing across domain boundaries. Historically, 
+			<t>The key issue for modification or bleaching (removal of marks) is really DSCP. NQB depends upon DSCP-45 passing across domain boundaries. Historically, 
 			there is little alignment between networks over common DSCP marking since historically DSCP marks have not been used across 
-			domain boundaries and each network has implemented unique approaches to how DSCP is used. In practice this means most network have a 
+			domain boundaries, and each network has implemented unique approaches to how DSCP is used. In practice this means most network have a 
 			router policy that will replace most or all DSCP values on ingress and mark DSCP-0 or 8 or whatever code point the receiving network uses 
 			for best effort or default traffic. That means a router policy change will be needed here. Any concern over this can be mitigated by 
 			ensuring that DSCP-45 traffic is treated as best effort priority like regular internet traffic.</t>
@@ -499,12 +574,12 @@
         without altering or removing the ECT(1) or CE marking (see exception below). Traffic FROM peers marked 
         with ECT(1) or CE in the ECN header must be allowed to enter the network without altering or removing 
         the ECT(1) or CE marking (see exception below). The only exception would be when a network element is 
-        CE-aware and able to add a CE mark to signal that it is experiencing congestion at that hop. The end-to-end 
+        L4S-aware and able to add a CE mark to signal that it is experiencing congestion at that hop. The end-to-end 
 		integrity of ECN marks is explored in Appendix C.1 of <xref target="RFC9331"/>.</t>
         
         <t>This part - allowing unmodified ECN across the network - is likely to be easier than DSCP-45 for 
 		NQB (see next section), since it 
-        appears rare that networks modify the ECN header of packet flows.</t>
+        appears rare that networks modify the ECN header of packet flows.<xref target="Lim-ECN"/> <xref target="Bhooma-ECN"/></t>
         </section>
         
 
@@ -527,7 +602,7 @@
         Modem Termination System (CMTS) or Optical Line Terminal (OLT). The second is at the user location, such as a Cable Modem (CM) 
         or Optical Network Unit (ONU), both of which are example of CPE.</t>
         
-       <t>In theses two queues, ISPs should consider using the optional Queue Protection function 
+       <t>In these two queues, ISPs should consider using the optional Queue Protection function 
 	   <xref target="I-D.ietf-tsvwg-nqb"/> <xref target="I-D.briscoe-docsis-q-protection"/>. This can 
 	   potentially detect mismarking and take corrective action as needed.</t>
 
@@ -550,6 +625,13 @@
                 any attached customer-administered CPE, such as a router or wireless access point. That enables a 
 				customer-administered router to implement dual queue networking, rather that it only being possible with 
 				ISP-administered CPE.</t>
+
+		<t>On devices and/or network interfaces that the ISP manages, the ISP should ensure that L4S and NQB marking can pass to and 
+		from this device or interface - thus at least preserving the marks. This equipment/software in some cases may be able to add a 
+		Congestion Experienced (CE) mark if congestion occurs on that network hop (this is usually dependent on the specifics of the deployment 
+		scenario and associated access network architecture). For consumer router manufacturers (whether software and/or hardware), 
+		that equipment or software should similarly ensure that L4S and NQB marking can pass successfully, similar to what should occur 
+		in ISP-managed devices or software.</t>
 
         </section>
         
@@ -584,8 +666,8 @@
 
 		<section title="Packet Loss Effects">
 		<t>As networks implement low latency networking, including L4S, NQB, and new forms of AQM, they may notice 
-		somewhat less packet loss. This is because applications now have a new signals, such as a CE mark, to signal congestion. This signal 
-		is faster than the typical TCP packetloss mechanism.</t>
+		somewhat less packet loss. This is because applications now have new signals, such as a CE mark, to signal congestion. This signal 
+		is faster than the typical TCP packet loss mechanism.</t>
 		
 		<t>Thus, this is expected, as noted in Section 5.1 of <xref target="RFC9330" section="5.1" relative="section-5.1"/>:</t>
 
@@ -594,7 +676,7 @@
 			to its use of ECN. Otherwise, loss would itself cause delay, particularly for short flows, due to retransmission delay <xref target="RFC2884"/>.</t>
 		</blockquote>
 
-		<t>In addtion see Section 3 of <xref target="RFC2884" section="3" relative="section-3"/>:</t>
+		<t>In addition see Section 3 of <xref target="RFC2884" section="3" relative="section-3"/>:</t>
 
 		<blockquote cite="RFC2884">
 		<t>Since ECN marks packets before congestion actually occurs, this is useful for protocols like TCP that are sensitive to even a single 
@@ -611,10 +693,15 @@
         takes place at the end of the network in servers and/or end user client devices and software. In this new 
         approach to low latency networking, entry into a low latency queue depends upon marks in the packet header 
         of a particular application flow. In practice, this marking is best left to the application edge of the network, 
-        rather than it being a function of a middlebox in the ISP network. As explored below, this is 
-		the most efficient, least prone to mis-classification, and is most acceptable from the standpoint of 
+        rather than it being a function of a middlebox in the ISP network. In this case, these are network elements that 
+		have not been configured by an end user application but rather inserted in the path by a network operator as an 
+		element where active network management policies could be applied. An application-configured element, in contrast, 
+		could be something like an Oblivious HTTP Relay Resource (server) <xref target="RFC9458"/>.</t> 
+		
+		<t>As explored below, avoiding a middlebox and leaving marking to application clients is 
+		the most efficient, least prone to misclassification, and is most acceptable from the standpoint of 
 		network neutrality. So, while a middlebox may exist on an end-to-end path, it is best not to have a middlebox actively classify traffic 
-		for a low latency queue; let applications made that decision. This limits the potential for harm by a middlebox.</t>
+		for a low latency queue; let applications make that decision to limit the potential for problems that middleboxes can cause.</t>
 		    
 		    <t>The best approach is for applications to mark traffic to indicate their preference for the low latency queue, 
 			not the network making such a decision on its own. This is for several reasons:</t>
@@ -663,25 +750,26 @@
 			<section title="Security Considerations">
 		  <t>The key security consideration relates to access to capacity by flows using a low latency queue when those flows 
 		  do not follow the guidelines or L4S or NQB behavior. If flows mark for low latency queue treatment but are not correctly 
-		  rate-responsive or low bitrate, then there is a potential risk that they may reduce the capacity of competing unmarked 
-		  flows. As a result, <xref target="RFC9331"/> introduces a Queue Protection function. It is suggested that 
-		  implementers utilize Queue Protection to mitigate this potential risk.</t>
+		  rate-responsive or low bitrate, then there is a potential risk that they may disrupt the low latency goal of the 
+          low latency queue. <xref target="RFC9331"/> introduces a Queue Protection function to mitigate this risk. More can be learned 
+          about this in Section 5.2 of <xref target="I-D.ietf-tsvwg-nqb" section="5.2" relative="section-5.2"/>.</t>
 
-		  <t>The necessity of Queue Protection remains in debate, with some firmly believing it is necessary but others 
+		  <t>The necessity of Queue Protection (also referred to as Traffic Protection) remains in debate, with some firmly 
+          believing it is necessary but others 
 		  believing that it is not needed. The latter 
 		  view is that application developers have a natural incentive to correctly mark their traffic, because to 
-		  do otherwise would worsen the quality of experience (QoE) for their users. In that line of thinking, if a 
-		  developer mismarks, they and/or their users will notice and they will fix that error. It is 
+		  do otherwise would worsen the Quality of Experience (QoE) for their users. In that line of thinking, if a 
+		  developer mismarks, they and/or their users will notice, and they will fix that error. It is 
 		  also conceivable that malicious software could be operating on a user's device or home network and that 
-		  malicious software could try to send some much traffic to the low latency queue that the queue or both 
-		  queues become unusable. This is quite similar to other "traditional" denial of servce (DoS) attacks, so it 
-		  does not necessarily seems unique to low latency networking. But due to the possibility of this occuring, and 
+		  malicious software could try to send so much traffic to the low latency queue that the queue or both 
+		  queues become unusable. This is quite similar to other "traditional" denial of service (DoS) attacks, so it 
+		  does not necessarily seem unique to low latency networking. But due to the possibility of this occurring, and 
 		  low latency networking being such a new approach, it seems prudent to implement Queue Protection.</t>
 	    </section>
 
 	    <section title="Acknowledgements">
 			<t>Thanks to Bob Briscoe, Stuart Cheshire, Gorry Fairhust, Mat Ford, Vidhi Goel, Mirja Kuhlewind, Eliot Lear, 
-			Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Greg Skinner, Joe Touch, 
+			Matt Mathis, Sebastian Moeller, Sebnem Ozer, Jim Rampley, Dan Rice, Jason Schnitzer, Greg Skinner, Joe Touch, 
             Greg White, and Yiannis Yiakoumis for their review and feedback on this document and related presentations.</t>
 		</section>
 	    
@@ -699,6 +787,12 @@
           <t>v08: Misc updates from IETF review</t>
           <t>v09: Additional updates during review</t>
 		  <t>v10: Final changes from review</t>
+          <t>v11: Suggestions and nits from Greg White, other nits</t>
+          <t>v12: Sec 2.1 suggestions from Greg White, other nits</t>
+          <t>v13: Nits from Jason Schnitzer, suggestions from Matt Mathis</t>
+		  <t>v14: Changes from Eliot Lear</t>
+		  <t>v15: fix minor SVG nit</t>
+		  <t>v16: Another round of changes from the ISE</t>
 
 	    </section>
 	    
@@ -722,6 +816,8 @@
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9331.xml"/>
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9332.xml"/>
 			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9435.xml"/>
+            <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9438.xml"/>
+			<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9458.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-l4sops.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-nqb.xml"/>
 		   <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.briscoe-docsis-q-protection.xml"/>
@@ -773,18 +869,19 @@
 			   <seriesInfo name="DOI" value="10.1145/263932.264023"/>
 			           <seriesInfo name="Association for Computing Machinery" value="Sigcomm Computer Communications Review" />
 				</reference>
+
+            <reference anchor="Mathis-Reflections" target="https://doi.org/10.1145/1496091.1496099">
+  <front>
+    <title>Reflections on the TCP Macroscopic Model</title>
+    <author initials="M." surname="Mathis" fullname="Matthew Mathis">
+      <organization>Google</organization>
+    </author>
+    <date month="January" year="2009"/>
+  </front>
+  <seriesInfo name="ACM SIGCOMM Computer Communication Review" value="vol. 39, no. 1, pp. 47-49"/>
+  <seriesInfo name="DOI" value="10.1145/1496091.1496099"/>
+</reference>
 		   
-		   <reference anchor="IETF-114-Slides" target="https://datatracker.ietf.org/meeting/114/materials/slides-114-tsvwg-update-on-l4s-work-in-ietf-114-hackathon-00.pdf">
-			   <front>
-	            <title>First L4S Interop Event @ IETF Hackathon</title>
-	            <author fullname="Greg White" initials="G" surname="White">
-	              <organization>CableLabs</organization>
-	            </author>
-	            <date year="2022" month="July" day="25"/>
-			   </front>
-			   
-			</reference>
-			
 			<reference anchor="LLD" target="https://cablela.bs/low-latency-docsis-technology-overview-february-2019">
 				<front>
 					<title>Low Latency DOCSIS: Technology Overview</title>
@@ -837,16 +934,6 @@
 				   		<seriesInfo name="DOI" value="10.1109/IEEESTD.2021.9363693"/>
 			           <seriesInfo name="IEEE Standard for Information Technology--Telecommunications and Information Exchange between Systems - Local and Metropolitan Area Networks--Specific Requirements" value="802.11-2020" />
 						</reference>
-
-			<reference anchor="Microsoft" target="https://learn.microsoft.com/en-us/gaming/gdk/_content/gc/networking/overviews/qos-packet-tagging">
-			   <front>
-	            <title>Quality of service (QoS) packet tagging on Xbox consoles</title>
-	            <author>
-	              <organization>Microsoft</organization>
-	            </author>
-	            <date year="2022" month="August" day="19"/>
-			   </front>
-			</reference>
 
 			<reference anchor="Comcast" target="https://corporate.comcast.com/press/releases/comcast-introduces-nations-first-ultra-low-lag-xfinity-internet-experience-with-meta-nvidia-and-valve">
 			   <front>
@@ -1009,6 +1096,83 @@
     		</author>
   			</front>
 			</reference>
+
+            <reference anchor="BBR-Paper" target="https://dl.acm.org/doi/10.1145/3022184.3012426">
+    <front>
+      <title>BBR: Congestion-Based Congestion Control</title>
+      <author initials="N." surname="Cardwell" fullname="Neal Cardwell"/>
+      <author initials="Y." surname="Cheng" fullname="Yuchung Cheng"/>
+      <author initials="C. S." surname="Gunn" fullname="C. Stephen Gunn"/>
+      <author initials="S. H." surname="Yeganeh" fullname="Soheil Hassas Yeganeh"/>
+      <author initials="V." surname="Jacobson" fullname="Van Jacobson"/>
+      <date year="2016" month="September"/>
+    </front>
+    <refcontent>ACM Queue, Vol. 14, Issue 5</refcontent>
+  </reference>
+
+  <reference anchor="Bufferbloat" target="https://queue.acm.org/detail.cfm?id=2071893">
+    <front>
+      <title>Bufferbloat: Dark Buffers in the Internet</title>
+      <author initials="J." surname="Gettys" fullname="Jim Gettys"/>
+      <author initials="K." surname="Nichols" fullname="Kathleen Nichols"/>
+      <date year="2016" month="September"/>
+    </front>
+    <refcontent>ACM Queue, Vol. 9, Issue 11</refcontent>
+  </reference>
+
+  <reference anchor="Starvation" target="https://doi.org/10.1145/3544216.3544223">
+    <front>
+      <title>Starvation in End-to-End Congestion Control</title>
+      <author initials="V." surname="Arun" fullname="Venkat Arun"/>
+      <author initials="M." surname="Alizadeh" fullname="Mohammad Alizadeh"/>
+      <author initials="H." surname="Balakrishnan" fullname="Hari Balakrishnan"/>
+      <date year="2022" month="August"/>
+    </front>
+    <refcontent>Proceedings of the ACM SIGCOMM 2022 Conference</refcontent>
+  </reference>
+
+  <reference anchor="BBR-Analysis" target="https://doi.org/10.23919/IFIPNetworking.2018.8696830">
+    <front>
+      <title>Towards a Deeper Understanding of TCP BBR Congestion Control</title>
+      <author initials="D." surname="Scholz" fullname="Dominik Scholz"/>
+      <author initials="B." surname="Jaeger" fullname="Benedikt Jaeger"/>
+      <author initials="L." surname="Schwaighofer" fullname="Lukas Schwaighofer"/>
+      <author initials="D." surname="Raumer" fullname="Daniel Raumer"/>
+      <author initials="F." surname="Geyer" fullname="Fabian Geyer"/>
+      <author initials="G." surname="Carle" fullname="Georg Carle"/>
+      <date year="2018" month="May"/>
+    </front>
+    <refcontent>2018 IFIP Networking Conference</refcontent>
+  </reference>
+
+  <reference anchor="Lim-ECN" target="https://arxiv.org/abs/2208.14523">
+  <front>
+    <title>A Fresh Look at ECN Traversal in the Wild</title>
+    <author initials="H." surname="Lim" fullname="Hyoyoung Lim"/>
+    <author initials="S." surname="Kim" fullname="Seonwoo Kim"/>
+    <author initials="J." surname="Sippe" fullname="Jackson Sippe"/>
+    <author initials="J." surname="Kim" fullname="Junseon Kim"/>
+    <author initials="G." surname="White" fullname="Greg White"/>
+    <author initials="C." surname="Lee" fullname="Chul-Ho Lee"/>
+    <author initials="E." surname="Wustrow" fullname="Eric Wustrow"/>
+    <author initials="K." surname="Lee" fullname="Kyunghan Lee"/>
+    <author initials="D." surname="Grunwald" fullname="Dirk Grunwald"/>
+    <author initials="S." surname="Ha" fullname="Sangtae Ha"/>
+    <date year="2022" month="August"/>
+  </front>
+  <seriesInfo name="arXiv" value="2208.14523"/>
+</reference>
+
+<reference anchor="Bhooma-ECN"
+  target="https://www.ietf.org/proceedings/98/slides/slides-98-maprg-tcp-ecn-experience-with-enabling-ecn-on-the-internet-padma-bhooma-00.pdf">
+  <front>
+    <title>TCP ECN: Experience with Enabling ECN on the Internet</title>
+    <author initials="P." surname="Bhooma" fullname="Padma Bhooma"/>
+    <date year="2017" month="March"/>
+  </front>
+  <refcontent>Presented at IETF 98, Measurement and Analysis for Protocols
+  Research Group (MAPRG)</refcontent>
+</reference>
 			
 		   
 	   </references>
